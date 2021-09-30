@@ -2,9 +2,9 @@
   <div class="flex justify-center items-center">
     <div class="bg-white sm:w-3/4  m-3 p-8 rounded">
     <div class="flex m-10 font-bold sm:text-3xl text-xl text-base_red justify-center">
-      <p><img src="~/assets/img/coffeebeans_icon.png" class="sm:m-2 m-1 w-6"/></p>
+      <p><img src="~/assets/img/coffeebeans_icon.webp" class="sm:m-2 m-1 w-6"/></p>
       <p>お届け先情報</p>
-      <p><img src="~/assets/img/coffeebeans_icon.png" class="sm:m-2 m-1 w-6"/></p>
+      <p><img src="~/assets/img/coffeebeans_icon.webp" class="sm:m-2 m-1 w-6"/></p>
     </div>
 
     <div class="flex justify-center items-center">
