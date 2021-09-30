@@ -39,7 +39,7 @@ module.exports = {
       //   'cafe-pattern': "url('./assets/img/cafe_background.jpeg')",
       // })
       backgroundImage: (theme) => ({
-        starbucks: "url('assets/img/coffee-2734137_1280.jpg')",
+        starbucks: "url('assets/img/coffee-2734137_1280.webp')",
       }),
     },
   },

@@ -126,7 +126,7 @@
                     @click="deleteCartItem(cartitem.specialId)"
                     class="sm:w-1/2 w-3/4"
                   >
-                    <img src="~/assets/img/trash.png" />
+                    <img src="~/assets/img/trash.webp" />
                   </button>
                 </div>
               </div>
