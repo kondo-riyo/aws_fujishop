@@ -19,7 +19,7 @@
     "firebase": "^8.9.1",
     "js-cookie": "^3.0.0",
     "jwt-decode": "^3.1.2",
-    "nuxt": "^2.15.7",
+    "nuxt": "^2.15.8",
     "tailwindcss": "^2.2.7",
     "universal-cookie": "^4.0.4",
     "vee-validate": "^3.4.11",
