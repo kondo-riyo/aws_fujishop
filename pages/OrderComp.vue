@@ -11,7 +11,7 @@
         m-5
       "
     >
-      <img class="w-full" src="~/assets/img/ordercomp.png" />
+      <img class="w-full" src="~/assets/img/orderComp.webp" />
       <div class="px-6 pt-4 text-base_red">
         <div v-if="userInfoFromStore" class="font-bold text-xl">
           {{ userInfoFromStore.name }} 様
@@ -25,34 +25,18 @@
         <p class="animate-bounce text-2xl font-bold mt-1 font-base_gray">↓</p>
       </div>
       <div>
-        <button
-          class="
-            bg-base_red
-            hover:bg-base_orange
-            text-base_cream
-            font-bold
-            py-2
-            px-6
-            rounded-full
-          "
-        >
-          <router-link to="OrderLog">注文内容を確認する</router-link>
-        </button>
+        <round-bottun>
+          <router-link to="OrderLog">
+            注文内容を確認する
+          </router-link>
+        </round-bottun>
       </div>
       <div class="py-2">
-        <button
-          class="
-            bg-base_red
-            hover:bg-base_orange
-            text-base_cream
-            font-bold
-            py-2
-            px-12
-            rounded-full
-          "
-        >
-          <router-link to="/"> ホームに戻る </router-link>
-        </button>
+        <round-bottun>
+          <router-link to="/">
+          ホームに戻る
+          </router-link>
+        </round-bottun>
       </div>
     </div>
   </div>
