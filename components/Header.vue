@@ -3,7 +3,7 @@
     <div class="flex flex-row sm:flex-col items-end">
       <div class="sm:block sm:mb-5 sm:pb-5 mr-0 w-4/12 sm:w-full">
         <router-link to="/">
-          <img src="~/assets/img/4.png" class="w-15 sm:w-full p-1 sm:mt-4 mb-0 mr-auto ml-auto " />
+          <img src="~/assets/img/mainLogo.webp" class="w-15 sm:w-full p-1 sm:mt-4 mb-0 mr-auto ml-auto " />
         </router-link>
       </div>
       <div
@@ -22,7 +22,7 @@
        ">
         <span class="relative inline-block">
           <router-link to="/Cart">
-            <img src="~/assets/img/cart_icon.png" class="w-10 sm:w-1/3 inline-block" />
+            <img src="~/assets/img/cart_icon.webp" class="w-10 sm:w-1/3 inline-block" />
           </router-link>
         </span>
       </div>
@@ -39,7 +39,7 @@
         text-center
        ">
         <router-link to="/OrderLog">
-         <img src="~/assets/img/rireki.png" class="w-10 sm:w-1/3 inline-block" />
+         <img src="~/assets/img/rireki.webp" class="w-10 sm:w-1/3 inline-block" />
         </router-link>
       </div>
       <div v-if="!userInfoFromStore" 
@@ -62,7 +62,7 @@
         text-center
         " >
         <router-link to="/signin">
-         <img src="~/assets/img/login_icon.png" class="w-10 sm:w-1/3 inline-block" />
+         <img src="~/assets/img/login_icon.webp" class="w-10 sm:w-1/3 inline-block" />
         </router-link>
       </div>
       <div title="ログアウト" v-if="userInfoFromStore"
@@ -78,7 +78,7 @@
         ">
         <router-link to="/">
           <button class="font-bold" @click="logout">
-            <img src="~/assets/img/logout_icon.png" class="w-10 sm:w-1/3 inline-block" />
+            <img src="~/assets/img/logout_icon.webp" class="w-10 sm:w-1/3 inline-block" />
           </button>
         </router-link>
       </div>

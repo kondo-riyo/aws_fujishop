@@ -11,7 +11,7 @@
         m-5
       "
     >
-      <img class="w-full" src="~/assets/img/orderComp.webp" />
+      <img class="w-full" src="~/assets/img/ordercomp.webp" />
       <div class="px-6 pt-4 text-base_red">
         <div v-if="userInfoFromStore" class="font-bold text-xl">
           {{ userInfoFromStore.name }} 様
