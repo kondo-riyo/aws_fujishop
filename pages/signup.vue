@@ -74,7 +74,8 @@
               </span>
             </validation-provider>
           </div>
-          <div>
+          <div class="flex flex-wrap items-end">
+          <div class="w-2/3 pr-2">
             <label for="postalcode">郵便番号</label>
             <validation-provider
               v-slot="{ errors }"
@@ -92,11 +93,12 @@
               </span>
             </validation-provider>
           </div>
-          <div class="my-2">
+          <div class=" w-1/3">
             <square-bottun
              　@click="yubinbango()">
               検索
             </square-bottun>
+          </div>
           </div>
           <div>
             <label for="address">住所</label>
@@ -134,11 +136,16 @@
               </span>
             </validation-provider>
           </div>
-          <div class="my-4 ml-16 self-center">
+            <div v-if="invalid" class="my-5 py-2 text-center font-semibold text-base_red bg-base_cream rounded-full">
+               ※入力内容が不足しています
+            </div>
+            <div class="my-4 ml-16 self-center">
             <round-bottun
-              @click="signup"
-              :disabled="invalid">
-              登録
+               @click="signup"
+               :disabled="invalid"
+               v-if="!invalid"
+                >
+                登録
             </round-bottun>
           </div>
         </ValidationObserver>
@@ -156,7 +163,8 @@ import Vue from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import firebase, { auth, db } from '../plugins/firebase';
 import { userInfoType } from '../types/userInfoType';
-import { Core as YubinBangoCore } from 'yubinbango-core'
+
+let YubinBango = require('yubinbango-core2')
 
 type DataType = {
   userInfo: userInfoType;
@@ -230,12 +238,9 @@ export default Vue.extend({
     yubinbango(){
       console.log(this.userInfo.postalcode)
       let newAddress = ''
-      new YubinBangoCore(this.userInfo.postalcode, (addr :any)=> {
+      new YubinBango.Core(this.userInfo.postalcode, (addr :any)=> {
         newAddress = addr.region + addr.locality + addr.street
         this.userInfo.address = newAddress
-        // this.userInfo.address = addr.region // 都道府県
-        // this.userInfo.address += addr.locality // 市区町村
-        // this.userInfo.address += addr.street // 町域
       })
     }
   },
