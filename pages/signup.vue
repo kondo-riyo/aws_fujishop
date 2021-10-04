@@ -21,7 +21,7 @@
         </div>
         <ValidationObserver v-slot="{ invalid }">
           <div>
-            <label for="name">名前</label>
+            <label for="name" class="text-base_green font-bold">名前</label>
             <validation-provider
               v-slot="{ errors }"
               name="名前"
@@ -84,7 +84,7 @@
               <inputA
                  v-model="userInfo.postalcode"
                  name="郵便番号"
-                 type="text"
+                 type="number"
                  placeholder=""
                  @input="inputPostalcode"/>
               <span class="text-xs text-red-700">
@@ -92,7 +92,12 @@
               </span>
             </validation-provider>
           </div>
-
+          <div class="my-2">
+            <square-bottun
+             　@click="yubinbango()">
+              検索
+            </square-bottun>
+          </div>
           <div>
             <label for="address">住所</label>
             <validation-provider
@@ -151,6 +156,7 @@ import Vue from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import firebase, { auth, db } from '../plugins/firebase';
 import { userInfoType } from '../types/userInfoType';
+import { Core as YubinBangoCore } from 'yubinbango-core'
 
 type DataType = {
   userInfo: userInfoType;
@@ -216,11 +222,22 @@ export default Vue.extend({
       this.userInfo.tel=value
     },
     inputPostalcode(value:string): void {
-      this.userInfo.postalcode=value
+      this.userInfo.postalcode =value
     },
     inputAddress(value:string): void {
       this.userInfo.address=value
     },
+    yubinbango(){
+      console.log(this.userInfo.postalcode)
+      let newAddress = ''
+      new YubinBangoCore(this.userInfo.postalcode, (addr :any)=> {
+        newAddress = addr.region + addr.locality + addr.street
+        this.userInfo.address = newAddress
+        // this.userInfo.address = addr.region // 都道府県
+        // this.userInfo.address += addr.locality // 市区町村
+        // this.userInfo.address += addr.street // 町域
+      })
+    }
   },
 });
 </script>

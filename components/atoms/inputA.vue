@@ -6,7 +6,7 @@
       appearance-none
       block
       w-full
-      bg-gray-200
+      bg-base_gray bg-opacity-25
       text-gray-700
       border border-gray-200
       rounded
