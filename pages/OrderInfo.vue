@@ -45,26 +45,12 @@
                     name="名前"
                     rules="required|max:10"
                   >
-                    <input
-                      v-model="name"
-                      name="名前"
-                      class="
-                        appearance-none
-                        block
-                        w-full
-                        bg-gray-200
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                      id="grid-name"
-                      type="text"
-                      placeholder="例)田中太郎"
-                    />
+                  <inputA
+                    v-model="name"
+                    name="名前"
+                    type="text"
+                    placeholder="例)田中 太朗"
+                    @input="inputName"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -90,34 +76,20 @@
                     name="メールアドレス"
                     rules="required|email"
                   >
-                    <input
-                      v-model="email"
-                      name="メールアドレス"
-                      class="
-                        appearance-none
-                        block
-                        w-full
-                        bg-gray-200
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                      id="grid-mail"
-                      type="text"
-                      placeholder="例)sample@gmail.com"
-                    />
+                  <inputA
+                    v-model="email"
+                    name="メールアドレス"
+                    type="text"
+                    placeholder="例)sample@gmail.com"
+                    @input="inputMail"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
                   </validation-provider>
                 </div>
               </div>
-              <div class="flex flex-wrap items-start -mx-3 mb-6">
-                <div class="w-full md:w-1/3 px-3">
+              <div class="flex flex-wrap items-end -mx-3 mb-6">
+                <div class="w-2/3 md:w-2/6 px-3">
                   <label
                     class="
                       block
@@ -137,30 +109,24 @@
                     name="郵便番号"
                     rules="required|yubin"
                   >
-                    <input
-                      v-model="postalcode"
-                      name="zip1"
-                      class="
-                        w-full
-                        bg-gray-200
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                      id="grid-ad-number"
-                      type="text"
-                      placeholder="例)1234567"
-                    />
+                  <inputA
+                    v-model="postalcode"
+                    name="郵便番号"
+                    type="text"
+                    placeholder="例)1234567"
+                    @input="inputPostalcode"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
                   </validation-provider>
                 </div>
-                <div class="w-full md:w-2/3 px-3">
+                <div class="w-1/3 md:w-1/6 px-0 py-1">
+                  <square-bottun
+                  　@click="yubinbango()">
+                    検索
+                  </square-bottun>
+                </div>
+                <div class="w-full md:w-3/6 px-3">
                   <label
                     class="
                       block
@@ -180,26 +146,12 @@
                     name="住所"
                     rules="required"
                   >
-                    <input
-                      v-model="address"
-                      name="住所"
-                      class="
-                        appearance-none
-                        block
-                        w-full
-                        bg-gray-200
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                      iid="address"
-                      type="text"
-                      placeholder="例)東京都新宿区〇〇"
-                    />
+                  <inputA
+                    v-model="address"
+                    name="住所"
+                    type="text"
+                    placeholder="例)東京都新宿区〇〇"
+                    @input="inputAddress"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -227,26 +179,12 @@
                     name="電話番号"
                     rules="required|min:10|max:11"
                   >
-                    <input
-                      v-model="tel"
-                      name="電話番号"
-                      class="
-                        appearance-none
-                        block
-                        w-full
-                        bg-gray-200
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                      id="grid-name"
-                      type="text"
-                      placeholder="例)00000000000"
-                    />
+                  <inputA
+                    v-model="tel"
+                    name="電話番号"
+                    type="text"
+                    placeholder="例)00000000000"
+                    @input="inputTel"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -272,26 +210,12 @@
                     name="配達日"
                     rules="required"
                   >
-                    <input
-                      v-model="deliveryDate"
-                      name="配達日"
-                      class="
-                        appearance-none
-                        block
-                        w-full
-                        bg-gray-200
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                      id="grid-name"
-                      type="date"
-                      placeholder=""
-                    />
+                  <inputA
+                    v-model="deliveryDate"
+                    name="配達日"
+                    type="date"
+                    placeholder=""
+                    @input="inputDeliveryDate"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -321,16 +245,15 @@
                       v-model="deliveryTime"
                       name="配達時間"
                       class="
-                        block
                         appearance-none
+                        block
                         w-full
-                        bg-gray-200
-                        border border-gray-200
+                        bg-base_gray bg-opacity-25
                         text-gray-700
+                        border border-gray-200
+                        rounded
                         py-3
                         px-4
-                        pr-8
-                        rounded
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
@@ -345,6 +268,11 @@
                       <option value="16">16時</option>
                       <option value="17">17時</option>
                     </select>
+                    <!-- <select-a
+                     v-model="deliveryTime"
+                     name="配達時間"
+                     :options="options"
+                    ></select-a> -->
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -421,26 +349,12 @@
                     name="クレジットカード番号"
                     rules="required|creditNum"
                   >
-                    <input
-                      v-model="creditCardNum"
-                      name="クレジットカード番号"
-                      class="
-                        appearance-none
-                        block
-                        w-full
-                        bg-gray-200
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                      id="grid-name"
-                      type="text"
-                      placeholder="例)0000000000000000"
-                    />
+                  <inputA
+                    v-model="creditCardNum"
+                    name="クレジットカード番号"
+                    type="text"
+                    placeholder="例)0000000000000000"
+                    @input="inputDeliveryDate"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -451,23 +365,13 @@
                 <div v-if="invalid" class="font-semibold text-base_red bg-base_cream py-3 px-4 mt-5 rounded-full">
                   ※入力内容が不足しています
                 </div>
-                <button
+                <round-bottun
                   @click="OrderSubmit()"
                   :disabled="invalid"
                   v-if="!invalid"
-                  class="
-                    bg-base_red
-                    hover:bg-base_red hover:bg-opacity-50 hover:text-black
-                    text-white
-                    font-semibold
-                    py-3
-                    px-4
-                    rounded
-                    mt-5
-                  "
-                >
+                  >
                   ご注文を確定する
-                </button>
+                </round-bottun>
               </div>
             </ValidationObserver>
           </form>
@@ -487,6 +391,8 @@ import {
 } from '../types/cartItemType';
 import { userInfoType } from '../types/userInfoType';
 
+let YubinBango = require('yubinbango-core2')
+
 export default Vue.extend({
   data(): orderInfoType {
     return {
@@ -500,7 +406,8 @@ export default Vue.extend({
       payment: 0,
       creditCardNum: '',
       selectPayment: false,
-    };
+    }
+
   },
   components: {
     // Field,
@@ -536,6 +443,40 @@ export default Vue.extend({
     notcreditPay():void {
       this.selectPayment = false;
     },
+    yubinbango(){
+      console.log(this.postalcode)
+      let newAddress = ''
+      new YubinBango.Core(this.postalcode, (addr :any)=> {
+        newAddress = addr.region + addr.locality + addr.street
+        this.address = newAddress
+      })
+    },
+    inputName(value:string): void {
+      this.name=value
+    },
+    inputMail(value:string): void {
+      this.email=value
+    },
+    inputPostalcode(value:string): void {
+      this.postalcode =value
+    },
+    inputAddress(value:string): void {
+      this.address=value
+    },
+    inputTel(value:string): void {
+      this.tel=value
+    },
+    inputDeliveryDate(value:string): void {
+      this.deliveryDate=value
+    },
+    inputDeliveryTime(value:string): void {
+      this.deliveryDate=value
+    },
+    inputCreditCardNum(value:string): void {
+      this.creditCardNum=value
+    },
+
+
   },
   // async fetch():Promise<void> {
   //   const fetchitemInfoFromStore = CartStore.fetchitemInfoAct();

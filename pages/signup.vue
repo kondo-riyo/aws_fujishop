@@ -21,7 +21,7 @@
         </div>
         <ValidationObserver v-slot="{ invalid }">
           <div>
-            <label for="name">名前</label>
+            <label for="name" class="text-base_green font-bold">名前</label>
             <validation-provider
               v-slot="{ errors }"
               name="名前"
@@ -74,7 +74,8 @@
               </span>
             </validation-provider>
           </div>
-          <div>
+          <div class="flex flex-wrap items-end">
+          <div class="w-2/3 pr-2">
             <label for="postalcode">郵便番号</label>
             <validation-provider
               v-slot="{ errors }"
@@ -84,7 +85,7 @@
               <inputA
                  v-model="userInfo.postalcode"
                  name="郵便番号"
-                 type="text"
+                 type="number"
                  placeholder=""
                  @input="inputPostalcode"/>
               <span class="text-xs text-red-700">
@@ -92,7 +93,13 @@
               </span>
             </validation-provider>
           </div>
-
+          <div class=" w-1/3">
+            <square-bottun
+             　@click="yubinbango()">
+              検索
+            </square-bottun>
+          </div>
+          </div>
           <div>
             <label for="address">住所</label>
             <validation-provider
@@ -129,11 +136,16 @@
               </span>
             </validation-provider>
           </div>
-          <div class="my-4 ml-16 self-center">
+            <div v-if="invalid" class="my-5 py-2 text-center font-semibold text-base_red bg-base_cream rounded-full">
+               ※入力内容が不足しています
+            </div>
+            <div class="my-4 ml-16 self-center">
             <round-bottun
-              @click="signup"
-              :disabled="invalid">
-              登録
+               @click="signup"
+               :disabled="invalid"
+               v-if="!invalid"
+                >
+                登録
             </round-bottun>
           </div>
         </ValidationObserver>
@@ -151,6 +163,8 @@ import Vue from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import firebase, { auth, db } from '../plugins/firebase';
 import { userInfoType } from '../types/userInfoType';
+
+let YubinBango = require('yubinbango-core2')
 
 type DataType = {
   userInfo: userInfoType;
@@ -216,11 +230,19 @@ export default Vue.extend({
       this.userInfo.tel=value
     },
     inputPostalcode(value:string): void {
-      this.userInfo.postalcode=value
+      this.userInfo.postalcode =value
     },
     inputAddress(value:string): void {
       this.userInfo.address=value
     },
+    yubinbango(){
+      console.log(this.userInfo.postalcode)
+      let newAddress = ''
+      new YubinBango.Core(this.userInfo.postalcode, (addr :any)=> {
+        newAddress = addr.region + addr.locality + addr.street
+        this.userInfo.address = newAddress
+      })
+    }
   },
 });
 </script>
