@@ -3,7 +3,7 @@ export interface userInfoType {
     password?:string;
     name?:string;
     tel?:string;
-    postalcode?:string;
+    postalcode?: string;
     address?:string;
     uid?:string|null
 }
