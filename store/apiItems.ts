@@ -30,7 +30,7 @@ import { rakuten } from '~/types/rakutenType';
        const ApiItemsToState:itemType[] = itemsFromAPi!.map(
          (itemFromAPi:any) => ({name:itemFromAPi.Item.itemName,
                           price:Number(itemFromAPi.Item.itemPrice),
-                          description:itemFromAPi.Item.itemCaption,
+                          description:itemFromAPi.Item.catchcopy,
                           img:itemFromAPi.Item.mediumImageUrls[0].imageUrl,
                           id:itemFromAPi.Item.itemCode,
                           rank:Number(itemFromAPi.Item.rank)}))
