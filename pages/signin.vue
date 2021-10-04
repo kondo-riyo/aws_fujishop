@@ -28,24 +28,12 @@
               name="メールアドレス"
               rules="required|email"
             >
-              <input
-                v-model="userInfo.email"
-                name="メールアドレス"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="text"
-              />
+              <inputA
+                 v-model="userInfo.email"
+                 name="メールアドレス"
+                 type="text"
+                 placeholder=""
+                 @input="inputMail"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -58,45 +46,23 @@
               name="パスワード"
               rules="required"
             >
-              <input
-                v-model="userInfo.password"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="password"
-                placeholder="*******"
-              />
+              <inputA
+                 v-model="userInfo.password"
+                 name="パスワード"
+                 type="password"
+                 placeholder="*******"
+                 @input="inputPassword"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div class="block ml-16 m-4 self-center">
-            <button
-              @click="login"
-              :disabled="invalid"
-              class="
-                bg-base_red
-                hover:bg-base_orange
-                text-white
-                font-bold
-                py-2
-                px-6
-                rounded-full
-              "
-            >
+            <round-bottun
+            @click="login"
+            :disabled="invalid">
               ログイン
-            </button>
+            </round-bottun>
           </div>
         </ValidationObserver>
         <div class="self-center">
@@ -132,19 +98,17 @@ export default Vue.extend({
   },
   components: {
     ValidationProvider,
-    ValidationObserver,
+    ValidationObserver
   },
   methods: {
     login(): void {
       if (typeof this.userInfo !== undefined) {
-        console.log(typeof this.userInfo);
         auth
           .signInWithEmailAndPassword(
             this.userInfo.email,
             this.userInfo.password
           )
           .then((authUser):void => {
-            console.log(authUser.user);
             if (
               authUser.user === null ||
               authUser.user.email === null ||
@@ -157,6 +121,12 @@ export default Vue.extend({
           });
       } 
     },
-  },
+    inputMail(newvalue:string): void {
+      this.userInfo.email=newvalue
+    },
+    inputPassword(value:string): void {
+      this.userInfo.password=value
+    },
+  }
 });
 </script>

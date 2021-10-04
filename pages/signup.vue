@@ -27,25 +27,12 @@
               name="名前"
               rules="required|max:10"
             >
-              <input
-                v-model="userInfo.name"
-                name="名前"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="text"
-                placeholder="例)田中 太朗"
-              />
+              <inputA
+                 v-model="userInfo.name"
+                 name="名前"
+                 type="text"
+                 placeholder="例)田中 太朗"
+                 @input="inputName"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -58,25 +45,12 @@
               name="メールアドレス"
               rules="required|email"
             >
-              <input
-                v-model="userInfo.email"
-                name="メールアドレス"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="text"
+              <inputA
+                 v-model="userInfo.email"
+                 name="メールアドレス"
+                 type="text"
                 placeholder="例)sample@gmail.com"
-              />
+                 @input="inputMail"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -89,25 +63,12 @@
               name="電話番号"
               rules="required|min:10|max:11"
             >
-              <input
-                v-model="userInfo.tel"
-                name="電話番号"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="text"
-                placeholder="例)090XXXXXXXX"
-              />
+              <inputA
+                 v-model="userInfo.tel"
+                 name="電話番号"
+                 type="text"
+                 placeholder="例)090XXXXXXXX"
+                 @input="inputTel"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -120,25 +81,12 @@
               name="郵便番号"
               rules="required|yubin"
             >
-              <input
-                v-model="userInfo.postalcode"
-                name="郵便番号"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="text"
-                placeholder=""
-              />
+              <inputA
+                 v-model="userInfo.postalcode"
+                 name="郵便番号"
+                 type="text"
+                 placeholder=""
+                 @input="inputPostalcode"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -152,25 +100,12 @@
               name="住所"
               rules="required"
             >
-              <input
-                v-model="userInfo.address"
-                name="住所"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="text"
-                placeholder="東京都新宿区"
-              />
+              <inputA
+                 v-model="userInfo.address"
+                 name="住所"
+                 type="text"
+                 placeholder="東京都新宿区"
+                 @input="inputAddress"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -183,45 +118,23 @@
               name="パスワード"
               rules="required"
             >
-              <input
-                v-model="userInfo.password"
-                class="
-                  appearance-none
-                  block
-                  w-full
-                  bg-gray-200
-                  text-gray-700
-                  border border-gray-200
-                  rounded
-                  py-3
-                  px-4
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500
-                "
-                type="password"
-                placeholder="例)*******"
-              />
+              <inputA
+                 v-model="userInfo.password"
+                 name="パスワード"
+                 type="password"
+                 placeholder="例)*******"
+                 @input="inputPassword"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div class="my-4 ml-16 self-center">
-            <button
+            <round-bottun
               @click="signup"
-              :disabled="invalid"
-              class="
-                bg-base_red
-                hover:bg-base_orange
-                text-white
-                font-bold
-                py-2
-                px-6
-                rounded-full
-              "
-            >
+              :disabled="invalid">
               登録
-            </button>
+            </round-bottun>
           </div>
         </ValidationObserver>
         <div class="self-center">
@@ -246,9 +159,9 @@ export default Vue.extend({
   data(): DataType {
     return {
       userInfo: {
+        name: '',
         email: '',
         password: '',
-        name: '',
         tel: '',
         postalcode: '',
         address: '',
@@ -258,7 +171,7 @@ export default Vue.extend({
   },
   components: {
     ValidationProvider,
-    ValidationObserver,
+    ValidationObserver
   },
   methods: {
     async signup(): Promise<void> {
@@ -280,16 +193,7 @@ export default Vue.extend({
         console.log(error.message);
       }
     },
-
-
-
-
-
-    addAuthUserToDb(
-      uid: string
-    ): Promise<
-      firebase.firestore.DocumentReference<firebase.firestore.DocumentData>
-    > {
+    addAuthUserToDb(uid: string): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
       return db.collection(`users/${uid}/userInfo`).add({
         email: this.userInfo.email,
         name: this.userInfo.name,
@@ -298,6 +202,24 @@ export default Vue.extend({
         address: this.userInfo.address,
         uid: uid,
       });
+    },
+    inputName(value:string): void {
+      this.userInfo.name=value
+    },
+    inputMail(value:string): void {
+      this.userInfo.email=value
+    },
+    inputPassword(value:string): void {
+      this.userInfo.password=value
+    },
+    inputTel(value:string): void {
+      this.userInfo.tel=value
+    },
+    inputPostalcode(value:string): void {
+      this.userInfo.postalcode=value
+    },
+    inputAddress(value:string): void {
+      this.userInfo.address=value
     },
   },
 });

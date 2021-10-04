@@ -7,7 +7,6 @@
           <Card :item="item" />
         </router-link>
     </div>
-    {{apiItemsFromStore}}
   </div>
 </template>
 

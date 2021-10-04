@@ -44,7 +44,6 @@ import { rakuten } from '~/types/rakutenType';
       const sweetsRankUrl =
       'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?format=json&genreId=568410&applicationId=1040019384827098233';
     const resUrl = await axios.get<rakuten.api.items.Response>(sweetsRankUrl);
-    //const itemsFromAPi = JSON.stringify(resUrl.data.Items)
     const itemsFromAPi = resUrl.data.Items
     this.fetchApiItemsMut(itemsFromAPi)
     }

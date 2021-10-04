@@ -112,9 +112,5 @@ export default Vue.extend({
       return ItemsStore.getItems;
     },
   },
-  created() {
-    console.log('created' + this.itemsFromStore);
-    console.log(JSON.stringify(this.itemsFromStore));
-  },
 });
 </script>

@@ -65,4 +65,10 @@ export default {
   // render: {
   //   injectScripts: false,
   // },
+  components: [
+    {
+      path: '@/components',
+      pathPrefix: false,
+    },
+  ],
 };
