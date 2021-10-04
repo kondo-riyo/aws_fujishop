@@ -1,12 +1,29 @@
 <template>
   <div class="sm:flex w-full">
-    <Header class="sm:flex-grow-0 w-full sm:w-1/12  text-gray-800 sm:h-screen sm:fixed"  />
-    <Nuxt class="sm:flex-grow sm:w-11/12 bg-base_gray bg-opacity-25 min-h-screen text-gray-800 sm:ml-20" />
+    <Header
+      class="sm:flex-grow-0 w-full sm:w-1/12 text-gray-800 sm:h-screen sm:fixed"
+    />
+    <Nuxt
+      class="
+        sm:flex-grow sm:w-11/12
+        bg-base_gray
+        bg-opacity-25
+        min-h-screen
+        text-gray-800
+        sm:ml-20
+      "
+    />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { ItemsStore, ToppingsStore, UserStore, CartStore } from '../store';
+import {
+  ItemsStore,
+  ToppingsStore,
+  UserStore,
+  CartStore,
+  ApiItemsStore,
+} from '../store';
 
 export default Vue.extend({
   async fetch(): Promise<void> {
@@ -16,12 +33,16 @@ export default Vue.extend({
       const fetchToppingsFromStore = ToppingsStore.fetchToppingsAct();
       await Promise.all([fetchItemsFromStore, fetchToppingsFromStore]);
     }
+    if (ApiItemsStore.itemsFromApi.length === 0) {
+      const fetchApiItemsFromStore = ApiItemsStore.fetchApiItemsAct();
+      await Promise.all([fetchApiItemsFromStore]);
+    }
     if (UserStore.userInfo) {
-     const fetchSignupInfo = UserStore.fetchSignupInfoAct();
-     const fetchitemInfo = CartStore.fetchitemInfoAct();
-     //const cartitemInfo = CartStore.fetchCartAct()
-     await Promise.all([fetchSignupInfo,fetchitemInfo])
-    } 
+      const fetchSignupInfo = UserStore.fetchSignupInfoAct();
+      const fetchitemInfo = CartStore.fetchitemInfoAct();
+      //const cartitemInfo = CartStore.fetchCartAct()
+      await Promise.all([fetchSignupInfo, fetchitemInfo]);
+    }
   },
 });
 </script>

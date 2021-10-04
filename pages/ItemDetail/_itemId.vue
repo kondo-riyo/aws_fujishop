@@ -2,100 +2,10 @@
   <div class="sm:pl-10 p-1 flex">
     <div>
       <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div>
-      <div class="sm:flex">
-        <div class="m-2">
-          <img :src="itemDetail.img" class="rounded-xl w-full" />
-        </div>
-        <div
-          class="
-            flex flex-col
-            justify-center
-            sm:m-5
-            bg-white
-            p-3
-            sm:p-5
-            rounded-xl
-          "
-        >
-          <div>
-            <p class="text-gray-700 text-2xl sm:text-4xl font-bold">
-              {{ itemDetail.name }}
-            </p>
-          </div>
-          <div class="mt-5">
-            <p>
-              <span class="text-xl sm:text-3xl">￥{{ itemDetail.price }}</span>
-              税込
-            </p>
-          </div>
-          <div>
-            <p class="block my-2 sm:my-4 sm:text-xl">
-              {{ itemDetail.description }}
-            </p>
-          </div>
 
-          <div class="flex">
-            <div class="flex items-center">
-              <span class="mr-3">
-                <font style="vertical-align: inherit">
-                  <font style="vertical-align: inherit">個数</font>
-                </font>
-              </span>
-              <div class="relative">
-                <select
-                  class="
-                    rounded
-                    border
-                    appearance-none
-                    border-gray-300
-                    py-2
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-base_orange
-                    focus:border-base_orange
-                    text-base
-                    pl-3
-                    pr-10
-                  "
-                  v-model="selectedItemNum"
-                >
-                  <option v-for="(num, index) in itemNum" :key="index">
-                    {{ num }}
-                  </option>
-                </select>
-                <span
-                  class="
-                    absolute
-                    right-0
-                    top-0
-                    h-full
-                    text-center text-gray-600
-                    pointer-events-none
-                    flex
-                    w-4
-                    items-center
-                    justify-center
-                  "
-                >
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-4 h-4"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sm:mt-5 mt-2 bg-white p-3 rounded-xl">
+      <Detail :itemDetail="itemDetail" :options="itemNum" v-model="selectedItemNum"/>
+      
+      <div class="sm:mt-5 mt-2 bg-white p-3 rounded-xl"> 
         <p class="mb-3 pl-2 text-xl">
           トッピング<span class="font-bold"> 少:200円 多:300円</span>
         </p>
