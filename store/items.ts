@@ -38,7 +38,7 @@ import { itemType } from '../types/itemType'
     }
 
     // action----------------------------------------------------
-    // 商品データ取得
+    // 商品データ取得(DB)
      @Action({rawError: true})
       public async fetchItemsAct(): Promise<void>{
        await db.collection(`items`).get().then(items=>{

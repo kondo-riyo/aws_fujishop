@@ -103,14 +103,12 @@ export default Vue.extend({
   methods: {
     login(): void {
       if (typeof this.userInfo !== undefined) {
-        console.log(typeof this.userInfo);
         auth
           .signInWithEmailAndPassword(
             this.userInfo.email,
             this.userInfo.password
           )
           .then((authUser):void => {
-            console.log(authUser.user);
             if (
               authUser.user === null ||
               authUser.user.email === null ||

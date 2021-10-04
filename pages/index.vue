@@ -1,5 +1,6 @@
 <template>
-    <div>
-        <items/>
-    </div>
+  <div>
+    <rakuten-items />
+    <items />
+  </div>
 </template>

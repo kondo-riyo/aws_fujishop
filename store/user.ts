@@ -44,7 +44,8 @@ export default class UserStore extends VuexModule {
         const token = await auth.currentUser.getIdToken(true);
         // ログイン後、会員情報もユーザ情報に保存
         db.collection(`users/${auth.currentUser.uid}/userInfo`).get().then(
-            userInfo=>this.fetchSignupInfoMut(userInfo.docs[0].data())
+            userInfo=>
+            this.fetchSignupInfoMut(userInfo.docs[0].data()) 
         )
 
         const userInfo = {
