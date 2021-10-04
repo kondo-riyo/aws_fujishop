@@ -36,12 +36,12 @@ export default Vue.extend({
         name: {type:String, required: true}
     },
     methods: {
-        updateValue: function(e) {
+        updateValue(e: any) {
         this.$emit("input", e.target.value);
         }
     },
     mounted() {
-        this.$emit("input", this.options[0].value);
+        // this.$emit("input", this.options[0].value);
     }
 })
 </script>
