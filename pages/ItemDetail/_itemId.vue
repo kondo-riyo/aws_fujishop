@@ -110,7 +110,7 @@
           </p>
         </div>
         <div class="py-1 px-6 sm:py-2 sm:px-8">
-          <button
+          <squareBottun
             class="
               text-white
               font-semibold
@@ -128,7 +128,7 @@
             @click="addCart"
           >
             追加
-          </button>
+          </squareBottun>
         </div>
       </div>
     </div>

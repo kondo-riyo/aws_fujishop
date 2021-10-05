@@ -9,24 +9,32 @@ import { rakuten } from '~/types/rakutenType';
     
     // state------------------------------------------
     public itemsFromApi:itemType[] = [];
-
+    public searchItemsFromApi:itemType[]=[];
 
     // getters-----------------------------------------
     public get getItemsFromApi():itemType[]{
       return this.itemsFromApi
     }
 
+    public get getSearchItemsFromApi():itemType[]{
+      return this.searchItemsFromApi
+    }
+
     public get getItemDetail(): (detailParamsId: string)=>itemType| undefined{
       return (detailParamsId: string)=>{
-        return this.itemsFromApi.find(item => item.id === detailParamsId)
+        if(this.getSearchItemsFromApi.length!==0){
+        //検索結果の商品詳細idを返す
+         return this.searchItemsFromApi.find(item => item.id === detailParamsId)
+        } else  if(this.itemsFromApi.length!==0){
+        //top30の商品詳細idを返す
+          return this.itemsFromApi.find(item => item.id === detailParamsId)
+        }
       }
     }
 
-
     @Mutation
     private fetchApiItemsMut(itemsFromAPi: any): void{
-       // ここで楽天の商品を加工してDBの商品情報と同じデータ構造にする
-
+       // 楽天の商品情報を加工しオリジナル商品情報と同じデータ構造にする
        const ApiItemsToState:itemType[] = itemsFromAPi!.map(
          (itemFromAPi:any) => ({name:itemFromAPi.Item.itemName,
                           price:Number(itemFromAPi.Item.itemPrice),
@@ -35,17 +43,37 @@ import { rakuten } from '~/types/rakutenType';
                           id:itemFromAPi.Item.itemCode,
                           rank:Number(itemFromAPi.Item.rank)}))
        this.itemsFromApi = ApiItemsToState
+    }
 
-
+    @Mutation
+    private searchApiItemsMut(itemsFromAPi: any): void{
+      const ApiItemsToState:itemType[] = itemsFromAPi!.map(
+        (itemFromAPi:any) => ({name:itemFromAPi.Item.itemName,
+                         price:Number(itemFromAPi.Item.itemPrice),
+                         description:itemFromAPi.Item.catchcopy,
+                         img:itemFromAPi.Item.mediumImageUrls[0].imageUrl,
+                         id:itemFromAPi.Item.itemCode,
+                         }))
+      this.searchItemsFromApi = ApiItemsToState;
     }
 
     @Action({rawError: true})
     public async fetchApiItemsAct(): Promise<void>{
+      console.log("top30をfetch")
       const sweetsRankUrl =
       'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?format=json&genreId=568410&applicationId=1040019384827098233';
     const resUrl = await axios.get<rakuten.api.items.Response>(sweetsRankUrl);
     const itemsFromAPi = resUrl.data.Items
     this.fetchApiItemsMut(itemsFromAPi)
+    }
+
+
+    @Action({rawError: true})
+    public async searchApiItemsAct(keyword:string): Promise<void>{
+      const searchUrl = `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&keyword=${keyword}&genreId=551167&applicationId=1040019384827098233`
+      const resUrl = await axios.get<rakuten.api.items.Response>(searchUrl);
+      const itemsFromAPi = resUrl.data.Items
+      this.searchApiItemsMut(itemsFromAPi)
     }
  }
 

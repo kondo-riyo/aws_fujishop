@@ -1,28 +1,12 @@
 <template>
   <div class="">
     <div class="flex items-center container mx-6 sm:mt-0">
-      <input
-        class="
-          w-1/2
-          sm:w-1/3
-          p-2
-          py-2
-          mr-2
-          rounded-md
-          shadow-md
-          border border-gray-300
-          focus:outline-none
-          hover:bg-base_cream
-          ring
-          ring-base_red
-          ring-offset-2
-          focus:ring-8 focus:ring-opacity-20
-          mt-10
-          mb-0
-          ml-auto
-        "
+      <searchInput
         placeholder="Search"
+        name="keyword"
+        type="text"
         v-model="keyWord"
+        @input="inputKeyword"
       />
       <img
         src="../../assets/img/search.webp"
@@ -31,6 +15,7 @@
         @click="search"
       />
     </div>
+    
     <div class="w-3/6 p-2 m-2 text-red-400 font-bold justify-center">
       <p v-show="resultNullFlg">※該当する商品がありません</p>
       <p v-show="keywordNullFlg" class="">※検索ワードを入力してください</p>
@@ -106,6 +91,9 @@ export default Vue.extend({
         }
       }
     },
+    inputKeyword(keyword:string):void{
+      this.keyWord = keyword
+    }
   },
   computed: {
     itemsFromStore(): itemType[] {
