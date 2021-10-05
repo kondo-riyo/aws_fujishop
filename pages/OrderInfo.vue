@@ -257,7 +257,6 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      id="grid-state"
                     >
                       <option value="10">10時</option>
                       <option value="11">11時</option>
@@ -354,7 +353,7 @@
                     name="クレジットカード番号"
                     type="text"
                     placeholder="例)0000000000000000"
-                    @input="inputDeliveryDate"/>
+                    @input="inputCreditCardNum"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -410,7 +409,6 @@ export default Vue.extend({
 
   },
   components: {
-    // Field,
     ValidationProvider,
     ValidationObserver
   },
