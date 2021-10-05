@@ -19,11 +19,11 @@
             "
           >
             <div class="w-1/2 sm:w-full">
-              <img class="rounded-xl w-56 h-56 " :src= item.img />
+              <img class="rounded-xl sm:w-56 sm:h-56 " :src= item.img />
             </div>
             <div class="">
               <div>
-                <h1 class="mt-5 sm:text-lg font-semibold text-center">
+                <h1 class="mt-5 sm:text-lg font-semibold text-center  truncate">
                   {{item.name}}
                 </h1>
               </div>
