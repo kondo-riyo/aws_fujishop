@@ -6,7 +6,7 @@
       <p>お届け先情報</p>
       <p><img src="~/assets/img/coffeebeans_icon.webp" class="sm:m-2 m-1 w-6"/></p>
     </div>
-
+    {{userInfoFromStore.uid}}
     <div class="flex justify-center items-center">
       <div>
         <div class="p-3">
@@ -383,7 +383,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
-import { UserStore, CartStore } from '../store';
+import { UserStore, CartStore, AdminStore } from '../store';
 import {
   orderInfoType,
   orderItemType,
@@ -430,8 +430,11 @@ export default Vue.extend({
       };
       let orderInfoToDb: any;
       orderInfoToDb = { ...this.itemInfoFromStore[0], orderInfo: orderInfo };
+      let adminToDb:any
+      adminToDb = {orderId: this.itemInfoFromStore[0].orderId, uid: this.userInfoFromStore.uid ,name: orderInfo.name}
       if(confirm('注文を確定してもよろしいですか？')){
       CartStore.updateOrderAct(orderInfoToDb);
+      AdminStore.addAdminAct(adminToDb)
       this.$router.push('/OrderComp')
       }
     },

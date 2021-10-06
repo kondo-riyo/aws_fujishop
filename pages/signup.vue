@@ -136,6 +136,24 @@
               </span>
             </validation-provider>
           </div>
+          <!-- <div>
+            <label for="admin">管理者権限への申し込み</label>
+            <validation-provider
+              v-slot="{ errors }"
+              name="パスワード"
+              rules="required"
+            >
+              <inputA
+                 v-model="userInfo.password"
+                 name="パスワード"
+                 type="password"
+                 placeholder="例)*******"
+                 @input="inputPassword"/>
+              <span class="text-xs text-red-700">
+                {{ errors[0] }}
+              </span>
+            </validation-provider>
+          </div> -->
             <div v-if="invalid" class="my-5 py-2 text-center font-semibold text-base_red bg-base_cream rounded-full">
                ※入力内容が不足しています
             </div>
