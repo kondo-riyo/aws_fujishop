@@ -4,7 +4,7 @@
       <img :src="itemDetail.img" class="rounded-xl sm:w-full" />
     </div>
     <div
-      class="flex flex-col justify-center bg-white p-3 sm:p-5 rounded-xl sm:w-2/4"
+      class="flex flex-col justify-center bg-white p-3 sm:p-5 rounded-xl sm:w-3/4"
     >
       <div>
         <p class="text-gray-700 text-2xl sm:text-3xl font-bold truncate">

@@ -12,12 +12,17 @@ import { UserStore } from "~/store";
     public itemInfo:  orderItemType[] = [];
     public userUid: string='';
     public order:null|cartItemType=null;
+    public orderLog: orderItemType[]=[]
 
 
     // getters--------------------------------------
         //******fromIteminfoStore
     public get getitemInfo():  orderItemType[]{
         return this.itemInfo;
+    }
+
+    public get getOrderLog(): orderItemType[]{
+        return this.orderLog
     }
 
     // mutation-------------------------------------
@@ -49,6 +54,17 @@ import { UserStore } from "~/store";
     @Mutation
     public updateOrderMut(orderInfoToDb:orderedItemType,orderId:string):void{
         this.itemInfo=[]
+    }
+
+    @Mutation
+    public fetchOrderLogMut(orderedItems:orderItemType[]):void{
+        this.orderLog = orderedItems;
+    }
+
+    @Mutation
+    public async cancelOrderMut(cancelOrderId:string):Promise<void>{
+        let cancelOrderIndex = this.orderLog.findIndex(log=>log.orderId === cancelOrderId);
+        this.orderLog[cancelOrderIndex].status = 9;
     }
 
     // action--------------------------------------------------------
@@ -120,6 +136,21 @@ import { UserStore } from "~/store";
         })
     }
 
+    //◎履歴取得
+    @Action({rawError: true})
+    public async fetchOrderLogAct(): Promise<void>{
+        await db.collection(`users/${UserStore.userInfo!.uid}/order`).get().then(itemInfoAll =>{
+            let orderedItems:orderItemType[] = []
+            if(itemInfoAll.docs.length>this.itemInfo.length){
+            itemInfoAll.forEach(itemInfo=>{
+                    if(itemInfo.data().status===1||itemInfo.data().status===2||itemInfo.data().status===9){
+                    orderedItems.push(itemInfo.data());
+                    }
+            })}
+            this.fetchOrderLogMut(orderedItems);
+        })
+    }
+
     //◎カートから商品削除 
     @Action({rawError: true})
     public async deleteCartItemAct(id:string): Promise<void>{
@@ -131,5 +162,15 @@ import { UserStore } from "~/store";
            itemInfo: this.getitemInfo[0].itemInfo
         })
     }
+
+    //◎注文キャンセル
+    @Action({rawError: true})
+    public async cancelOrderAct(logItem:orderedItemType):Promise<void>{
+        if(logItem.orderId){
+       await this.cancelOrderMut(logItem.orderId)
+        db.collection(`users/${UserStore.userInfo!.uid}/order`).doc(`${logItem.orderId}`).update({
+            status: 9
+         })
+    }}
 
 }

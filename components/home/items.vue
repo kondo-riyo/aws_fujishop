@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <!-- <div class="">
     <div class="flex items-center container mx-6 sm:mt-0">
       <searchInput
         placeholder="Search"
@@ -43,7 +43,8 @@
         </router-link>
       </div>
     </div>
-  </div>
+  </div> -->
+  <router-link to="searchFujiItems" class="text-2xl ml-5 pl-5 font-bold text-gray-700">FujiCoffeeオリジナル商品</router-link>
 </template>
 
 <script lang="ts">

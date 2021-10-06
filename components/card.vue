@@ -23,7 +23,7 @@
             </div>
             <div class="">
               <div>
-                <h1 class="mt-5 sm:text-lg font-semibold text-center  truncate">
+                <h1 class="mt-5 sm:text-lg font-semibold text-center truncate">
                   {{item.name}}
                 </h1>
               </div>

@@ -41,7 +41,10 @@ import { rakuten } from '~/types/rakutenType';
                           description:itemFromAPi.Item.catchcopy,
                           img:itemFromAPi.Item.mediumImageUrls[0].imageUrl,
                           id:itemFromAPi.Item.itemCode,
-                          rank:Number(itemFromAPi.Item.rank)}))
+                          rank:Number(itemFromAPi.Item.rank),
+                          shopName:itemFromAPi.Item.shopName,
+                          moreDescription:itemFromAPi.Item.itemCaption
+                        }))
        this.itemsFromApi = ApiItemsToState
     }
 
@@ -53,7 +56,9 @@ import { rakuten } from '~/types/rakutenType';
                          description:itemFromAPi.Item.catchcopy,
                          img:itemFromAPi.Item.mediumImageUrls[0].imageUrl,
                          id:itemFromAPi.Item.itemCode,
-                         }))
+                         shopName:itemFromAPi.Item.shopName,
+                         moreDescription:itemFromAPi.Item.itemCaption
+                        }))
       this.searchItemsFromApi = ApiItemsToState;
     }
 

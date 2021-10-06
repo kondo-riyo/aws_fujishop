@@ -1,7 +1,7 @@
 <template>
   <div>
         <!-- <Card/> -->
-        <router-link to="searchRakutenItems" class="ml-5 pl-5">楽天へ</router-link>
+        <router-link to="searchRakutenItems" class="text-2xl ml-5 pl-5 font-bold text-gray-700">楽天商品一覧</router-link>
   </div>
 </template>
 
