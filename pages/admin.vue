@@ -5,7 +5,7 @@
      v-show="userFromStore.uid!='NAkxF849wXcbaIf9gdvBIINweOi1' && !adminPassword"
      class="flex justify-center"
     >
-    <div class="bg-base_of bg-opacity-70 w-1/2 text-center mt-20 p-3">
+    <div class="bg-base_of bg-opacity-70 w-1/3 rounded-lg text-center mt-20 p-3">
         <div class="text-md font-bold text-base_gray">管理者パスワード</div>
         <div class="
         flex
@@ -20,7 +20,7 @@
             <button @click="adminPassword_push">
             <img 
             src="~/assets/img/yajirusi_icon.webp" 
-            class="transform rotate-270 w-10 m-1"
+            class="transform rotate-270 w-8 m-1"
             >
             </button>
         </div>
