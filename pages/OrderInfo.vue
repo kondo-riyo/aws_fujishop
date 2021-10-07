@@ -6,7 +6,6 @@
       <p>お届け先情報</p>
       <p><img src="~/assets/img/coffeebeans_icon.webp" class="sm:m-2 m-1 w-6"/></p>
     </div>
-    {{userInfoFromStore.uid}}
     <div class="flex justify-center items-center">
       <div>
         <div class="p-3">

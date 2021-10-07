@@ -28,8 +28,7 @@
       class="grid sm:m-5 m-1 justify-items-center"
       v-if="logItems.length > 0"
     >
-    <div>{{}}</div>
-      <div class="bg-white bg-opacity-60 rounded-xl">
+      <div class="bg-white bg-opacity-60 rounded-xl  sm:max-w-5xl">
         <div
           class="
             bg-base_red
@@ -132,7 +131,7 @@
          <!-- status===9(キャンセル)のアイテム情報 -->
          <div 
            v-else-if="logItem.status=9"
-           class="p-2 sm:w-3/5 bg-base_gray bg-opacity-70 line-through">
+           class="p-2 sm:w-3/5 bg-base_gray bg-opacity-70">
             <div
               v-for="item in logItem.itemInfo"
               :key="item.specialId"
@@ -311,7 +310,7 @@
               w-full
             "
           >
-            <div class="font-bold">キャンセル済</div>
+            <div class="font-bold text-base_red">キャンセル済</div>
           </div>
         </div>
       </div>
