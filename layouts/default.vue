@@ -1,16 +1,26 @@
 <template>
-  <div class="sm:flex w-full">
-    <Header
+  <div class="w-full">
+    <!-- <Header
       class="sm:flex-grow-0 w-full sm:w-1/12 text-gray-800 sm:h-screen sm:fixed"
+    /> -->
+        <Header
+      class="w-full text-gray-800"
     />
-    <Nuxt
+    <!-- <Nuxt
       class="
         sm:flex-grow sm:w-11/12
         bg-base_gray
         bg-opacity-25
         min-h-screen
         text-gray-800
-        sm:ml-20
+        sm:ml-36
+      "
+    /> -->
+        <Nuxt
+      class="
+        bg-opacity-25
+        min-h-screen
+        text-gray-800
       "
     />
   </div>

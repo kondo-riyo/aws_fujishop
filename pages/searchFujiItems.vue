@@ -16,9 +16,9 @@
       />
     </div>
     
-    <div class="w-3/6 p-2 m-2 text-red-400 font-bold justify-center">
-      <p v-show="resultNullFlg">※該当する商品がありません</p>
-      <p v-show="keywordNullFlg" class="">※検索ワードを入力してください</p>
+    <div class="my-5 text-base_red font-bold">
+      <div v-show="resultNullFlg" class="text-center">※該当する商品がありません</div>
+      <div v-show="keywordNullFlg" class="text-center">※検索ワードを入力してください</div>
     </div>
 
     <div class="flex flex-wrap justify-center">

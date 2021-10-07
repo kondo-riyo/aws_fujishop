@@ -20,7 +20,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/firebase.ts'],
-  plugins: [{ src: '~/plugins/veeValidate', ssr: false }, { src: '~/plugins/swiper', ssr: false }],
+  plugins: [{ src: '~/plugins/veeValidate', ssr: false }, { src: '~/plugins/swiper' }],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 

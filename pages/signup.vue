@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-    <div class="sm:bg-starbucks bg-center bg-no-repeat sm:w-full flex items-center">
+    <div class="sm:bg-starbucks bg-center bg-no-repeat sm:min-w-full flex items-center">
       <div
         type="text"
         class="
