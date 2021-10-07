@@ -6,7 +6,6 @@
       <p>お届け先情報</p>
       <p><img src="~/assets/img/coffeebeans_icon.webp" class="sm:m-2 m-1 w-6"/></p>
     </div>
-
     <div class="flex justify-center items-center">
       <div>
         <div class="p-3">
@@ -257,7 +256,6 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      id="grid-state"
                     >
                       <option value="10">10時</option>
                       <option value="11">11時</option>
@@ -354,7 +352,7 @@
                     name="クレジットカード番号"
                     type="text"
                     placeholder="例)0000000000000000"
-                    @input="inputDeliveryDate"/>
+                    @input="inputCreditCardNum"/>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -384,7 +382,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
-import { UserStore, CartStore } from '../store';
+import { UserStore, CartStore, AdminStore } from '../store';
 import {
   orderInfoType,
   orderItemType,
@@ -410,7 +408,6 @@ export default Vue.extend({
 
   },
   components: {
-    // Field,
     ValidationProvider,
     ValidationObserver
   },
@@ -432,8 +429,11 @@ export default Vue.extend({
       };
       let orderInfoToDb: any;
       orderInfoToDb = { ...this.itemInfoFromStore[0], orderInfo: orderInfo };
+      let adminToDb:any
+      adminToDb = {orderId: this.itemInfoFromStore[0].orderId, uid: this.userInfoFromStore!.uid ,name: orderInfo.name}
       if(confirm('注文を確定してもよろしいですか？')){
       CartStore.updateOrderAct(orderInfoToDb);
+      AdminStore.addAdminAct(adminToDb)
       this.$router.push('/OrderComp')
       }
     },

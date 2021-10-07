@@ -36,7 +36,9 @@ module.exports = {
         1000: '1000px',
       },
       height: {
-        400: '400px'
+        400: '400px'},
+      rotate: {
+        '270': '270deg'
       },
       // backgroundImage: theme => ({
       //   'cafe-pattern': "url('./assets/img/cafe_background.jpeg')",
