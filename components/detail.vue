@@ -1,13 +1,13 @@
 <template>
-  <div class="sm:flex">
-    <div class="m-2">
-      <img :src="itemDetail.img" class="rounded-xl w-full" />
+  <div class="sm:flex my-0 mx-auto">
+    <div class="sm:w-1/4 sm:mr-5">
+      <img :src="itemDetail.img" class="rounded-xl sm:w-full" />
     </div>
     <div
-      class="flex flex-col justify-center sm:m-5 bg-white p-3 sm:p-5 rounded-xl"
+      class="flex flex-col justify-center bg-white p-3 sm:p-5 rounded-xl sm:w-2/4"
     >
       <div>
-        <p class="text-gray-700 text-2xl sm:text-4xl font-bold">
+        <p class="text-gray-700 text-2xl sm:text-3xl font-bold truncate">
           {{ itemDetail.name }}
         </p>
       </div>

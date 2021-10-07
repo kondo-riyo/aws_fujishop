@@ -1,6 +1,6 @@
 <template>
   <div class="sm:pl-10 p-1 flex">
-    <div>
+    <div class="sm:w-3/4 my-0 mx-auto">
       <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div>
 
       <Detail :itemDetail="itemDetail" :options="itemNum" v-model="selectedItemNum"/>
@@ -110,7 +110,7 @@
           </p>
         </div>
         <div class="py-1 px-6 sm:py-2 sm:px-8">
-          <button
+          <squareBottun
             class="
               text-white
               font-semibold
@@ -128,7 +128,7 @@
             @click="addCart"
           >
             追加
-          </button>
+          </squareBottun>
         </div>
       </div>
     </div>
