@@ -431,7 +431,7 @@ export default Vue.extend({
       let orderInfoToDb: any;
       orderInfoToDb = { ...this.itemInfoFromStore[0], orderInfo: orderInfo };
       let adminToDb:any
-      adminToDb = {orderId: this.itemInfoFromStore[0].orderId, uid: this.userInfoFromStore.uid ,name: orderInfo.name}
+      adminToDb = {orderId: this.itemInfoFromStore[0].orderId, uid: this.userInfoFromStore!.uid ,name: orderInfo.name}
       if(confirm('注文を確定してもよろしいですか？')){
       CartStore.updateOrderAct(orderInfoToDb);
       AdminStore.addAdminAct(adminToDb)

@@ -28,6 +28,7 @@
       class="grid sm:m-5 m-1 justify-items-center"
       v-if="logItems.length > 0"
     >
+    <div>{{}}</div>
       <div class="bg-white bg-opacity-60 rounded-xl">
         <div
           class="
@@ -325,7 +326,8 @@ import { orderedItemType } from '../../types/cartItemType';
 
 type DataType = {
   logItems: orderedItemType[];
-  params: string
+  params: string;
+  name: string;
 };
 
 
@@ -339,14 +341,9 @@ export default Vue.extend({
     return {
       logItems: [],
       params: '',
+      name: ''
     };
   },
-  // created(): void{
-  //   const params: number = Number(this.$route.params.adminId);
-  //   // const getadminDetail =
-  //   //   ItemsStore.getItemDetail(params);
-  //   // this.itemDetail = getadminDetail;
-  // },
   computed: {
     totalItemPrice():number {
       let totalPrice: number = 0;
@@ -357,8 +354,10 @@ export default Vue.extend({
       });
       return totalPrice;
     },
+    // getName():string {
+    //   db.collection('users').doc(`${this.params}`).get()
+    // }
   },
-
   async fetch(): Promise<void> {
     if (!UserStore.userInfo) {
       console.log('ログインしていません');
