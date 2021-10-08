@@ -33,11 +33,7 @@
       "
     >
       <div class="relative">
-        <img
-          class="sm:w-48 sm:h-48 rounded-sm"
-          :src="swipeItem.img"
-          alt="Colors"
-        />
+        <img class="sm:w-48 sm:h-48 rounded-sm" :src="swipeItem.img" alt="Colors" />
         <p
           v-if="swipeItem.rank"
           class="
@@ -56,7 +52,9 @@
       <h1 class="mt-4 text-gray-800 font-bold cursor-pointer truncate">
         {{ swipeItem.name }}
       </h1>
-      <div class="space-x-2 inline flex p-1 justify-center">
+      <div
+        class="space-x-2 inline flex p-1 justify-center"
+      >
         <div
           class="
             p-1
@@ -68,7 +66,7 @@
             transform
             duration-200
           "
-          v-if="swipeItem.imgRed"
+                      v-if="swipeItem.imgRed"
           @mouseover="changeImg(swipeItem.imgRed)"
         >
           <span class="block h-3 w-3 bg-red-400 rounded-full"> </span>
@@ -84,7 +82,7 @@
             transform
             duration-200
           "
-          v-if="swipeItem.imgOrange"
+                      v-if="swipeItem.imgOrange"
           @mouseover="changeImg(swipeItem.imgOrange)"
         >
           <span class="block h-3 w-3 bg-yellow-400 rounded-full"> </span>
@@ -100,43 +98,43 @@
             transform
             duration-200
           "
-          v-if="swipeItem.imgPurple"
+                      v-if="swipeItem.imgPurple"
           @mouseover="changeImg(swipeItem.imgPurple)"
         >
           <span class="block h-3 w-3 bg-purple-400 rounded-full"> </span>
         </div>
-        <div
-          class="
-            p-1
-            border-4
-            rounded-full
-            cursor-pointer
-            hover:border-base_cream hover:scale-105
-            transition
-            transform
-            duration-200
-          "
-          v-if="swipeItem.imgCream"
-          @mouseover="changeImg(swipeItem.imgCream)"
-        >
-          <span class="block h-3 w-3 bg-base_cream rounded-full"> </span>
-        </div>
-        <div
-          class="
-            p-1
-            border-4
-            rounded-full
-            cursor-pointer
-            hover:border-base_red hover:scale-105
-            transition
-            transform
-            duration-200
-          "
-          v-if="swipeItem.imgBrown"
-          @mouseover="changeImg(swipeItem.imgBrown)"
-        >
-          <span class="block h-3 w-3 bg-base_red rounded-full"> </span>
-        </div>
+          <div
+            class="
+              p-1
+              border-4
+              rounded-full
+              cursor-pointer
+              hover:border-base_cream hover:scale-105
+              transition
+              transform
+              duration-200
+            "
+            v-if="swipeItem.imgCream"
+            @mouseover="changeImg(swipeItem.imgCream)"
+          >
+            <span class="block h-3 w-3 bg-base_cream rounded-full"> </span>
+          </div>
+          <div
+            class="
+              p-1
+              border-4
+              rounded-full
+              cursor-pointer
+              hover:border-base_red hover:scale-105
+              transition
+              transform
+              duration-200
+            "
+            v-if="swipeItem.imgBrown"
+            @mouseover="changeImg(swipeItem.imgBrown)"
+          >
+            <span class="block h-3 w-3 bg-base_red rounded-full"> </span>
+          </div>
       </div>
 
       <div class="my-4">

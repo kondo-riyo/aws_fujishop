@@ -15,28 +15,15 @@
     </div>
 
     <router-link
-      to="searchFujiItems"
-      class="block sm:border-t-2 p-5 text-center text-2xl font-bold text-gray-700"
-      >FujiCoffeeオリジナル商品</router-link
-    >
-    <div class="mb-10">
-      <swiper :options="swiperOption">
-        <swiper-slide v-for="item in FujiItemsFromStore" :key="item.id">
-          <router-link
-            :to="{ name: 'ItemDetail-itemId', params: { itemId: item.id } }"
-          >
-            <swipe-card :swipeItem="item" />
-          </router-link>
-        </swiper-slide>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-      </swiper>
-    </div>
-
-
-    <router-link
       to="searchRakutenItems"
-      class="block sm:border-t-2 p-5 text-center text-2xl font-bold text-gray-700"
+      class="
+        block
+        sm:border-t-2
+        p-5
+        text-center text-2xl
+        font-bold
+        text-gray-700
+      "
       >楽天商品</router-link
     >
     <div class="mb-10">
@@ -56,11 +43,31 @@
       </swiper>
     </div>
 
-    <!-- <div class="flex flex-wrap justify-center">
-      <div v-for="item in RakutenItemsFromStore" :key="item.id">
-        <swipe-card :swipeItem="item"></swipe-card>
-      </div>
-    </div> -->
+    <router-link
+      to="searchFujiItems"
+      class="
+        block
+        sm:border-t-2
+        p-5
+        text-center text-2xl
+        font-bold
+        text-gray-700
+      "
+      >FujiCoffeeオリジナル商品</router-link
+    >
+    <div class="mb-10">
+      <swiper :options="swiperOption">
+        <swiper-slide v-for="item in FujiItemsFromStore" :key="item.id">
+          <router-link
+            :to="{ name: 'ItemDetail-itemId', params: { itemId: item.id } }"
+          >
+            <swipe-card :swipeItem="item" />
+          </router-link>
+        </swiper-slide>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+      </swiper>
+    </div>
   </div>
 </template>
 
@@ -84,7 +91,7 @@ export default Vue.extend({
           el: '.swiper-pagination',
           clickable: true,
         },
-        slidesPerView: 5,
+        slidesPerView: 3,
         centeredSlides: true,
         loop: true,
         navigation: {

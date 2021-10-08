@@ -37,7 +37,7 @@
               duration-200
             "
             v-if="item.imgRed"
-            @mouseover="changeImg(item.imgRed)"
+            @click="changeImg(item.imgRed)"
           >
             <span class="block h-3 w-3 bg-red-400 rounded-full"> </span>
           </div>
@@ -53,7 +53,7 @@
               duration-200
             "
             v-if="item.imgOrange"
-            @mouseover="changeImg(item.imgOrange)"
+            @click="changeImg(item.imgOrange)"
           >
             <span class="block h-3 w-3 bg-yellow-400 rounded-full"> </span>
           </div>
@@ -69,7 +69,7 @@
               duration-200
             "
             v-if="item.imgPurple"
-            @mouseover="changeImg(item.imgPurple)"
+            @click="changeImg(item.imgPurple)"
           >
             <span class="block h-3 w-3 bg-purple-400 rounded-full"> </span>
           </div>
@@ -85,7 +85,7 @@
               duration-200
             "
             v-if="item.imgCream"
-            @mouseover="changeImg(item.imgCream)"
+            @click="changeImg(item.imgCream)"
           >
             <span class="block h-3 w-3 bg-base_cream rounded-full"> </span>
           </div>
@@ -101,7 +101,7 @@
               duration-200
             "
             v-if="item.imgBrown"
-            @mouseover="changeImg(item.imgBrown)"
+            @click="changeImg(item.imgBrown)"
           >
             <span class="block h-3 w-3 bg-base_red rounded-full"> </span>
           </div>

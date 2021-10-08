@@ -1,6 +1,14 @@
 <template>
   <div class="flex justify-center">
-    <div class="sm:bg-starbucks bg-center bg-no-repeat sm:min-w-full flex items-center">
+    <div
+      class="
+        sm:bg-starbucks
+        bg-center bg-no-repeat
+        sm:min-w-full
+        flex
+        items-center
+      "
+    >
       <div
         type="text"
         class="
@@ -28,11 +36,12 @@
               rules="required|max:10"
             >
               <inputA
-                 v-model="userInfo.name"
-                 name="名前"
-                 type="text"
-                 placeholder="例)田中 太朗"
-                 @input="inputName"/>
+                v-model="userInfo.name"
+                name="名前"
+                type="text"
+                placeholder="例)田中 太朗"
+                @input="inputName"
+              />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -46,11 +55,12 @@
               rules="required|email"
             >
               <inputA
-                 v-model="userInfo.email"
-                 name="メールアドレス"
-                 type="text"
+                v-model="userInfo.email"
+                name="メールアドレス"
+                type="text"
                 placeholder="例)sample@gmail.com"
-                 @input="inputMail"/>
+                @input="inputMail"
+              />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -64,41 +74,40 @@
               rules="required|min:10|max:11"
             >
               <inputA
-                 v-model="userInfo.tel"
-                 name="電話番号"
-                 type="text"
-                 placeholder="例)090XXXXXXXX"
-                 @input="inputTel"/>
+                v-model="userInfo.tel"
+                name="電話番号"
+                type="text"
+                placeholder="例)090XXXXXXXX"
+                @input="inputTel"
+              />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div class="flex flex-wrap items-end">
-          <div class="w-2/3 pr-2">
-            <label for="postalcode">郵便番号</label>
-            <validation-provider
-              v-slot="{ errors }"
-              name="郵便番号"
-              rules="required|yubin"
-            >
-              <inputA
-                 v-model="userInfo.postalcode"
-                 name="郵便番号"
-                 type="number"
-                 placeholder=""
-                 @input="inputPostalcode"/>
-              <span class="text-xs text-red-700">
-                {{ errors[0] }}
-              </span>
-            </validation-provider>
-          </div>
-          <div class=" w-1/3">
-            <square-bottun
-             　@click="yubinbango()">
-              検索
-            </square-bottun>
-          </div>
+            <div class="w-2/3 pr-2">
+              <label for="postalcode">郵便番号</label>
+              <validation-provider
+                v-slot="{ errors }"
+                name="郵便番号"
+                rules="required|yubin"
+              >
+                <inputA
+                  v-model="userInfo.postalcode"
+                  name="郵便番号"
+                  type="number"
+                  placeholder=""
+                  @input="inputPostalcode"
+                />
+                <span class="text-xs text-red-700">
+                  {{ errors[0] }}
+                </span>
+              </validation-provider>
+            </div>
+            <div class="w-1/3">
+              <square-bottun 　@click="yubinbango()"> 検索 </square-bottun>
+            </div>
           </div>
           <div>
             <label for="address">住所</label>
@@ -108,11 +117,12 @@
               rules="required"
             >
               <inputA
-                 v-model="userInfo.address"
-                 name="住所"
-                 type="text"
-                 placeholder="東京都新宿区"
-                 @input="inputAddress"/>
+                v-model="userInfo.address"
+                name="住所"
+                type="text"
+                placeholder="東京都新宿区"
+                @input="inputAddress"
+              />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -126,11 +136,12 @@
               rules="required"
             >
               <inputA
-                 v-model="userInfo.password"
-                 name="パスワード"
-                 type="password"
-                 placeholder="例)*******"
-                 @input="inputPassword"/>
+                v-model="userInfo.password"
+                name="パスワード"
+                type="password"
+                placeholder="例)*******"
+                @input="inputPassword"
+              />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -154,16 +165,23 @@
               </span>
             </validation-provider>
           </div> -->
-            <div v-if="invalid" class="my-5 py-2 text-center font-semibold text-base_red bg-base_cream rounded-full">
-               ※入力内容が不足しています
-            </div>
-            <div class="my-4 ml-16 self-center">
-            <round-bottun
-               @click="signup"
-               :disabled="invalid"
-               v-if="!invalid"
-                >
-                登録
+          <div
+            v-if="invalid"
+            class="
+              my-5
+              py-2
+              text-center
+              font-semibold
+              text-base_red
+              bg-base_cream
+              rounded-full
+            "
+          >
+            ※入力内容が不足しています
+          </div>
+          <div class="my-4 ml-16 self-center">
+            <round-bottun @click="signup" :disabled="invalid" v-if="!invalid">
+              登録
             </round-bottun>
           </div>
         </ValidationObserver>
@@ -182,7 +200,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import firebase, { auth, db } from '../plugins/firebase';
 import { userInfoType } from '../types/userInfoType';
 
-let YubinBango = require('yubinbango-core2')
+let YubinBango = require('yubinbango-core2');
 
 type DataType = {
   userInfo: userInfoType;
@@ -203,7 +221,7 @@ export default Vue.extend({
   },
   components: {
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
   },
   methods: {
     async signup(): Promise<void> {
@@ -225,7 +243,11 @@ export default Vue.extend({
         console.log(error.message);
       }
     },
-    addAuthUserToDb(uid: string): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
+    addAuthUserToDb(
+      uid: string
+    ): Promise<
+      firebase.firestore.DocumentReference<firebase.firestore.DocumentData>
+    > {
       return db.collection(`users/${uid}/userInfo`).add({
         email: this.userInfo.email,
         name: this.userInfo.name,
@@ -235,32 +257,32 @@ export default Vue.extend({
         uid: uid,
       });
     },
-    inputName(value:string): void {
-      this.userInfo.name=value
+    inputName(value: string): void {
+      this.userInfo.name = value;
     },
-    inputMail(value:string): void {
-      this.userInfo.email=value
+    inputMail(value: string): void {
+      this.userInfo.email = value;
     },
-    inputPassword(value:string): void {
-      this.userInfo.password=value
+    inputPassword(value: string): void {
+      this.userInfo.password = value;
     },
-    inputTel(value:string): void {
-      this.userInfo.tel=value
+    inputTel(value: string): void {
+      this.userInfo.tel = value;
     },
-    inputPostalcode(value:string): void {
-      this.userInfo.postalcode =value
+    inputPostalcode(value: string): void {
+      this.userInfo.postalcode = value;
     },
-    inputAddress(value:string): void {
-      this.userInfo.address=value
+    inputAddress(value: string): void {
+      this.userInfo.address = value;
     },
-    yubinbango(){
-      console.log(this.userInfo.postalcode)
-      let newAddress = ''
-      new YubinBango.Core(this.userInfo.postalcode, (addr :any)=> {
-        newAddress = addr.region + addr.locality + addr.street
-        this.userInfo.address = newAddress
-      })
-    }
+    yubinbango() {
+      console.log(this.userInfo.postalcode);
+      let newAddress = '';
+      new YubinBango.Core(this.userInfo.postalcode, (addr: any) => {
+        newAddress = addr.region + addr.locality + addr.street;
+        this.userInfo.address = newAddress;
+      });
+    },
   },
 });
 </script>
