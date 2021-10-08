@@ -1,8 +1,8 @@
 <template>
   <div class="sm:flex my-0 mx-auto">
     <div class="flex flex-col">
-      <div class="sm:mr-5">
-        <img :src="itemDetail.img" class="rounded-xl" />
+      <div class="sm:mr-5 my-0 mx-auto">
+        <img :src="itemDetail.img" class="rounded-xl w-72 h-72" />
       </div>
 
       <div class="mt-3 space-x-4 flex p-1">
@@ -97,10 +97,11 @@
         sm:p-5
         rounded-xl
         sm:w-3/4
+        w-80
       "
     >
       <div>
-        <p class="text-gray-700 text-2xl sm:text-3xl font-bold truncate">
+        <p class="text-gray-700 text-2xl sm:text-3xl font-semibold sm:font-bold">
           {{ itemDetail.name }}
         </p>
       </div>
@@ -196,7 +197,6 @@ export default Vue.extend({
       this.$emit('input', e.target.value);
     },
     changeImg(img: string): void {
-      console.log(img);
       this.itemDetail.img = img;
     },
   },

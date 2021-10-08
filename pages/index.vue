@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="sm:mt-10 mt-10">
     <div class="sm:mb-20">
       <swiper :options="swiperOption">
         <swiper-slide>
@@ -18,7 +18,7 @@
       to="searchRakutenItems"
       class="
         block
-        sm:border-t-2
+        border-t-2
         p-5
         text-center text-2xl
         font-bold
@@ -29,14 +29,7 @@
     <div class="mb-10">
       <swiper :options="swiperOption">
         <swiper-slide v-for="item in RakutenItemsFromStore" :key="item.id">
-          <router-link
-            :to="{
-              name: 'RakutenItemDetail-rakutenItemId',
-              params: { rakutenItemId: item.id },
-            }"
-          >
-            <swipe-card :swipeItem="item" />
-          </router-link>
+            <swipe-card :swipeItem="item" :routerName="routerName.rakuten"/>
         </swiper-slide>
         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
@@ -47,7 +40,7 @@
       to="searchFujiItems"
       class="
         block
-        sm:border-t-2
+        border-t-2
         p-5
         text-center text-2xl
         font-bold
@@ -58,11 +51,7 @@
     <div class="mb-10">
       <swiper :options="swiperOption">
         <swiper-slide v-for="item in FujiItemsFromStore" :key="item.id">
-          <router-link
-            :to="{ name: 'ItemDetail-itemId', params: { itemId: item.id } }"
-          >
-            <swipe-card :swipeItem="item" />
-          </router-link>
+            <swipe-card :swipeItem="item" :routerName="routerName.fujiShop"/>
         </swiper-slide>
         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
@@ -115,10 +104,14 @@ export default Vue.extend({
             slidesPerView: 2,
           },
           300: {
-            slidesPerView: 1.2,
+            slidesPerView: 1,
             spaceBetween: 0,
           },
         },
+      },
+      routerName:{
+        rakuten:'RakutenItemDetail-itemId',
+        fujiShop:'ItemDetail-itemId'
       },
     };
   },

@@ -73,6 +73,7 @@ export default Vue.extend({
     logout(): void {
       if (this.userInfoFromStore) {
         UserStore.logout();
+        this.$router.push('/');
       }
     },
   },

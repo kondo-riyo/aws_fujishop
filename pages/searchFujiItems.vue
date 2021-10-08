@@ -15,19 +15,19 @@
         @click="search"
       />
     </div>
-    
+
     <div class="my-5 text-base_red font-bold">
-      <div v-show="resultNullFlg" class="text-center">※該当する商品がありません</div>
-      <div v-show="keywordNullFlg" class="text-center">※検索ワードを入力してください</div>
+      <div v-show="resultNullFlg" class="text-center">
+        ※該当する商品がありません
+      </div>
+      <div v-show="keywordNullFlg" class="text-center">
+        ※検索ワードを入力してください
+      </div>
     </div>
 
     <div class="flex flex-wrap justify-center">
       <div v-for="item in searchedItems" :key="item.id">
-        <router-link
-          :to="{ name: 'ItemDetail-itemId', params: { itemId: item.id } }"
-        >
-          <Card :item="item" />
-        </router-link>
+        <Card :item="item" :routerName="routerName.fujiShop" />
       </div>
     </div>
 
@@ -36,11 +36,7 @@
       v-show="searchedItems.length === 0"
     >
       <div v-for="item in itemsFromStore" :key="item.id">
-        <router-link
-          :to="{ name: 'ItemDetail-itemId', params: { itemId: item.id } }"
-        >
-          <Card :item="item" />
-        </router-link>
+        <Card :item="item" :routerName="routerName.fujiShop" />
       </div>
     </div>
   </div>
@@ -56,6 +52,7 @@ type DataType = {
   searchedItems: itemType[];
   keywordNullFlg: boolean;
   resultNullFlg: boolean;
+  routerName: Object;
 };
 
 export default Vue.extend({
@@ -65,6 +62,9 @@ export default Vue.extend({
       searchedItems: [],
       keywordNullFlg: false, // 検索ワード未入力の場合
       resultNullFlg: false, // 該当結果無しの場合
+      routerName:{
+        fujiShop:'ItemDetail-itemId'
+      }
     };
   },
   methods: {
@@ -91,9 +91,9 @@ export default Vue.extend({
         }
       }
     },
-    inputKeyword(keyword:string):void{
-      this.keyWord = keyword
-    }
+    inputKeyword(keyword: string): void {
+      this.keyWord = keyword;
+    },
   },
   computed: {
     itemsFromStore(): itemType[] {
