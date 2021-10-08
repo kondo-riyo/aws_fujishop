@@ -6,9 +6,8 @@
       appearance-none
       block
       w-full
-      bg-base_gray bg-opacity-25
-      text-gray-700
-      border border-gray-200
+      bg-base_gray bg-opacity-25 focus:bg-base_of focus:bg-opacity-70
+      text-base_green
       rounded
       py-3
       px-4

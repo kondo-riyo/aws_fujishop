@@ -5,7 +5,7 @@
         type="text"
         class="
           sm:h-5/7
-          bg-white
+          bg-white bg-opacity-70
           container
           mx-auto
           p-10
@@ -18,11 +18,22 @@
         "
       >
         <div>
-          <h1 class="font-bold text-xl text-gray-700 text-center">ログイン</h1>
+          <h1 class="font-bold text-xl text-base_gray text-center">ログイン</h1>
         </div>
         <ValidationObserver v-slot="{ invalid }">
           <div>
-            <label for="email">メール</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+             ">
+             メール
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="メールアドレス"
@@ -33,14 +44,26 @@
                  name="メールアドレス"
                  type="text"
                  placeholder=""
-                 @input="inputMail"/>
+                 @input="inputMail"
+                 class="rounded-full"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div>
-            <label for="password">パスワード</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+             ">
+              パスワード
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="パスワード"
@@ -51,7 +74,8 @@
                  name="パスワード"
                  type="password"
                  placeholder="*******"
-                 @input="inputPassword"/>
+                 @input="inputPassword"
+                 class="rounded-full"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>

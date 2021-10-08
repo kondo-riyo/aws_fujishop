@@ -4,7 +4,7 @@
       <div
         type="text"
         class="
-          bg-white
+          bg-white bg-opacity-70
           container
           mx-auto
           p-10
@@ -17,11 +17,22 @@
         "
       >
         <div>
-          <h1 class="font-bold text-xl text-gray-700 text-center">会員登録</h1>
+          <h1 class="font-bold text-xl text-base_gray text-center">会員登録</h1>
         </div>
         <ValidationObserver v-slot="{ invalid }">
           <div>
-            <label for="name" class="text-base_green font-bold">名前</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+            ">
+              名前
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="名前"
@@ -32,14 +43,27 @@
                  name="名前"
                  type="text"
                  placeholder="例)田中 太朗"
-                 @input="inputName"/>
+                 @input="inputName"
+                 class="rounded-full"
+                 />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div>
-            <label for="email">メール</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+            ">
+              メールアドレス
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="メールアドレス"
@@ -49,15 +73,28 @@
                  v-model="userInfo.email"
                  name="メールアドレス"
                  type="text"
-                placeholder="例)sample@gmail.com"
-                 @input="inputMail"/>
+                 placeholder="例)sample@gmail.com"
+                 @input="inputMail"
+                 class="rounded-full"
+                 />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div>
-            <label for="tel">電話番号</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+            ">
+              電話番号
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="電話番号"
@@ -68,7 +105,9 @@
                  name="電話番号"
                  type="text"
                  placeholder="例)090XXXXXXXX"
-                 @input="inputTel"/>
+                 @input="inputTel"
+                 class="rounded-full"
+                 />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -76,7 +115,18 @@
           </div>
           <div class="flex flex-wrap items-end">
           <div class="w-2/3 pr-2">
-            <label for="postalcode">郵便番号</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+            ">
+              郵便番号
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="郵便番号"
@@ -87,21 +137,36 @@
                  name="郵便番号"
                  type="number"
                  placeholder=""
-                 @input="inputPostalcode"/>
+                 @input="inputPostalcode"
+                 class="rounded-full"
+                 />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div class=" w-1/3">
-            <square-bottun
-             　@click="yubinbango()">
+            <round-bottun
+             　@click="yubinbango()"
+              class="bg-base_gray"
+            >
               検索
-            </square-bottun>
+            </round-bottun>
           </div>
           </div>
           <div>
-            <label for="address">住所</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+            ">
+              住所
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="住所"
@@ -112,14 +177,27 @@
                  name="住所"
                  type="text"
                  placeholder="東京都新宿区"
-                 @input="inputAddress"/>
+                 @input="inputAddress"
+                 class="rounded-full"
+                 />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div>
-            <label for="password">パスワード(登録)</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+            ">
+              パスワード
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="パスワード"
@@ -130,31 +208,22 @@
                  name="パスワード"
                  type="password"
                  placeholder="例)*******"
-                 @input="inputPassword"/>
+                 @input="inputPassword"
+                 class="rounded-full"
+              />
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
-          <!-- <div>
-            <label for="admin">管理者権限への申し込み</label>
-            <validation-provider
-              v-slot="{ errors }"
-              name="パスワード"
-              rules="required"
-            >
-              <inputA
-                 v-model="userInfo.password"
-                 name="パスワード"
-                 type="password"
-                 placeholder="例)*******"
-                 @input="inputPassword"/>
-              <span class="text-xs text-red-700">
-                {{ errors[0] }}
-              </span>
-            </validation-provider>
-          </div> -->
-            <div v-if="invalid" class="my-5 py-2 text-center font-semibold text-base_red bg-base_cream rounded-full">
+            <div 
+             v-if="invalid" 
+             class="
+              my-5 py-2 
+              text-center font-semibold text-base_red 
+              bg-base_red bg-opacity-50
+              rounded-full
+            ">
                ※入力内容が不足しています
             </div>
             <div class="my-4 ml-16 self-center">
@@ -198,7 +267,7 @@ export default Vue.extend({
         postalcode: '',
         address: '',
         uid: '',
-      },
+      }
     };
   },
   components: {
@@ -260,7 +329,7 @@ export default Vue.extend({
         newAddress = addr.region + addr.locality + addr.street
         this.userInfo.address = newAddress
       })
-    }
+    },
   },
 });
 </script>

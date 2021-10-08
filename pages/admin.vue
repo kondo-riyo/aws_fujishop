@@ -5,22 +5,23 @@
      v-show="userFromStore.uid!='NAkxF849wXcbaIf9gdvBIINweOi1' && !adminPassword"
      class="flex justify-center"
     >
-    <div class="bg-base_of bg-opacity-70 w-1/2 text-center mt-20 p-3">
+    <div class="bg-base_of bg-opacity-70 rounded-lg sm:w-1/2 text-center mt-20 p-3">
         <div class="text-md font-bold text-base_gray">管理者パスワード</div>
         <div class="
-        flex
+        flex justify-center
         text-center
         ">
-            <inputA
+            <input-a
             name="パスワード"
             type="password"
             placeholder=""
             v-model="adminPassword_num"
+            class="w-full sm:w-3/4 rounded-full text-center"
             />
             <button @click="adminPassword_push">
             <img 
             src="~/assets/img/yajirusi_icon.webp" 
-            class="transform rotate-270 w-10 m-1"
+            class="transform rotate-270 w-5 sm:w-10 m-1"
             >
             </button>
         </div>
@@ -77,7 +78,7 @@
             <tr class="bg-base_gray text-white">
                 <th class="sticky top-0 sm:px-6 sm:py-3">No.</th>
                 <th class="sticky top-0 sm:px-6 sm:py-3">名前</th>
-                <th class="sticky top-0 sm:px-6 sm:py-3">ID</th>
+                <th class="sticky top-0 sm:px-6 sm:py-3 hidden sm:inline-block">ID</th>
                 <th class="sticky top-0 sm:px-6 sm:py-3"></th>
             </tr>
             </thead>
@@ -92,9 +93,9 @@
             >
                     <td class="sm:px-6 py-2 sm:py-4 text-center">{{index+1}}</td>
                     <td class="sm:px-6 py-2 sm:py-4 text-center">{{user.name}}</td>
-                    <td class="sm:px-6 py-2 sm:py-4 text-center">{{user.uid}}</td>
+                    <td class="sm:px-6 py-2 sm:py-4 text-center hidden sm:inline-block">{{user.uid}}</td>
                     <td class="sm:px-6 py-2 sm:py-4 text-center">
-                        <img src="~/assets/img/pencil_icon.webp" class="w-5">
+                        <img src="~/assets/img/pencil_icon.webp" class="w-8">
                     </td>
             </tr>
             </tbody>
