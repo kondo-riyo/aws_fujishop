@@ -72,18 +72,11 @@ export default Vue.extend({
     };
   },
   created(): void {
-    const params: string = this.$route.params.rakutenItemId;
+    const params: string = this.$route.params.itemId;
     const getItemDetail: itemType | undefined =
       ApiItemsStore.getItemDetail(params);
     this.itemDetail = getItemDetail;
   },
-  // async asyncData({params}) {
-  //   console.log(params.rakutenItemId)
-  //   const paramsId: string = params.rakutenItemId;
-  //   const getItemDetail: (itemType | undefined)[] = await Promise.all ([ApiItemsStore.getItemDetail(paramsId)]);
-  //   console.log(getItemDetail)
-  //   return {itemDetail:getItemDetail[0]}
-  // },
   computed: {
     calcTotalPrice(): number {
       if (

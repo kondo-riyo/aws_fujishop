@@ -19,7 +19,14 @@
     "
   >
     <div class="w-1/2 sm:w-full">
-      <img class="rounded-xl sm:w-56 sm:h-56" :src="item.img" />
+      <router-link
+        :to="{
+          name: `${routerName}`,
+          params: { itemId: item.id },
+        }"
+      >
+        <img class="rounded-xl sm:w-56 sm:h-56" :src="item.img" />
+      </router-link>
     </div>
 
     <div>
@@ -114,21 +121,28 @@
       <div class="text-center">
         <span class="mt-2 mx-2">{{ item.price }}円(税込)</span>
         <span>
-          <button
-            class="
-              bg-base_red
-              hover:bg-base_orange
-              text-white
-              font-bold
-              py-2
-              px-6
-              mx-2
-              mt-2
-              rounded-full
-            "
+          <router-link
+            :to="{
+              name: `${routerName}`,
+              params: { itemId: item.id },
+            }"
           >
-            詳細
-          </button>
+            <button
+              class="
+                bg-base_red
+                hover:bg-base_orange
+                text-white
+                font-bold
+                py-2
+                px-6
+                mx-2
+                mt-2
+                rounded-full
+              "
+            >
+              詳細
+            </button>
+          </router-link>
         </span>
       </div>
     </div>
@@ -138,7 +152,7 @@
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
-  props: ['item'],
+  props: ['item', 'routerName'],
   methods: {
     changeImg(img: string): void {
       this.item.img = img;
