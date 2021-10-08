@@ -1,11 +1,11 @@
 <template>
-<div class="sm:bg-starbucks bg-center bg-no-repeat">
+<div class="bg-base_gray bg-opacity-50 sm:bg-starbucks bg-center bg-cover bg-no-repeat">
     <!-- 管理者画面ログイン password=123456-->
     <div 
      v-show="userFromStore.uid!='NAkxF849wXcbaIf9gdvBIINweOi1' && !adminPassword"
      class="flex justify-center"
     >
-    <div class="bg-base_of bg-opacity-70 rounded-lg sm:w-1/2 text-center mt-20 p-3">
+    <div class="bg-base_of bg-opacity-70 rounded-lg sm:w-1/3 text-center mt-20 p-3">
         <div class="text-md font-bold text-base_gray">管理者パスワード</div>
         <div class="
         flex justify-center
@@ -21,7 +21,7 @@
             <button @click="adminPassword_push">
             <img 
             src="~/assets/img/yajirusi_icon.webp" 
-            class="transform rotate-270 w-5 sm:w-10 m-1"
+            class="transform rotate-270 w-5 sm:w-8 m-1"
             >
             </button>
         </div>
@@ -34,7 +34,6 @@
     >
         <div class="
         bg-base_of bg-opacity-50
-        mt-5
         py-4
         ">
         <div class="
@@ -71,7 +70,6 @@
         relative
         w-full
         sm:w-3/4 sm:max-h-52
-        rounded
         m-1 sm:m-0
         ">
             <thead>

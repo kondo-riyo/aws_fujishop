@@ -1,6 +1,12 @@
 <template>
-  <div class="flex justify-center">
-    <div class="sm:bg-starbucks bg-center bg-no-repeat sm:w-full flex items-center">
+  <div class="flex justify-center bg-base_gray bg-opacity-50 sm:bg-starbucks bg-center bg-cover bg-no-repeat">
+    <div
+      class="
+        sm:min-w-full
+        flex
+        h-full
+      "
+    >
       <div
         type="text"
         class="
@@ -9,7 +15,7 @@
           mx-auto
           p-10
           m-10
-          max-w-xs
+          min-w-xs sm:w-1/2
           rounded-lg
           overflow-hidden
           shadow
@@ -20,6 +26,7 @@
           <h1 class="font-bold text-xl text-base_gray text-center">会員登録</h1>
         </div>
         <ValidationObserver v-slot="{ invalid }">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-5">
           <div>
             <label 
              class="
@@ -75,37 +82,6 @@
                  type="text"
                  placeholder="例)sample@gmail.com"
                  @input="inputMail"
-                 class="rounded-full"
-                 />
-              <span class="text-xs text-red-700">
-                {{ errors[0] }}
-              </span>
-            </validation-provider>
-          </div>
-          <div>
-            <label 
-             class="
-               block
-               uppercase
-               tracking-wide
-               text-base_green text-xs
-               font-bold
-               my-2
-               ml-4
-            ">
-              電話番号
-            </label>
-            <validation-provider
-              v-slot="{ errors }"
-              name="電話番号"
-              rules="required|min:10|max:11"
-            >
-              <inputA
-                 v-model="userInfo.tel"
-                 name="電話番号"
-                 type="text"
-                 placeholder="例)090XXXXXXXX"
-                 @input="inputTel"
                  class="rounded-full"
                  />
               <span class="text-xs text-red-700">
@@ -196,6 +172,37 @@
                my-2
                ml-4
             ">
+              電話番号
+            </label>
+            <validation-provider
+              v-slot="{ errors }"
+              name="電話番号"
+              rules="required|min:10|max:11"
+            >
+              <inputA
+                 v-model="userInfo.tel"
+                 name="電話番号"
+                 type="text"
+                 placeholder="例)090XXXXXXXX"
+                 @input="inputTel"
+                 class="rounded-full"
+                 />
+              <span class="text-xs text-red-700">
+                {{ errors[0] }}
+              </span>
+            </validation-provider>
+          </div>
+          <div>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+            ">
               パスワード
             </label>
             <validation-provider
@@ -216,17 +223,21 @@
               </span>
             </validation-provider>
           </div>
+          <div class="flex justify-center col-span-2 items-center">
             <div 
              v-if="invalid" 
-             class="
-              my-5 py-2 
+             class=""
+            >
+              <div class="
+              m-5 p-2
               text-center font-semibold text-base_red 
               bg-base_red bg-opacity-50
               rounded-full
-            ">
-               ※入力内容が不足しています
+              "> 
+                ※入力内容が不足しています 
+              </div>
             </div>
-            <div class="my-4 ml-16 self-center">
+            <div class="">
             <round-bottun
                @click="signup"
                :disabled="invalid"
@@ -234,7 +245,9 @@
                 >
                 登録
             </round-bottun>
+            </div>
           </div>
+        </div>
         </ValidationObserver>
         <div class="self-center">
           <nuxt-link to="/signin" class="text-blue-700">
@@ -251,7 +264,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import firebase, { auth, db } from '../plugins/firebase';
 import { userInfoType } from '../types/userInfoType';
 
-let YubinBango = require('yubinbango-core2')
+let YubinBango = require('yubinbango-core2');
 
 type DataType = {
   userInfo: userInfoType;
@@ -272,7 +285,7 @@ export default Vue.extend({
   },
   components: {
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
   },
   methods: {
     async signup(): Promise<void> {
@@ -294,7 +307,11 @@ export default Vue.extend({
         console.log(error.message);
       }
     },
-    addAuthUserToDb(uid: string): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
+    addAuthUserToDb(
+      uid: string
+    ): Promise<
+      firebase.firestore.DocumentReference<firebase.firestore.DocumentData>
+    > {
       return db.collection(`users/${uid}/userInfo`).add({
         email: this.userInfo.email,
         name: this.userInfo.name,
@@ -304,31 +321,31 @@ export default Vue.extend({
         uid: uid,
       });
     },
-    inputName(value:string): void {
-      this.userInfo.name=value
+    inputName(value: string): void {
+      this.userInfo.name = value;
     },
-    inputMail(value:string): void {
-      this.userInfo.email=value
+    inputMail(value: string): void {
+      this.userInfo.email = value;
     },
-    inputPassword(value:string): void {
-      this.userInfo.password=value
+    inputPassword(value: string): void {
+      this.userInfo.password = value;
     },
-    inputTel(value:string): void {
-      this.userInfo.tel=value
+    inputTel(value: string): void {
+      this.userInfo.tel = value;
     },
-    inputPostalcode(value:string): void {
-      this.userInfo.postalcode =value
+    inputPostalcode(value: string): void {
+      this.userInfo.postalcode = value;
     },
-    inputAddress(value:string): void {
-      this.userInfo.address=value
+    inputAddress(value: string): void {
+      this.userInfo.address = value;
     },
-    yubinbango(){
-      console.log(this.userInfo.postalcode)
-      let newAddress = ''
-      new YubinBango.Core(this.userInfo.postalcode, (addr :any)=> {
-        newAddress = addr.region + addr.locality + addr.street
-        this.userInfo.address = newAddress
-      })
+    yubinbango() {
+      console.log(this.userInfo.postalcode);
+      let newAddress = '';
+      new YubinBango.Core(this.userInfo.postalcode, (addr: any) => {
+        newAddress = addr.region + addr.locality + addr.street;
+        this.userInfo.address = newAddress;
+      });
     },
   },
 });

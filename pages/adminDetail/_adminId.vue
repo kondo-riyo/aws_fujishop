@@ -1,5 +1,22 @@
 <template>
   <div class="p-1">
+    <div 
+    @click="back_onStep"
+    class="
+    flex
+    group
+    ">
+      <div class="
+      group-hover:bg-base_red group-hover:bg-opacity-30
+      p-4
+      rounded-full
+      ">
+        <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
+      </div>
+      <div class="text-base_red font-bold m-3 mx-1">
+        ユーザー情報一覧に戻る
+      </div>
+    </div>
     <div  v-if="logItems.length === 0" class="grid p-20">
       <div
         class="mr-auto ml-auto font-bold sm:text-2xl text-lg"
@@ -381,6 +398,9 @@ export default Vue.extend({
           let idStatus= {id:id, status:status, uid:uid}
           AdminStore.updateStatusAct(idStatus)
       },
+      back_onStep() {
+        this.$router.push('/admin')
+      }
   }
 });
 </script>

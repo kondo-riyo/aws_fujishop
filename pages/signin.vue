@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center">
-    <div class="sm:bg-starbucks bg-center bg-no-repeat w-full flex items-center">
+  <div class="bg-base_gray bg-opacity-50 sm:bg-starbucks bg-center bg-cover bg-no-repeat flex justify-center">
+    <div class="">
       <div
         type="text"
         class="
@@ -72,19 +72,21 @@
               <inputA
                  v-model="userInfo.password"
                  name="パスワード"
-                 type="password"
+                 :type="inputType"
                  placeholder="*******"
                  @input="inputPassword"
                  class="rounded-full"/>
+               <span @click="onClick">a</span>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
-          <div class="block ml-16 m-4 self-center">
+          <div class="block ml-8">
             <round-bottun
             @click="login"
-            :disabled="invalid">
+            :disabled="invalid"
+            class="m-4 self-center">
               ログイン
             </round-bottun>
           </div>
@@ -108,6 +110,8 @@ import { auth } from '../plugins/firebase';
 
 type DataType = {
   userInfo: userLoginType;
+  // inputType: string;
+  isChecked: boolean;
 };
 
 export default Vue.extend({
@@ -118,6 +122,8 @@ export default Vue.extend({
         email: '',
         password: '',
       },
+      // inputType: 'text',
+      isChecked: false
     };
   },
   components: {
@@ -151,6 +157,13 @@ export default Vue.extend({
     inputPassword(value:string): void {
       this.userInfo.password=value
     },
-  }
-});
+    onClick() {
+      this.isChecked = !this.isChecked;
+    }
+  },
+  computed: {
+    inputType():string {
+      return this.isChecked ? "text" : "password";
+    },
+  }});
 </script>

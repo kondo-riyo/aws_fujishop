@@ -41,7 +41,10 @@ import { rakuten } from '~/types/rakutenType';
                           description:itemFromAPi.Item.catchcopy,
                           img:itemFromAPi.Item.mediumImageUrls[0].imageUrl,
                           id:itemFromAPi.Item.itemCode,
-                          rank:Number(itemFromAPi.Item.rank)}))
+                          rank:Number(itemFromAPi.Item.rank),
+                          shopName:itemFromAPi.Item.shopName,
+                          moreDescription:itemFromAPi.Item.itemCaption
+                        }))
        this.itemsFromApi = ApiItemsToState
     }
 
@@ -53,13 +56,14 @@ import { rakuten } from '~/types/rakutenType';
                          description:itemFromAPi.Item.catchcopy,
                          img:itemFromAPi.Item.mediumImageUrls[0].imageUrl,
                          id:itemFromAPi.Item.itemCode,
-                         }))
+                         shopName:itemFromAPi.Item.shopName,
+                         moreDescription:itemFromAPi.Item.itemCaption
+                        }))
       this.searchItemsFromApi = ApiItemsToState;
     }
 
     @Action({rawError: true})
     public async fetchApiItemsAct(): Promise<void>{
-      console.log("top30をfetch")
       const sweetsRankUrl =
       'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?format=json&genreId=568410&applicationId=1040019384827098233';
     const resUrl = await axios.get<rakuten.api.items.Response>(sweetsRankUrl);

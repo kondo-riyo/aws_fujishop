@@ -1,15 +1,41 @@
 <template>
-<div class="sm:pl-10 p-1 flex">
-  <div  class="sm:w-3/4 my-0 mx-auto">
-    <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div>
-    <Detail
-      :itemDetail="itemDetail"
-      :options="itemNum"
-      v-model="selectedItemNum"
-    />
+  <div class="sm:pl-10 p-1 flex">
+    <div v-if="!itemDetail">リロードして再度ご確認ください</div>
+    <div class="sm:w-3/4 my-0 mx-auto" v-if="itemDetail">
+     <!-- 戻るボタン追加 -->
+        <div 
+        @click="back_onStep"
+        class="
+        flex
+        group
+        m-2
+        ">
+          <div class="
+          group-hover:bg-base_red group-hover:bg-opacity-30
+          p-4
+          rounded-full
+          ">
+            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
+          </div>
+          <div class="text-base_red font-bold m-3 mx-1">
+            一覧に戻る
+          </div>
+        </div>
+      <!-- <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div> -->
+      <Detail
+        :itemDetail="itemDetail"
+        :options="itemNum"
+        v-model="selectedItemNum"
+      />
 
-
-          <div class="flex justify-end mt-5">
+      <div class="sm:mt-5 mt-2 bg-white p-3 rounded-xl">
+        <span class="font-bold"> {{itemDetail.shopName}}</span>
+        <p class="mb-3 pl-2 text-xl">
+          {{itemDetail.moreDescription}}
+        </p>
+        <!-- <div class="flex flex-wrap"></div> -->
+      </div>
+      <div class="flex justify-end mt-5">
         <div class="px-4 sm:py-3 py-1 sm:px-4">
           <p class="text-gray-700 sm:text-4xl text-xl">
             合計
@@ -40,8 +66,27 @@
           </squareBottun>
         </div>
       </div>
+     <!-- 戻るボタン追加 -->
+        <div 
+        @click="back_onStep"
+        class="
+        flex
+        group
+        m-2
+        ">
+          <div class="
+          group-hover:bg-base_red group-hover:bg-opacity-30
+          p-4
+          rounded-full
+          ">
+            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
+          </div>
+          <div class="text-base_red font-bold m-3 mx-1">
+            一覧に戻る
+          </div>
+        </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
@@ -67,33 +112,40 @@ export default Vue.extend({
   created(): void {
     const params: string = this.$route.params.rakutenItemId;
     const getItemDetail: itemType | undefined =
-    ApiItemsStore.getItemDetail(params);
+      ApiItemsStore.getItemDetail(params);
     this.itemDetail = getItemDetail;
   },
-  computed:{
-    calcTotalPrice():number{
-            if (
+  // async asyncData({params}) {
+  //   console.log(params.rakutenItemId)
+  //   const paramsId: string = params.rakutenItemId;
+  //   const getItemDetail: (itemType | undefined)[] = await Promise.all ([ApiItemsStore.getItemDetail(paramsId)]);
+  //   console.log(getItemDetail)
+  //   return {itemDetail:getItemDetail[0]}
+  // },
+  computed: {
+    calcTotalPrice(): number {
+      if (
         this.itemDetail === undefined ||
         this.itemDetail.price === undefined
       ) {
         return 0;
       }
-      return this.selectedItemNum*this.itemDetail.price
-    }
+      return this.selectedItemNum * this.itemDetail.price;
+    },
   },
-  methods:{
-   async addCart():Promise<void>{
-      console.log("add")
-       if (!UserStore.userInfo) {
+  methods: {
+    async addCart(): Promise<void> {
+      console.log('add');
+      if (!UserStore.userInfo) {
         this.$router.push('/signin');
       } else {
-         const addItemToCart: cartItemType = {
+        const addItemToCart: cartItemType = {
           itemId: this.itemDetail?.id,
           itemName: this.itemDetail?.name,
           itemPrice: this.itemDetail?.price,
           itemNum: this.selectedItemNum,
           itemImg: this.itemDetail?.img,
-          toppings:[],
+          toppings: [],
           allToppingPrice: 0,
           totalPrice: this.calcTotalPrice,
         };
@@ -102,7 +154,10 @@ export default Vue.extend({
           await this.$router.push('/Cart');
         }
       }
+    },
+    back_onStep():void {
+      this.$router.push('/searchRakutenItems')
     }
-  }
+  },
 });
 </script>
