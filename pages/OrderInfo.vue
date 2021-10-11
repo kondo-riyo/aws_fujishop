@@ -334,7 +334,7 @@
                       block
                       uppercase
                       tracking-wide
-                      text-gray-700 text-xs
+                      text-base_green text-xs
                       font-bold
                       mb-2
                     "

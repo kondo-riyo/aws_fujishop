@@ -1,5 +1,5 @@
 <template>
-  <nav class="sm:w-screen sm:flex items-center bg-base_cream sm:py-6 py-2 px-2">
+  <nav class="sm:w-screen sm:flex items-center bg-base_of sm:py-6 py-2 px-2">
     <!-- mainLogoとuserName -->
     <div class="sm:w-2/5 flex items-center text-gray-700 mr-6">
       <div class="flex items-center">

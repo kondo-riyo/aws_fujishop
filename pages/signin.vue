@@ -1,11 +1,11 @@
 <template>
-  <div class="flex justify-center">
-    <div class="sm:bg-starbucks bg-center bg-no-repeat w-full flex items-center">
+  <div class="bg-base_gray bg-opacity-50 sm:bg-starbucks bg-center bg-cover bg-no-repeat flex justify-center">
+    <div class="">
       <div
         type="text"
         class="
           sm:h-5/7
-          bg-white
+          bg-white bg-opacity-70
           container
           mx-auto
           p-10
@@ -18,11 +18,22 @@
         "
       >
         <div>
-          <h1 class="font-bold text-xl text-gray-700 text-center">ログイン</h1>
+          <h1 class="font-bold text-xl text-base_gray text-center">ログイン</h1>
         </div>
         <ValidationObserver v-slot="{ invalid }">
           <div>
-            <label for="email">メール</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+             ">
+             メール
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="メールアドレス"
@@ -33,34 +44,58 @@
                  name="メールアドレス"
                  type="text"
                  placeholder=""
-                 @input="inputMail"/>
+                 @input="inputMail"
+                 class="rounded-full"/>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
           <div>
-            <label for="password">パスワード</label>
+            <label 
+             class="
+               block
+               uppercase
+               tracking-wide
+               text-base_green text-xs
+               font-bold
+               my-2
+               ml-4
+             ">
+              パスワード
+            </label>
             <validation-provider
               v-slot="{ errors }"
               name="パスワード"
               rules="required"
             >
+            <div class="flex">
               <inputA
                  v-model="userInfo.password"
                  name="パスワード"
-                 type="password"
+                 :type="inputType"
                  placeholder="*******"
-                 @input="inputPassword"/>
+                 @input="inputPassword"
+                 class="rounded-full"></inputA>
+               <div @click="onClick" class="w-16">
+                 <div v-show="isChecked">
+                   <img src="~/assets/img/eye_icon.webp">
+                  </div>
+                 <div v-show="!isChecked">
+                   <img src="~/assets/img/noeye_icon.webp">
+                  </div>
+               </div>
+            </div>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
             </validation-provider>
           </div>
-          <div class="block ml-16 m-4 self-center">
+          <div class="block ml-8">
             <round-bottun
             @click="login"
-            :disabled="invalid">
+            :disabled="invalid"
+            class="m-4 self-center">
               ログイン
             </round-bottun>
           </div>
@@ -84,6 +119,8 @@ import { auth } from '../plugins/firebase';
 
 type DataType = {
   userInfo: userLoginType;
+  isChecked: boolean;
+  eye: boolean;
 };
 
 export default Vue.extend({
@@ -94,6 +131,8 @@ export default Vue.extend({
         email: '',
         password: '',
       },
+      isChecked: false,
+      eye: false
     };
   },
   components: {
@@ -127,6 +166,13 @@ export default Vue.extend({
     inputPassword(value:string): void {
       this.userInfo.password=value
     },
-  }
-});
+    onClick() {
+      this.isChecked = !this.isChecked;
+    }
+  },
+  computed: {
+    inputType():string {
+      return this.isChecked ? "text" : "password";
+    },
+  }});
 </script>
