@@ -6,7 +6,7 @@ export interface cartItemType {
     itemPrice?:number;
     itemImg?:string;
     itemNum?:number;
-    toppings?: toppingType[];
+    toppings?: toppingType[]|null;
     orderId?:string;
     status?:0,
     allToppingPrice?:number;

@@ -1,8 +1,26 @@
 <template>
   <div class="sm:pl-10 p-1 flex">
-    <!-- <rings :item="itemDetail"/> -->
     <div class="sm:w-3/4 my-0 mx-auto">
-      <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div>
+     <!-- 戻るボタン追加 -->
+        <div 
+        @click="back_onStep"
+        class="
+        flex
+        group
+        m-2
+        ">
+          <div class="
+          group-hover:bg-base_red group-hover:bg-opacity-30
+          p-4
+          rounded-full
+          ">
+            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
+          </div>
+          <div class="text-base_red font-bold m-3 mx-1">
+            一覧に戻る
+          </div>
+        </div>
+      <!-- <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div> -->
 
       <Detail :itemDetail="itemDetail" :options="itemNum" v-model="selectedItemNum"/>
       
@@ -132,6 +150,23 @@
           </squareBottun>
         </div>
       </div>
+        <div 
+        @click="back_onStep"
+        class="
+        flex
+        group
+        ">
+          <div class="
+          group-hover:bg-base_red group-hover:bg-opacity-30
+          p-4
+          rounded-full
+          ">
+            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
+          </div>
+          <div class="text-base_red font-bold m-3 mx-1">
+            一覧に戻る
+          </div>
+        </div>
     </div>
   </div>
 </template>
@@ -248,6 +283,9 @@ export default Vue.extend({
         }
       }
     },
+    back_onStep():void {
+      this.$router.push('/searchFujiItems')
+    }
   },
   computed: {
     getToppings(): toppingType[] {

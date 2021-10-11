@@ -45,7 +45,7 @@ extend('yubin', {
   validate(value:string){
     return value.length === 7
   },
-  message: '7桁の数字で入力して下さい'
+  message: '7桁の数字で入力して下さい(例: 1230001)'
 })
 
 let current = new Date();
