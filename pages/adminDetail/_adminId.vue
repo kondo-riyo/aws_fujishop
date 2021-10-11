@@ -79,6 +79,7 @@
             border-b-2 border-r-2 border-l-2
             border-base_red
           "
+
         > 
         <!--   1. アイテム情報 -->
           <div 
@@ -203,21 +204,17 @@
           >
             <div>
               <select
-               v-model="logItem.status"
-               @change="statusChange(logItem.orderId, logItem.status, params)"
-               name="配達status"
-               class="
-                bg-base_red
-                text-white text-center
-                rounded
-                "
+                v-model="logItem.status"
+                @change="statusChange(logItem.orderId, logItem.status, params)"
+                name="配達status"
+                class="bg-base_red text-white text-center rounded"
               >
-               <option value="1">未入金(代引き)</option>
-               <option value="2">入金済(クレジット)</option>
-               <option value="3">発送済</option>
-               <option value="4">配達済</option>
-               <option value="9">キャンセル</option>               
-              </select>  
+                <option value="1">未入金(代引き)</option>
+                <option value="2">入金済(クレジット)</option>
+                <option value="3">発送済</option>
+                <option value="4">配達済</option>
+                <option value="9">キャンセル</option>
+              </select>
             </div>
           </div>
         </div>
@@ -250,7 +247,6 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import selectA from '../../components/atoms/selectA.vue';
 import { UserStore, AdminStore } from '../../store';
 
 type DataType = {
@@ -260,9 +256,7 @@ type DataType = {
   params: string;
 };
 
-
 export default Vue.extend({
-  components: { selectA },
   head() {
     return {
       title: '注文履歴',
@@ -274,6 +268,7 @@ export default Vue.extend({
       statusName: '',
       newlogItems: [],
       params: '',
+
     };
   },
   computed: {

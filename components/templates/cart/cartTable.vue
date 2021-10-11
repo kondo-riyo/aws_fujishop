@@ -164,7 +164,7 @@
 <script lang="ts">
 import Vue from 'vue';
 //import { itemInfoStore } from '../../store';
-import { CartStore } from '../../store';
+import { CartStore } from '../../../store';
 export default Vue.extend({
   props: {
     cartItemFromStore: {

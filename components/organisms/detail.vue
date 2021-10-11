@@ -66,7 +66,7 @@
               duration-200
             "
             v-if="itemDetail.imgCream"
-            @mouseover="changeImg(itemDetail.imgCream)"
+            @click="changeImg(itemDetail.imgCream)"
           >
             <span class="block h-6 w-6 bg-base_cream rounded-full"> </span>
           </div>
@@ -82,7 +82,7 @@
               duration-200
             "
             v-if="itemDetail.imgBrown"
-            @mouseover="changeImg(itemDetail.imgBrown)"
+            @click="changeImg(itemDetail.imgBrown)"
           >
             <span class="block h-6 w-6 bg-base_red rounded-full"> </span>
           </div>

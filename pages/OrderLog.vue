@@ -1,5 +1,5 @@
 <template>
-  <div class="p-1">
+  <div class="pt-2">
     <div v-if="getOrderLogs.length === 0" class="grid p-20">
       <div class="mr-auto ml-auto font-bold sm:text-2xl text-lg">
         ※注文履歴はありません
@@ -26,7 +26,7 @@
       class="grid sm:m-5 m-1 justify-items-center"
       v-if="getOrderLogs.length > 0"
     >
-      <div class="bg-white bg-opacity-60 rounded-xl">
+      <div class="bg-white bg-opacity-60 rounded-xl sm:w-auto w-screen">
         <div
           class="
             bg-base_red
@@ -39,7 +39,9 @@
             flex
           "
         >
-          <div class="p-1 sm:w-3/4 sm:text-center text-2xl">商品情報</div>
+          <div class="p-1 sm:w-3/4 w-screen sm:text-center text-2xl">
+            商品情報
+          </div>
           <div class="p-1 sm:w-1/4 text-2xl hidden sm:inline-block">
             配達情報
           </div>
@@ -55,121 +57,114 @@
             border-base_red
           "
         >
-            <div class="p-2 sm:w-600">
-              <div
-                v-for="item in logItem.itemInfo"
-                :key="item.specialId"
-                class="m-1 p-1"
-              >
-                <!-- アイテム情報 -->
-                <div class="flex items-center justify-center">
-                  <div class="sm:w-1/4 w-2/5">
-                    <img class="rounded shadow-xl" :src="item.itemImg" />
-                  </div>
-                  <div class="flex flex-col ml-2 w-96 w-2/4">
-                    <div class="p-1 flex">
-                      <div class="w-3/4">
-                        <span class="font-bold sm:text-xl">{{
-                          item.itemName
-                        }}</span
-                        >×{{ item.itemNum }}
-                      </div>
-                      <div class="w-1/4 sm:text-base text-xs">
-                        {{ item.itemPrice * item.itemNum }}円
-                      </div>
-                    </div>
-                    <div
-                      class="p-1 sm:text-base text-xs flex"
-                      v-for="(topping, index) in item.toppings"
-                      :key="index"
-                    >
-                      <div class="w-3/4">+{{ topping.name }}</div>
-                      <div class="w-1/4 sm:text-base text-xs">
-                        {{ topping.price }}円
-                      </div>
-                    </div>
-                    <div class="p-1 pt-5 flex">
-                      <div class="w-3/4 sm:text-base text-xs">合計</div>
-                      <div class="w-1/4 sm:text-base text-xs">
-                        {{
-                          item.itemPrice * item.itemNum + item.allToppingPrice
-                        }}円
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="p-2 sm:w-600">
+            <div
+              v-for="item in logItem.itemInfo"
+              :key="item.specialId"
+              class="m-1 p-1"
+            >
+              <!-- アイテム情報 -->
               <div
                 class="
                   flex
                   items-center
-                  border-solid border-t-2
-                  border-base_gray
-                  border-opacity-20
-                  mt-3
-                  pt-3
-                  pb-3
+                  sm:w-auto
+                  w-screen
+                  justify-center
+                  sm:h-64
                 "
               >
-                <div class="w-16"></div>
-                <div class="sm:text-2xl text-xl sm:pr-0 pr-2 sm:w-2/6">
-                  合計金額
+                <div class="sm:w-1/4 w-1/4">
+                  <img class="rounded shadow-xl" :src="item.itemImg" />
                 </div>
-                <div class="sm:text-3xl text-xl font-bold w-1/4">
-                  {{ logItem.orderInfo.allPrice }}円
+                <div class="flex flex-col ml-2 w-3/4 sm:w-96">
+                  <div class="p-1 flex">
+                    <div class="w-3/4 truncate">
+                      <span class="font-bold sm:text-xl">{{
+                        item.itemName
+                      }}</span
+                      >×{{ item.itemNum }}
+                    </div>
+                    <div class="w-1/4 sm:text-base text-xs">
+                      {{ item.itemPrice * item.itemNum }}円
+                    </div>
+                  </div>
+                  <div
+                    class="p-1 sm:text-base text-xs flex"
+                    v-for="(topping, index) in item.toppings"
+                    :key="index"
+                  >
+                    <div class="w-3/4">+{{ topping.name }}</div>
+                    <div class="w-1/4 sm:text-base text-xs">
+                      {{ topping.price }}円
+                    </div>
+                  </div>
+                  <div class="p-1 pt-5 flex">
+                    <div class="w-3/4 sm:text-base text-xs">合計</div>
+                    <div class="w-1/4 sm:text-base text-xs">
+                      {{
+                        item.itemPrice * item.itemNum + item.allToppingPrice
+                      }}円
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div
+              class="
+                flex
+                items-center
+                border-solid border-t-2
+                border-base_gray
+                border-opacity-20
+                mt-3
+                pt-3
+                pb-3
+              "
+            >
+              <div class="w-16"></div>
+              <div class="sm:text-2xl text-xl sm:pr-0 pr-2 sm:w-2/6">
+                合計金額
+              </div>
+              <div class="sm:text-3xl text-xl font-bold w-1/4">
+                {{ logItem.orderInfo.allPrice }}円
+              </div>
+            </div>
           </div>
           <div
             class="
-              w-80
-              bg-base_gray
-              bg-opacity-20
+              sm:bg-base_gray
+              sm:bg-opacity-20
               text-lg
-              flex flex-col
+              flex
+              sm:flex-col
               justify-center
               items-center
-              pl-2
-              pb-3
+              px-2
+              py-3
               sm:w-1/3
               w-full
             "
           >
+            <square-bottun class="mr-1 sm:mr-0" @click="openModal(logItem)"
+              >配送情報確認</square-bottun
+            >
             <div>
-              <div
-                class="
-                  sm:hidden
-                  text-xl
-                  border-solid
-                  border-base_red
-                  border-b-2 border-opacity-20
-                  pt-2
-                  pb-1
-                  mb-2
-                "
-              >
-                配達情報
-              </div>
-              <!-- オーダー情報 -->
-              <div>注文者 : {{ logItem.orderInfo.name }}</div>
-              <div>配送先 : {{ logItem.orderInfo.address }}</div>
-              <div>
-                配送日時 : {{ logItem.orderInfo.deliveryDate }}
-                {{ logItem.orderInfo.deliveryTime }}時
-              </div>
-              <div v-if="logItem.status === 2">
-                支払い状況 : <span class="font-bold">入金済み</span>
-              </div>
-              <div v-if="logItem.status === 1">
-                支払い状況 : <span class="font-bold">未入金</span>
-              </div>
-              <div class="mt-2">
+              <order-modal
+                :status="mordalStatus"
+                :orderInfo="mordalOrderInfo"
+                v-show="showContent"
+                @close="closeModal"
+              ></order-modal>
+
+              <div class="sm:mt-2 ml-1 sm:ml-0">
                 <square-bottun
+                  class="block"
                   v-show="logItem.status === 1"
                   @click="cancelOrder(logItem)"
                   >注文キャンセル</square-bottun
                 >
-                <disableButton v-show="logItem.status === 9"
+                <disableButton class="block" v-show="logItem.status === 9"
                   >キャンセル済み</disableButton
                 >
               </div>
@@ -184,13 +179,19 @@
 import Vue from 'vue';
 import { UserStore, CartStore } from '../store';
 import { orderedItemType } from '../types/cartItemType';
-import squareBottun from '../components/atoms/squareBottun.vue';
 
 export default Vue.extend({
-  components: { squareBottun },
   head() {
     return {
       title: '注文履歴',
+      show: false,
+    };
+  },
+  data() {
+    return {
+      showContent: false,
+      mordalOrderInfo: '',
+      mordalStatus: 1,
     };
   },
   computed: {
@@ -220,6 +221,14 @@ export default Vue.extend({
     cancelOrder(logItem: orderedItemType) {
       console.log('click');
       CartStore.cancelOrderAct(logItem);
+    },
+    openModal(logItem: any) {
+      this.showContent = true;
+      this.mordalOrderInfo = logItem.orderInfo;
+      this.mordalStatus = logItem.status;
+    },
+    closeModal() {
+      this.showContent = false;
     },
   },
 });
