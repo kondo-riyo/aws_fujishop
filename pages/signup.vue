@@ -89,7 +89,7 @@
               </span>
             </validation-provider>
           </div>
-          <div class="flex flex-wrap items-end">
+          <div class="flex flex-wrap items-start">
           <div class="w-2/3 pr-2">
             <label 
              class="
@@ -121,10 +121,10 @@
               </span>
             </validation-provider>
           </div>
-          <div class=" w-1/3">
+          <div class=" w-1/3 mt-8">
             <round-bottun
              　@click="yubinbango()"
-              class="bg-base_gray"
+              class="bg-base_gray pt-3"
             >
               検索
             </round-bottun>
@@ -210,14 +210,24 @@
               name="パスワード"
               rules="required"
             >
+            <div class="flex">
               <inputA
                  v-model="userInfo.password"
                  name="パスワード"
-                 type="password"
+                 :type="inputType"
                  placeholder="例)*******"
                  @input="inputPassword"
                  class="rounded-full"
               />
+               <div @click="onClick" class="w-16">
+                 <div v-show="isChecked">
+                   <img src="~/assets/img/eye_icon.webp">
+                  </div>
+                 <div v-show="!isChecked">
+                   <img src="~/assets/img/noeye_icon.webp">
+                  </div>
+               </div>
+            </div>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -268,6 +278,8 @@ let YubinBango = require('yubinbango-core2');
 
 type DataType = {
   userInfo: userInfoType;
+  isChecked: boolean;
+  eye: boolean;
 };
 export default Vue.extend({
   data(): DataType {
@@ -280,7 +292,9 @@ export default Vue.extend({
         postalcode: '',
         address: '',
         uid: '',
-      }
+      },
+      isChecked: false,
+      eye: false
     };
   },
   components: {
@@ -347,6 +361,14 @@ export default Vue.extend({
         this.userInfo.address = newAddress;
       });
     },
+    onClick() {
+      this.isChecked = !this.isChecked;
+    }
   },
+  computed: {
+    inputType():string {
+      return this.isChecked ? "text" : "password";
+    }
+  }
 });
 </script>

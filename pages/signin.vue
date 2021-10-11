@@ -69,14 +69,23 @@
               name="パスワード"
               rules="required"
             >
+            <div class="flex">
               <inputA
                  v-model="userInfo.password"
                  name="パスワード"
                  :type="inputType"
                  placeholder="*******"
                  @input="inputPassword"
-                 class="rounded-full"/>
-               <span @click="onClick">a</span>
+                 class="rounded-full"></inputA>
+               <div @click="onClick" class="w-16">
+                 <div v-show="isChecked">
+                   <img src="~/assets/img/eye_icon.webp">
+                  </div>
+                 <div v-show="!isChecked">
+                   <img src="~/assets/img/noeye_icon.webp">
+                  </div>
+               </div>
+            </div>
               <span class="text-xs text-red-700">
                 {{ errors[0] }}
               </span>
@@ -110,8 +119,8 @@ import { auth } from '../plugins/firebase';
 
 type DataType = {
   userInfo: userLoginType;
-  // inputType: string;
   isChecked: boolean;
+  eye: boolean;
 };
 
 export default Vue.extend({
@@ -122,8 +131,8 @@ export default Vue.extend({
         email: '',
         password: '',
       },
-      // inputType: 'text',
-      isChecked: false
+      isChecked: false,
+      eye: false
     };
   },
   components: {

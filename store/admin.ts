@@ -20,16 +20,27 @@ export default class AdminStore extends VuexModule {
         public id: string ='';
         public status: number = 0;
         public users: idName[] = [];
+        public storeLogItems: any[] = [];
 
     //getters-----------------------------------
         public get getUsers(): idName[]{
             return this.users;
         }
+
+        public get getstoreLogItems(): any[] {
+            return this.storeLogItems
+        }
+        
     //mutation----------------------------------
     @Mutation
     private updateStatusMut(idStatus: idSatusType){
         this.id = idStatus.id
         this.status = idStatus.status
+    }
+
+    @Mutation
+    public fetchLogItemsMut(logItems:any[]):void{
+        this.storeLogItems = logItems;
     }
 
     // @Mutation
@@ -67,6 +78,24 @@ export default class AdminStore extends VuexModule {
                 uid: idName.uid
             })
         }
+
+        //logItemsをfetchする
+        @Action({rawError: true})
+        public async fetchLogItemsAct(params: string):Promise<void> {
+        await db
+        .collection(`users/${params}/order`)
+        .get()
+        .then((orders) => {
+          let logItems: any[] = []
+        //   if(orders.docs.length>thos) 
+          orders.forEach((order) => {
+            if(order.data().status!=0){
+                logItems.push(order.data());
+            }
+          });   
+          this.fetchLogItemsMut(logItems);
+        });
+        }  
 
 }
 

@@ -184,7 +184,7 @@
 import Vue from 'vue';
 import { UserStore, CartStore } from '../store';
 import { orderedItemType } from '../types/cartItemType';
-import squareBottun from '~/components/atoms/squareBottun.vue';
+import squareBottun from '../components/atoms/squareBottun.vue';
 
 export default Vue.extend({
   components: { squareBottun },
