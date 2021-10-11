@@ -65,7 +65,7 @@ import { rakuten } from '~/types/rakutenType';
     @Action({rawError: true})
     public async fetchApiItemsAct(): Promise<void>{
       const sweetsRankUrl =
-      'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?format=json&genreId=568410&applicationId=1040019384827098233';
+      'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?format=json&genreId=201153&applicationId=1040019384827098233';
     const resUrl = await axios.get<rakuten.api.items.Response>(sweetsRankUrl);
     const itemsFromAPi = resUrl.data.Items
     this.fetchApiItemsMut(itemsFromAPi)

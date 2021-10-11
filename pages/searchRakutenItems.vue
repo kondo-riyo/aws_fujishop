@@ -22,36 +22,19 @@
     </div>
 
     <!-- 検索結果 -->
-    <div
-      v-show="!defaultItemsFlg"
-      class="flex flex-wrap justify-center"
-    >
+    <div v-show="!defaultItemsFlg" class="flex flex-wrap justify-center">
       <div v-for="item in searchApiItemsFromStore" :key="item.id">
-        <router-link
-          :to="{
-            name: 'RakutenItemDetail-rakutenItemId',
-            params: { rakutenItemId: item.id },
-          }"
-        >
-          <Card :item="item" />
-        </router-link>
+        <Card :item="item" :routerName="routerName.rakuten" />
       </div>
     </div>
 
     <!-- top30 -->
     <div
-      v-show="defaultItemsFlg||keywordNullFlg||searchItemNullFlg"
+      v-show="defaultItemsFlg || keywordNullFlg || searchItemNullFlg"
       class="flex flex-wrap justify-center"
     >
       <div v-for="item in apiItemsFromStore" :key="item.id">
-        <router-link
-          :to="{
-            name: 'RakutenItemDetail-rakutenItemId',
-            params: { rakutenItemId: item.id },
-          }"
-        >
-          <Card :item="item" />
-        </router-link>
+          <Card :item="item" :routerName="routerName.rakuten" />
       </div>
     </div>
   </div>
@@ -59,28 +42,33 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import searchGroup from '~/components/morecules/searchGroup.vue';
 import { ApiItemsStore } from '../store';
 import { itemType } from '../types/itemType';
 
 type DataType = {
   keyWord: string;
-  defaultItemsFlg:boolean,
+  defaultItemsFlg: boolean;
   keywordNullFlg: boolean;
   searchItemNullFlg: boolean;
+  routerName: Object;
 };
 
 export default Vue.extend({
   data(): DataType {
     return {
       keyWord: '',
-      defaultItemsFlg:true,
+      defaultItemsFlg: true,
       keywordNullFlg: false,
       searchItemNullFlg: false,
+      routerName: {
+        rakuten: 'RakutenItemDetail-itemId',
+      },
     };
   },
-  created(){
-   // 遷移したらtop30が表示される
-   this.defaultItemsFlg = true;
+  created() {
+    // 遷移したらtop30が表示される
+    this.defaultItemsFlg = true;
   },
   computed: {
     apiItemsFromStore(): itemType[] {

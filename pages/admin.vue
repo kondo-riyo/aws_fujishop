@@ -108,8 +108,8 @@
 import Vue from 'vue'
 import { UserStore, AdminStore } from '../store'
 import { db } from '../plugins/firebase'
-import inputA from '../components/atoms/inputA.vue';
-import RoundBottun from '../components/atoms/roundBottun.vue';
+import inputA from '../components/atoms/input/inputA.vue';
+import RoundBottun from '../components/atoms/button/roundBottun.vue';
 
 export default Vue.extend({
   components: { inputA, RoundBottun },

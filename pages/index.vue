@@ -1,35 +1,28 @@
 <template>
   <div class="sm:mt-10 mt-10">
     <div class="sm:mb-20">
-      <swiper :options="swiperOption">
+      <swiper :options="headSwiperOption">
         <swiper-slide>
-          <img src="~/assets/img/limit.jpg" />
+          <img src="~/assets/img/pancakes.webp" />
         </swiper-slide>
         <swiper-slide>
-          <img src="~/assets/img/sale.png" />
+          <img src="~/assets/img/cookies.webp" />
         </swiper-slide>
         <swiper-slide>
-          <img src="~/assets/img/giftLogo.jpg" />
+          <img src="~/assets/img/breakfast640.webp" />
         </swiper-slide>
       </swiper>
     </div>
 
     <router-link
       to="searchRakutenItems"
-      class="
-        block
-        border-t-2
-        p-5
-        text-center text-2xl
-        font-bold
-        text-gray-700
-      "
+      class="block border-t-2 p-5 text-center text-2xl font-bold text-gray-700"
       >楽天商品</router-link
     >
     <div class="mb-10">
       <swiper :options="swiperOption">
         <swiper-slide v-for="item in RakutenItemsFromStore" :key="item.id">
-            <swipe-card :swipeItem="item" :routerName="routerName.rakuten"/>
+          <swipe-card :swipeItem="item" :routerName="routerName.rakuten" />
         </swiper-slide>
         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
@@ -38,20 +31,13 @@
 
     <router-link
       to="searchFujiItems"
-      class="
-        block
-        border-t-2
-        p-5
-        text-center text-2xl
-        font-bold
-        text-gray-700
-      "
+      class="block border-t-2 p-5 text-center text-2xl font-bold text-gray-700"
       >FujiCoffeeオリジナル商品</router-link
     >
     <div class="mb-10">
       <swiper :options="swiperOption">
         <swiper-slide v-for="item in FujiItemsFromStore" :key="item.id">
-            <swipe-card :swipeItem="item" :routerName="routerName.fujiShop"/>
+          <swipe-card :swipeItem="item" :routerName="routerName.fujiShop" />
         </swiper-slide>
         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
@@ -62,13 +48,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import SubSwipeCard from '~/components/subSwipeCard.vue';
-import swipeCard from '~/components/swipeCard.vue';
 import { ApiItemsStore, ItemsStore } from '../store';
 import { itemType } from '../types/itemType';
 
 export default Vue.extend({
-  components: { swipeCard, SubSwipeCard },
   data() {
     return {
       swiperOption: {
@@ -109,9 +92,31 @@ export default Vue.extend({
           },
         },
       },
-      routerName:{
-        rakuten:'RakutenItemDetail-itemId',
-        fujiShop:'ItemDetail-itemId'
+      headSwiperOption: {
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        slidesPerView: 3,
+        centeredSlides: true,
+        loop: true,
+        breakpoints: {
+          1200: {
+            slidesPerView: 3.4,
+          },
+          600: {
+            slidesPerView: 2,
+          },
+          300: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+        },
+      },
+
+      routerName: {
+        rakuten: 'RakutenItemDetail-itemId',
+        fujiShop: 'ItemDetail-itemId',
       },
     };
   },

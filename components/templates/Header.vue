@@ -1,10 +1,10 @@
 <template>
-  <nav class="sm:w-screen sm:flex items-center bg-base_cream sm:py-6 py-2 px-2">
+  <nav class="w-screen sm:flex items-center bg-base_of sm:py-6 py-2 px-2">
     <!-- mainLogoとuserName -->
-    <div class="sm:w-2/5 flex items-center text-gray-700 mr-6">
+    <div class="sm:w-2/5 w-screen flex items-center text-gray-700 mr-6">
       <div class="flex items-center">
         <router-link to="/">
-          <img class="h-20 w-20 mx-4" src="~/assets/img/6.png"
+          <img class="h-20 w-20 mx-4" src="~/assets/img/6.webp"
         /></router-link>
         <span class="font-semibold text-2xl">Fuji Shop</span>
       </div>
@@ -14,6 +14,7 @@
     <div
       class="
         sm:w-3/5 sm:mt-0
+        w-screen
         mt-2
         pt-2
         flex
@@ -64,9 +65,9 @@
 </template>
 
 <script lang="ts">
-import { UserStore } from '../store';
+import { UserStore } from '../../store';
 import Vue from 'vue';
-import { userInfoType } from '../types/userInfoType';
+import { userInfoType } from '../../types/userInfoType';
 
 export default Vue.extend({
   methods: {

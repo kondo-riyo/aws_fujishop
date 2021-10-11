@@ -1,9 +1,7 @@
 <template>
   <div class="p-1">
-    <div  v-if="logItems.length === 0" class="grid p-20">
-      <div
-        class="mr-auto ml-auto font-bold sm:text-2xl text-lg"
-      >
+    <div v-if="logItems.length === 0" class="grid p-20">
+      <div class="mr-auto ml-auto font-bold sm:text-2xl text-lg">
         ※注文履歴はありません
       </div>
       <button
@@ -28,7 +26,7 @@
       class="grid sm:m-5 m-1 justify-items-center"
       v-if="logItems.length > 0"
     >
-      <div class="bg-white bg-opacity-60 rounded-xl  sm:max-w-5xl">
+      <div class="bg-white bg-opacity-60 rounded-xl sm:max-w-5xl">
         <div
           class="
             bg-base_red
@@ -46,8 +44,7 @@
           <div class="p-1 sm:w-1/5 text-2xl hidden sm:inline-block">
             配達情報
           </div>
-          <div class="p-1 sm:w-1/5 text-2xl hidden sm:inline-block">
-          </div>
+          <div class="p-1 sm:w-1/5 text-2xl hidden sm:inline-block"></div>
         </div>
         <div
           v-for="logItem in logItems"
@@ -60,11 +57,9 @@
             border-base_red
           "
         >
-         <!-- アイテム情報 -->
-         <!-- status===1,2,3,4のアイテム情報 -->
-          <div 
-           v-if="logItem.status!=9"
-           class="p-2 sm:w-3/5" >
+          <!-- アイテム情報 -->
+          <!-- status===1,2,3,4のアイテム情報 -->
+          <div v-if="logItem.status != 9" class="p-2 sm:w-3/5">
             <div
               v-for="item in logItem.itemInfo"
               :key="item.specialId"
@@ -127,11 +122,12 @@
                 {{ logItem.orderInfo.allPrice }}円
               </div>
             </div>
-         </div>
-         <!-- status===9(キャンセル)のアイテム情報 -->
-         <div 
-           v-else-if="logItem.status=9"
-           class="p-2 sm:w-3/5 bg-base_gray bg-opacity-70">
+          </div>
+          <!-- status===9(キャンセル)のアイテム情報 -->
+          <div
+            v-else-if="(logItem.status = 9)"
+            class="p-2 sm:w-3/5 bg-base_gray bg-opacity-70"
+          >
             <div
               v-for="item in logItem.itemInfo"
               :key="item.specialId"
@@ -167,8 +163,7 @@
               class="
                 flex
                 items-center
-                border-solid border-t-2
-                border-white border-opacity-50
+                border-solid border-t-2 border-white border-opacity-50
                 mt-3
                 pt-3
                 pb-3
@@ -182,11 +177,11 @@
                 {{ logItem.orderInfo.allPrice }}円
               </div>
             </div>
-         </div>
+          </div>
 
-        <!-- お客様情報 -->
+          <!-- お客様情報 -->
           <div
-            v-if="logItem.status!=9"
+            v-if="logItem.status != 9"
             class="
               w-80
               bg-base_gray
@@ -226,10 +221,11 @@
           </div>
           <!-- キャンセル時のお客様情報 -->
           <div
-            v-else-if="logItem.status=9"
+            v-else-if="(logItem.status = 9)"
             class="
               w-80
-              bg-base_gray bg-opacity-70
+              bg-base_gray
+              bg-opacity-70
               text-lg
               flex flex-col
               justify-center
@@ -245,9 +241,7 @@
                 class="
                   sm:hidden
                   text-xl
-                  border-solid
-                  border-white
-                  border-b-2
+                  border-solid border-white border-b-2
                   pt-2
                   pb-1
                   mb-2
@@ -259,11 +253,15 @@
             </div>
           </div>
           <div
-           v-if="logItem.status!=9"
+            v-if="logItem.status != 9"
             class="
               w-80
-              bg-base_gray bg-opacity-20 sm:bg-transparent
-              border-base_red border-opacity-20 border-dashed border-t-2 sm:border-0
+              bg-base_gray
+              bg-opacity-20
+              sm:bg-transparent
+              border-base_red
+              border-opacity-20 border-dashed border-t-2
+              sm:border-0
               text-lg
               flex flex-col
               justify-center
@@ -276,30 +274,28 @@
           >
             <div>
               <select
-               v-model="logItem.status"
-               @change="statusChange(logItem.orderId, logItem.status, params)"
-               name="配達status"
-               class="
-                bg-base_red
-                text-white text-center
-                rounded
-                "
+                v-model="logItem.status"
+                @change="statusChange(logItem.orderId, logItem.status, params)"
+                name="配達status"
+                class="bg-base_red text-white text-center rounded"
               >
-               <option value="1">未入金(代引き)</option>
-               <option value="2">入金済(クレジット)</option>
-               <option value="3">発送済</option>
-               <option value="4">配達済</option>
-               <option value="9">キャンセル</option>               
-              </select>  
+                <option value="1">未入金(代引き)</option>
+                <option value="2">入金済(クレジット)</option>
+                <option value="3">発送済</option>
+                <option value="4">配達済</option>
+                <option value="9">キャンセル</option>
+              </select>
             </div>
           </div>
           <!-- キャンセル表示 -->
           <div
-           v-else-if="logItem.status=9"
+            v-else-if="(logItem.status = 9)"
             class="
               w-80
-              bg-base_gray bg-opacity-70
-              border-white border-opacity-50 border-dashed border-t-2 sm:border-0
+              bg-base_gray
+              bg-opacity-70
+              border-white border-opacity-50 border-dashed border-t-2
+              sm:border-0
               text-lg
               flex flex-col
               justify-center
@@ -329,7 +325,6 @@ type DataType = {
   name: string;
 };
 
-
 export default Vue.extend({
   head() {
     return {
@@ -340,11 +335,11 @@ export default Vue.extend({
     return {
       logItems: [],
       params: '',
-      name: ''
+      name: '',
     };
   },
   computed: {
-    totalItemPrice():number {
+    totalItemPrice(): number {
       let totalPrice: number = 0;
       this.logItems.forEach((item) => {
         item.itemInfo!.forEach((price) => {
@@ -369,18 +364,18 @@ export default Vue.extend({
         .then((orders) => {
           orders.forEach((order) => {
             // if (order.data().status === 1 || order.data().status === 2) {
-              this.logItems.push(order.data());
+            this.logItems.push(order.data());
             // }
           });
         });
     }
   },
-  methods:{
-      //statusを変えるためのStore呼び出し
-      statusChange(id:string, status:number, uid:string):void{
-          let idStatus= {id:id, status:status, uid:uid}
-          AdminStore.updateStatusAct(idStatus)
-      },
-  }
+  methods: {
+    //statusを変えるためのStore呼び出し
+    statusChange(id: string, status: number, uid: string): void {
+      let idStatus = { id: id, status: status, uid: uid };
+      AdminStore.updateStatusAct(idStatus);
+    },
+  },
 });
 </script>
