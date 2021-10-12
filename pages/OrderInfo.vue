@@ -240,7 +240,7 @@
                     name="配達時間"
                     rules="required|delivary_validation:@配達日"
                   >
-                    <select
+                    <!-- <select
                       v-model="deliveryTime"
                       name="配達時間"
                       class="
@@ -265,12 +265,12 @@
                       <option value="15">15時</option>
                       <option value="16">16時</option>
                       <option value="17">17時</option>
-                    </select>
-                    <!-- <select-a
+                    </select> -->
+                    <delivery-select
                      v-model="deliveryTime"
                      name="配達時間"
                      :options="options"
-                    ></select-a> -->
+                    ></delivery-select>
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -384,15 +384,28 @@ import Vue from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { UserStore, CartStore, AdminStore } from '../store';
 import {
-  orderInfoType,
   orderItemType,
 } from '../types/cartItemType';
 import { userInfoType } from '../types/userInfoType';
+import DeliverySelect from '../components/atoms/input/deliverySelect.vue';
 
 let YubinBango = require('yubinbango-core2')
 
+type DataType = {
+  name: string,
+  email: string,
+  postalcode: string,
+  address: string,
+  tel: string,
+  deliveryDate: string,
+  deliveryTime: string,
+  payment: number,
+  creditCardNum: string,
+  selectPayment: boolean,
+  options: Array<{ [field: string]: any }>
+}
 export default Vue.extend({
-  data(): orderInfoType {
+  data(): DataType {
     return {
       name: UserStore.getUserInfo!.name,
       email: UserStore.getUserInfo!.email,
@@ -404,12 +417,23 @@ export default Vue.extend({
       payment: 0,
       creditCardNum: '',
       selectPayment: false,
+      options:[
+        {label: '10', value: '10'},
+        {label: '11', value: '11'},
+        {label: '12', value: '12'},
+        {label: '13', value: '13'},
+        {label: '14', value: '14'},
+        {label: '15', value: '15'},
+        {label: '16', value: '16'},
+        {label: '17', value: '17'},
+      ]
     }
 
   },
   components: {
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
+    DeliverySelect
   },
   methods: {
     OrderSubmit():void {

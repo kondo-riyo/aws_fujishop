@@ -5,88 +5,7 @@
         <img :src="itemDetail.img" class="rounded-xl w-72 h-72" />
       </div>
 
-      <div class="mt-3 space-x-4 flex p-1">
-        <div
-          class="
-            p-1
-            border-4
-            rounded-full
-            cursor-pointer
-            hover:border-red-200 hover:scale-105
-            transition
-            transform
-            duration-200
-          "
-          v-show="itemDetail.imgRed"
-          @click="changeImg(itemDetail.imgRed)"
-        >
-          <span class="block h-6 w-6 bg-red-400 rounded-full"> </span>
-        </div>
-        <div
-          class="
-            p-1
-            border-4
-            rounded-full
-            cursor-pointer
-            hover:border-yellow-200 hover:scale-105
-            transition
-            transform
-            duration-200
-          "
-          v-show="itemDetail.imgOrange"
-          @click="changeImg(itemDetail.imgOrange)"
-        >
-          <span class="block h-6 w-6 bg-yellow-400 rounded-full"> </span>
-        </div>
-        <div
-          class="
-            p-1
-            border-4
-            rounded-full
-            cursor-pointer
-            hover:border-purple-200 hover:scale-105
-            transition
-            transform
-            duration-200
-          "
-          v-show="itemDetail.imgPurple"
-          @click="changeImg(itemDetail.imgPurple)"
-        >
-          <span class="block h-6 w-6 bg-purple-400 rounded-full"> </span>
-        </div>
-                  <div
-            class="
-              p-1
-              border-4
-              rounded-full
-              cursor-pointer
-              hover:border-base_cream hover:scale-105
-              transition
-              transform
-              duration-200
-            "
-            v-if="itemDetail.imgCream"
-            @click="changeImg(itemDetail.imgCream)"
-          >
-            <span class="block h-6 w-6 bg-base_cream rounded-full"> </span>
-          </div>
-          <div
-            class="
-              p-1
-              border-4
-              rounded-full
-              cursor-pointer
-              hover:border-base_red hover:scale-105
-              transition
-              transform
-              duration-200
-            "
-            v-if="itemDetail.imgBrown"
-            @click="changeImg(itemDetail.imgBrown)"
-          >
-            <span class="block h-6 w-6 bg-base_red rounded-full"> </span>
-          </div>
-      </div>
+      <rings @selectRing="changeImg" :item="itemDetail" />
     </div>
     <div
       class="
@@ -101,7 +20,9 @@
       "
     >
       <div>
-        <p class="text-gray-700 text-2xl sm:text-3xl font-semibold sm:font-bold">
+        <p
+          class="text-gray-700 text-2xl sm:text-3xl font-semibold sm:font-bold"
+        >
           {{ itemDetail.name }}
         </p>
       </div>

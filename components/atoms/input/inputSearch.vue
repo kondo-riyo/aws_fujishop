@@ -1,6 +1,5 @@
 <template>
   <input
-    :value="value"
     @input="onInput"
     class="
       w-1/2
@@ -21,26 +20,15 @@
       mb-0
       ml-auto
     "
-    :type="type"
-    :name="name"
-    :placeholder="placeholder"
   />
 </template>
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
-  name: 'inputA',
-  props: {
-    value: { type: String, required: false },
-    type: { type: String, required: true },
-    name: { type: String, required: true },
-    placeholder: { type: String, required: false },
-  },
   methods: {
-    onInput(e: Event): void {
-      if (e.target instanceof HTMLInputElement) {
+    onInput(e:string): void {
+        //@ts-ignore
         this.$emit('input', e.target.value);
-      }
     },
   },
 });

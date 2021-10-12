@@ -203,15 +203,15 @@
             "
           >
             <div>
-              <selectA
+              <!-- <selectA
                 v-model="logItem.status"
                 @change="selectToStatus(logItem.status); statusChange(logItem.orderId, logItem.status, params)"
                 :name="deliveryStatus"
                 :options="options"
                 :selectedStatus="logItem.status"
                 class="bg-base_red text-white text-center rounded"
-              ></selectA>
-              <!-- <select
+              ></selectA> -->
+              <select
                 v-model="logItem.status"
                 @change="statusChange(logItem.orderId, logItem.status, params)"
                 name="配達status"
@@ -222,7 +222,7 @@
                 <option value="3">発送済</option>
                 <option value="4">配達済</option>
                 <option value="9">キャンセル</option>
-              </select> -->
+              </select>
             </div>
           </div>
         </div>
