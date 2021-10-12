@@ -31,89 +31,7 @@
 
     <div>
       <div class="">
-        <div class="space-x-2 flex p-1 justify-center">
-          <div
-            class="
-              p-1
-              border-4
-              rounded-full
-              cursor-pointer
-              hover:border-red-200 hover:scale-105
-              transition
-              transform
-              duration-200
-            "
-            v-if="item.imgRed"
-            @click="changeImg(item.imgRed)"
-          >
-            <span class="block h-3 w-3 bg-red-400 rounded-full"> </span>
-          </div>
-          <div
-            class="
-              p-1
-              border-4
-              rounded-full
-              cursor-pointer
-              hover:border-yellow-200 hover:scale-105
-              transition
-              transform
-              duration-200
-            "
-            v-if="item.imgOrange"
-            @click="changeImg(item.imgOrange)"
-          >
-            <span class="block h-3 w-3 bg-yellow-400 rounded-full"> </span>
-          </div>
-          <div
-            class="
-              p-1
-              border-4
-              rounded-full
-              cursor-pointer
-              hover:border-purple-200 hover:scale-105
-              transition
-              transform
-              duration-200
-            "
-            v-if="item.imgPurple"
-            @click="changeImg(item.imgPurple)"
-          >
-            <span class="block h-3 w-3 bg-purple-400 rounded-full"> </span>
-          </div>
-          <div
-            class="
-              p-1
-              border-4
-              rounded-full
-              cursor-pointer
-              hover:border-base_cream hover:scale-105
-              transition
-              transform
-              duration-200
-            "
-            v-if="item.imgCream"
-            @click="changeImg(item.imgCream)"
-          >
-            <span class="block h-3 w-3 bg-base_cream rounded-full"> </span>
-          </div>
-          <div
-            class="
-              p-1
-              border-4
-              rounded-full
-              cursor-pointer
-              hover:border-base_red hover:scale-105
-              transition
-              transform
-              duration-200
-            "
-            v-if="item.imgBrown"
-            @click="changeImg(item.imgBrown)"
-          >
-            <span class="block h-3 w-3 bg-base_red rounded-full"> </span>
-          </div>
-        </div>
-
+        <rings @selectRing="changeImg" :item="item" />
         <h1 class="mt-5 sm:text-lg font-semibold text-center truncate">
           {{ item.name }}
         </h1>
@@ -127,21 +45,7 @@
               params: { itemId: item.id },
             }"
           >
-            <button
-              class="
-                bg-base_red
-                hover:bg-base_orange
-                text-white
-                font-bold
-                py-2
-                px-6
-                mx-2
-                mt-2
-                rounded-full
-              "
-            >
-              詳細
-            </button>
+            <round-bottun class="mx-2 mt-2"> 詳細 </round-bottun>
           </router-link>
         </span>
       </div>

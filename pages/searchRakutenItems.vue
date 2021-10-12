@@ -1,19 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center container mx-6 sm:mt-0">
-      <searchInput
-        placeholder="Search"
-        name="keyword"
-        type="text"
-        @input="inputKeyword"
-      />
-      <img
-        src="../assets/img/search.webp"
-        class="block w-6 mr-auto mt-10"
-        style=""
-        @click="search"
-      />
-    </div>
+    <search-group @searchItems="search" />
 
     <!-- 検索エラー表示 -->
     <div class="text-center block py-5">
@@ -34,7 +21,7 @@
       class="flex flex-wrap justify-center"
     >
       <div v-for="item in apiItemsFromStore" :key="item.id">
-          <Card :item="item" :routerName="routerName.rakuten" />
+        <Card :item="item" :routerName="routerName.rakuten" />
       </div>
     </div>
   </div>
@@ -42,7 +29,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import searchGroup from '~/components/morecules/searchGroup.vue';
 import { ApiItemsStore } from '../store';
 import { itemType } from '../types/itemType';
 
@@ -79,13 +65,10 @@ export default Vue.extend({
     },
   },
   methods: {
-    inputKeyword(keyword: string): void {
-      this.keyWord = keyword;
-    },
-    async search(): Promise<void> {
-      if (this.keyWord !== '') {
+    async search(word:any): Promise<void> {
+      if (word !== '') {
         this.keywordNullFlg = false;
-        await ApiItemsStore.searchApiItemsAct(this.keyWord);
+        await ApiItemsStore.searchApiItemsAct(word);
         if (this.searchApiItemsFromStore.length > 0) {
           this.searchItemNullFlg = false;
           this.defaultItemsFlg = false;

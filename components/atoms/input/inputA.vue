@@ -31,9 +31,8 @@ export default Vue.extend({
   },
   methods: {
     onInput(e: Event):void{
-      if (e.target instanceof HTMLInputElement){
-        this.$emit("input",e.target.value)
-      }
+      //@ts-ignore
+      this.$emit("input",e.target.value)
     }
   }
 })
