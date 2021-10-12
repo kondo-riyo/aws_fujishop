@@ -1,21 +1,6 @@
 <template>
   <div class="">
-    <div class="flex items-center container mx-6 sm:mt-0">
-      <searchInput
-        placeholder="Search"
-        name="keyword"
-        type="text"
-        v-model="keyWord"
-        @input="inputKeyword"
-      />
-      <img
-        src="../assets/img/search.webp"
-        class="block w-6 mr-auto mt-10"
-        style=""
-        @click="search"
-      />
-    </div>
-
+    <search-group @searchItems="search"/>
     <div class="my-5 text-base_red font-bold">
       <div v-show="resultNullFlg" class="text-center">
         ※該当する商品がありません
@@ -68,10 +53,10 @@ export default Vue.extend({
     };
   },
   methods: {
-    search(): void {
+    search(word:any): void {
       this.searchedItems = [];
       // 検索ワードなし
-      if (this.keyWord === '') {
+      if (word === '') {
         this.keywordNullFlg = true;
         this.resultNullFlg = false;
       } else {
@@ -81,7 +66,7 @@ export default Vue.extend({
           if (item.name === undefined) return;
 
           // 該当結果あり
-          if (item.name.indexOf(this.keyWord) >= 0) {
+          if (item.name.indexOf(word) >= 0) {
             this.searchedItems.push(item);
           }
         });
@@ -90,9 +75,6 @@ export default Vue.extend({
           this.resultNullFlg = true;
         }
       }
-    },
-    inputKeyword(keyword: string): void {
-      this.keyWord = keyword;
     },
   },
   computed: {

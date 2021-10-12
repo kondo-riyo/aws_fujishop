@@ -11,9 +11,9 @@
       duration-200
     "
     v-if="item.imgRed"
-    @mouseover="changeImg(item.imgRed)"
+    @click="selectRing(item.imgRed)"
   >
-    <span class="block h-3 w-3 bg-red-400 rounded-full"> </span>
+    <span class="block h-3 w-3 bg-red-400 rounded-full"></span>
   </div>
 </template>
 
@@ -22,8 +22,8 @@ import Vue from 'vue'
 export default Vue.extend({
   props:['item'],
   methods: {
-    click() {
-      this.$emit("click");
+    selectRing(img:any) {
+      this.$emit("selectRing",img);
     }
   }
 })

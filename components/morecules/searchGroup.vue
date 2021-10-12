@@ -1,39 +1,33 @@
 <template>
   <div class="flex items-center container mx-6 sm:mt-0">
-    <input-a @input="inputKeyWord" />
-    <search-logo @click="searchItems" />
+    <input-search @input="inputKeyWord"/>
+    <search-logo @search="search" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import inputSearch from "../atoms/input/inputSearch.vue"
+import searchLogo from "../atoms/logo/searchLogo.vue"
 
-type DataType = {
-  keyWord:string
-};
 export default Vue.extend({
-  data():DataType {
-    return {
-      keyWord: '',
-    };
+  components:{
+    inputSearch,
+    searchLogo
   },
-  props: ['itemDetail', 'options'],
-  computed:{
-    moniterKeyWords():string{
-      return this.keyWord
+  data(){
+    return{
+      keyword:''
     }
   },
   methods: {
     search(): void {
-      this.$emit('searchItems', this.moniterKeyWords);
+      this.$emit('searchItems',this.keyword);
     },
+
     inputKeyWord(keyWord:any){
-      this.keyWord = keyWord
-      this.keyWordToParents()
+      this.keyword = keyWord;
     },
-    keyWordToParents(){
-      this.$emit('searchKeyWord',this.moniterKeyWords)
-    }
   },
 
 });
