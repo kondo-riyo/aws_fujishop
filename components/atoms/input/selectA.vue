@@ -1,24 +1,18 @@
 <template>
   <fieldset>
-    <select
-     :name="name"
+    <select 
+    v-model="options.label"
+     :name="name" 
      @change="updateValue"
-     class="
-       appearance-none
-       block
-       w-full
-       bg-base_gray bg-opacity-25
-       text-gray-700
-       border border-gray-200
-       rounded
-       py-3
-       px-4
-       leading-tight
-       focus:outline-none focus:bg-white focus:border-gray-500
-       "
+     class="bg-base_red text-white text-center rounded"
     >
-      <template v-for="(option, index) in options">
-        <option :value="option.value" :key="index">
+      <template 
+       v-for="(option, index) in options"
+      >
+        <option 
+         :value="option.value" 
+         :key="index"
+        >
           {{ option.label }}
         </option>
       </template>
@@ -26,22 +20,29 @@
   </fieldset>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-    name: 'selectA',
-    props: {
-        value: {type: String, required: true},
-        option: {type:Array, required: true},
-        name: {type:String, required: true}
-    },
-    methods: {
-        updateValue(e: any) {
-        this.$emit("input", e.target.value);
-        }
-    },
-    mounted() {
-        // this.$emit("input", this.options[0].value);
+<script>
+export default {
+  name: "selectA",
+  props: {
+    value: { type: String, require: false },
+    options: { type: Array, require: true },
+    name: { type: String, require: true },
+    selectedStatus: {type: String, require: false}
+
+  },
+  methods: {
+    updateValue(e) {
+      this.$emit("input", e.target.value);
+      console.log('親に渡す　'+e.target.value)
     }
-})
+  },
+  mounted() {
+    // this.$emit("input", this.options[0].value);
+    // console.log(selectedStatus)
+    let select = document.getElementByName(this.props.name)
+    select.options[this.props.value].selected = true
+    // // this.$emit("input", this.options[0].value);
+    // console.log('options '+select)
+  }
+};
 </script>

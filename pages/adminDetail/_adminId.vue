@@ -203,7 +203,15 @@
             "
           >
             <div>
-              <select
+              <selectA
+                v-model="logItem.status"
+                @change="selectToStatus(logItem.status); statusChange(logItem.orderId, logItem.status, params)"
+                :name="deliveryStatus"
+                :options="options"
+                :selectedStatus="logItem.status"
+                class="bg-base_red text-white text-center rounded"
+              ></selectA>
+              <!-- <select
                 v-model="logItem.status"
                 @change="statusChange(logItem.orderId, logItem.status, params)"
                 name="配達status"
@@ -214,7 +222,7 @@
                 <option value="3">発送済</option>
                 <option value="4">配達済</option>
                 <option value="9">キャンセル</option>
-              </select>
+              </select> -->
             </div>
           </div>
         </div>
@@ -247,13 +255,21 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import selectA from '../../components/atoms/input/selectA.vue';
 import { UserStore, AdminStore } from '../../store';
 
 type DataType = {
-  selectStatus: number;
+  selectStatus: string;
   statusName: string;
   newlogItems: any;
   params: string;
+  options:[
+    {label: string, value: string},
+    {label: string, value: string},
+    {label: string, value: string},
+    {label: string, value: string},
+    {label: string, value: string},
+  ]
 };
 
 export default Vue.extend({
@@ -262,13 +278,22 @@ export default Vue.extend({
       title: '注文履歴',
     };
   },
+  components:{
+    selectA
+  },
   data(): DataType {
     return {
-      selectStatus: 0,
+      selectStatus: '',
       statusName: '',
       newlogItems: [],
       params: '',
-
+      options:[
+        {label: '未入金(代引き)', value: '1'},
+        {label: '入金済(クレジット)', value: '2'},
+        {label: '発送済', value: '3'},
+        {label: '配達済', value: '4'},
+        {label: 'キャンセル', value: '9'}
+      ]
     };
   },
   computed: {
@@ -307,13 +332,18 @@ export default Vue.extend({
   
   methods:{
       // statusを変えるためのStore呼び出し
-      statusChange(id:string, status:number, uid:string):void{
+      statusChange(id:string, status:string, uid:string):void{
           let idStatus= {id:id, status:status, uid:uid}
+          console.log('statusChange'+idStatus)
           AdminStore.updateStatusAct(idStatus)
       },
       back_onStep() {
         this.$router.push('/admin')
       },
+      selectToStatus(value: any) {
+        this.selectStatus = value
+        console.log('selectToStatus'+this.selectStatus)
+      }
       // displaySelect(): Array<void>|undefined{
       //   console.log(this.selectStatus)
       //   if(this.selectStatus == 0){
