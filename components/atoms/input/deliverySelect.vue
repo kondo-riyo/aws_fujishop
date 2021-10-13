@@ -35,12 +35,16 @@ export default {
     name: { type: String, require: true }
   },
   methods: {
-    updateValue: function(e) {
+    updateValue (e) {
       this.$emit("input", e.target.value);
+    },
+    mountedEmit() {
+      this.$emit("input", this.options[0].value);
     }
   },
   mounted() {
-    this.$emit("input", this.options[0].value);
+    // this.$emit("input", this.options[0].value);
+    this.mountedEmit()
   }
 };
 </script>

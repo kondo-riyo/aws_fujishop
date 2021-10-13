@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import deliverySelect from '../../../components/atoms/input/deliverySelect.vue';
 // @ts-ignore
-describe('Testing inputSearch component', () => {
+describe('Testing deliverySelect component', () => {
   let selectWrapper;
   beforeEach(() => {
     // 子コンポーネントのマウントを行わないマウント
@@ -19,7 +19,7 @@ describe('Testing inputSearch component', () => {
   it('deliverySelectが存在する', () => {
     expect(selectWrapper.exists()).toBeTruthy();
   });
-  it('selectイベントが発火する', async () => {
-    await selectWrapper.find('select').trigger('select');
+  it('emitによってchange(updateValue)が発火されている', () => {
+    selectWrapper.get('select').trigger('change');
   });
 });

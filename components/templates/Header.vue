@@ -33,8 +33,14 @@
 
       <div class="sm:w-8 w-7 mr-5" v-if="userInfoFromStore">
         <router-link class="block" to="/cart">
+        <!-- <span class="relative inline-block">
+          <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/3 bg-red-600 rounded-full">
+            {{itemInfoFromStore[0].itemInfo.length}}
+          </span>
+        </span> -->
           <img src="~/assets/img/cart_icon.webp"
-        /></router-link>
+        />
+        </router-link>
       </div>
       <div class="sm:w-8 w-7 mr-5">
         <router-link to="/orderLog" v-if="userInfoFromStore">
@@ -68,6 +74,7 @@
 import { UserStore } from '../../store';
 import Vue from 'vue';
 import { userInfoType } from '../../types/userInfoType';
+// import { orderItemType } from '../../types/cartItemType';
 
 export default Vue.extend({
   methods: {
@@ -82,6 +89,9 @@ export default Vue.extend({
     userInfoFromStore(): userInfoType | null {
       return UserStore.getUserInfo;
     },
+    // itemInfoFromStore(): orderItemType[] | null {
+    //   return CartStore.getitemInfo;
+    // }
   },
 });
 </script>

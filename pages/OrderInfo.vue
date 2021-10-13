@@ -392,11 +392,11 @@ import DeliverySelect from '../components/atoms/input/deliverySelect.vue';
 let YubinBango = require('yubinbango-core2')
 
 type DataType = {
-  name: string,
-  email: string,
-  postalcode: string,
-  address: string,
-  tel: string,
+  name?: string,
+  email?: string,
+  postalcode?: string,
+  address?: string,
+  tel?: string,
   deliveryDate: string,
   deliveryTime: string,
   payment: number,
