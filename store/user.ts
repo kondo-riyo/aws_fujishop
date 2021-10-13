@@ -1,6 +1,6 @@
 import firebase , { auth, db } from '../plugins/firebase';
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
-import { Cookies } from '~/plugins/cookie'
+import { Cookies } from '../plugins/cookie'
 import { userInfoType } from '../types/userInfoType'
 
 @Module({ name: 'user', namespaced: true ,stateFactory: true})

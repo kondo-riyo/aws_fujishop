@@ -1,6 +1,6 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
-import { db } from "~/plugins/firebase";
-import { UserStore } from "~/store";
+import { db } from "../plugins/firebase";
+import { UserStore } from "../store";
 
 type idSatusType = {
     id: string;

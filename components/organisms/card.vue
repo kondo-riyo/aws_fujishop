@@ -55,7 +55,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import rings from '../morecules/rings.vue';
+import roundBottun from '../atoms/button/roundBottun.vue';
+
 export default Vue.extend({
+  components: { rings, roundBottun },
   props: ['item', 'routerName'],
   methods: {
     changeImg(img: string): void {

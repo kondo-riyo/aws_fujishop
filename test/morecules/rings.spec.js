@@ -11,14 +11,13 @@ describe('Testing rings component', () => {
   });
   it('ringsが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
-    console.log(wrapper.html())
   });
   it('propsが受け取れている', () => {
     expect(wrapper.vm.$props.item.img).toBe('imgimg');
   });
-//   it('emitによってselectRingが発火されている', () => {
-//     let ringWrapper = wrapper.find('ring-red-stub');
-//     ringWrapper.get('ring-red-stub').trigger('selectRing');
-//     expect(ringWrapper.emitted('selectRing')).toBeTruthy();
-//   });
+  it('emitによってselectRingが発火されている', () => {
+    let ringWrapper = wrapper.find('ring-red-stub');
+    ringWrapper.vm.$emit('selectRing');
+    expect(ringWrapper.emitted('selectRing')).toBeTruthy();
+  });
 });

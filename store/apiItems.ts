@@ -1,7 +1,7 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
 import axios from 'axios';
-import { itemType } from "~/types/itemType";
-import { rakuten } from '~/types/rakutenType';
+import { itemType } from "../types/itemType";
+import { rakuten } from '../types/rakutenType';
 
 @Module({ name: 'apiItems', namespaced: true ,stateFactory: true})
 
