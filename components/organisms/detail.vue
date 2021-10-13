@@ -102,11 +102,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-
+import rings from '../morecules/rings.vue';
 type DataType = {
   selectedItemNum: number;
 };
 export default Vue.extend({
+  components: { rings },
   data(): DataType {
     return {
       selectedItemNum: 1,

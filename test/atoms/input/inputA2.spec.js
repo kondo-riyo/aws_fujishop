@@ -19,7 +19,7 @@ describe('Testing inputSearch component', () => {
   it('inputAが存在する', () => {
     expect(inputWrapper.exists()).toBeTruthy();
   });
-  it('inputイベントが発火する', async () => {
-    await inputWrapper.find('input').trigger('input');
+  it('inputイベントが発火する', () => {
+     inputWrapper.find('input').trigger('input');
   });
 });
