@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
-import { db } from "~/plugins/firebase";
+import { db } from "../plugins/firebase";
 import { toppingType } from "../types/toppingType";
 
 @Module({ name: 'toppings', namespaced: true ,stateFactory: true})

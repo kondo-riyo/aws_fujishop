@@ -3,7 +3,6 @@ import inputSearch from '../../../components/atoms/input/inputSearch.vue';
 
 describe('Testing inputSearch component', () => {
   const wrapper = shallowMount(inputSearch);
-  const inputWrapper = wrapper.find('input');
 
   it('inputSearchが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();

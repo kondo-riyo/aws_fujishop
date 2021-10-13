@@ -1,7 +1,7 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
-import { db } from "~/plugins/firebase";
-import { cartItemType,orderedItemType, orderItemType } from "~/types/cartItemType";
-import { UserStore } from "~/store";
+import { db } from "../plugins/firebase";
+import { cartItemType,orderedItemType, orderItemType } from "../types/cartItemType";
+import { UserStore } from "../store";
 @Module({ name: 'cart', namespaced: true ,stateFactory: true})
 
  export default class CartStore extends VuexModule {
