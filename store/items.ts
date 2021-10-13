@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
-import { db } from "~/plugins/firebase";
+import { db } from "../plugins/firebase";
 import { itemType } from '../types/itemType'
 
 @Module({ name: 'items', namespaced: true ,stateFactory: true})

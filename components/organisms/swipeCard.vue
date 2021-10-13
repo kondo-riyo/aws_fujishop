@@ -33,7 +33,6 @@
         duration-500
         flex
         sm:flex-col
-        
       "
     >
       <div class="relative w-1/2 my-0 mx-auto sm:w-full sm:mr-0 mr-2">
@@ -84,7 +83,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import rings from '../morecules/rings.vue';
+
 export default Vue.extend({
+  components: { rings },
   props: ['swipeItem', 'routerName'],
   methods: {
     changeImg(img: string): void {
