@@ -317,6 +317,7 @@
                         name="クレジットカード払い"
                         value="2"
                         @click="creditPay()"
+                        data-testid="show_cartItems"
                       />クレジットカード
                     </label>
                   </div>
@@ -407,25 +408,30 @@ type DataType = {
 export default Vue.extend({
   data(): DataType {
     return {
-      name: UserStore.getUserInfo!.name,
-      email: UserStore.getUserInfo!.email,
-      postalcode: UserStore.getUserInfo!.postalcode,
-      address: UserStore.getUserInfo!.address,
-      tel: UserStore.getUserInfo!.tel,
+      // name : UserStore.getUserInfo!.name,
+      // email : UserStore.getUserInfo!.email,
+      // postalcode : UserStore.getUserInfo!.postalcode,
+      // address : UserStore.getUserInfo!.address,
+      // tel : UserStore.getUserInfo!.tel,
+      name: '',
+      email: '',
+      postalcode: '',
+      address: '',
+      tel: '',
       deliveryDate: '',
       deliveryTime: '',
       payment: 0,
       creditCardNum: '',
       selectPayment: false,
       options:[
-        {label: '10', value: '10'},
-        {label: '11', value: '11'},
-        {label: '12', value: '12'},
-        {label: '13', value: '13'},
-        {label: '14', value: '14'},
-        {label: '15', value: '15'},
-        {label: '16', value: '16'},
-        {label: '17', value: '17'},
+        {label: '10時', value: '10'},
+        {label: '11時', value: '11'},
+        {label: '12時', value: '12'},
+        {label: '13時', value: '13'},
+        {label: '14時', value: '14'},
+        {label: '15時', value: '15'},
+        {label: '16時', value: '16'},
+        {label: '17時', value: '17'},
       ]
     }
 
@@ -522,8 +528,15 @@ export default Vue.extend({
        allPrice = allPrice + item.totalPrice!
       })
       return allPrice;
-    }
+    },
   },
+  // mounted() {
+  //     this.name = UserStore.getUserInfo!.name,
+  //     this.email = UserStore.getUserInfo!.email,
+  //     this.postalcode = UserStore.getUserInfo!.postalcode,
+  //     this.address = UserStore.getUserInfo!.address,
+  //     this.tel = UserStore.getUserInfo!.tel
+  // },
   head(){
     return {
       title: 'お届け先情報入力'

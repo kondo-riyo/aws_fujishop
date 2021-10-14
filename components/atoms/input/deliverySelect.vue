@@ -19,7 +19,7 @@
     >
       <!-- <template v-for="(option, index) in options"> -->
         <option v-for="(option, index) in options" :value="option.value" :key="index">
-          {{ option.label }} 時
+          {{ option.label }}
         </option>
       <!-- </template> -->
     </select>

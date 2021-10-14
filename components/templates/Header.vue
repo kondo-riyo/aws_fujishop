@@ -79,10 +79,10 @@ import { userInfoType } from '../../types/userInfoType';
 export default Vue.extend({
   methods: {
     logout(): void {
-      if (this.userInfoFromStore) {
+      // if (this.userInfoFromStore) {
         UserStore.logout();
         this.$router.push('/');
-      }
+      // }
     },
   },
   computed: {

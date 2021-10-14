@@ -22,4 +22,5 @@ describe('Testing deliverySelect component', () => {
   it('emitによってchange(updateValue)が発火されている', () => {
     selectWrapper.get('select').trigger('change');
   });
+
 });

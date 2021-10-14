@@ -203,14 +203,6 @@
             "
           >
             <div>
-              <!-- <selectA
-                v-model="logItem.status"
-                @change="selectToStatus(logItem.status); statusChange(logItem.orderId, logItem.status, params)"
-                :name="deliveryStatus"
-                :options="options"
-                :selectedStatus="logItem.status"
-                class="bg-base_red text-white text-center rounded"
-              ></selectA> -->
               <select
                 v-model="logItem.status"
                 @change="statusChange(logItem.orderId, logItem.status, params)"
@@ -255,7 +247,6 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import selectA from '../../components/atoms/input/selectA.vue';
 import { UserStore, AdminStore } from '../../store';
 
 type DataType = {
@@ -277,9 +268,6 @@ export default Vue.extend({
     return {
       title: '注文履歴',
     };
-  },
-  components:{
-    selectA
   },
   data(): DataType {
     return {
