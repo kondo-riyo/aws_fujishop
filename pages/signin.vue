@@ -71,13 +71,14 @@
             >
             <div class="flex">
               <inputA
+                 data-testid="inputType"
                  v-model="userInfo.password"
                  name="パスワード"
                  :type="inputType"
                  placeholder="*******"
                  @input="inputPassword"
                  class="rounded-full"></inputA>
-               <div @click="onClick" class="w-16">
+               <div data-testid="onClick" @click="onClick" class="w-16">
                  <div v-show="isChecked">
                    <img src="~/assets/img/eye_icon.webp">
                   </div>
@@ -93,6 +94,7 @@
           </div>
           <div class="block ml-8">
             <round-bottun
+            data-testid="roundButton"
             @click="login"
             :disabled="invalid"
             class="m-4 self-center">
@@ -101,9 +103,9 @@
           </div>
         </ValidationObserver>
         <div class="self-center">
-          <nuxt-link to="/signup" class="text-blue-700">
+          <router-link to="/signup" class="text-blue-700">
             新規会員登録はこちら
-          </nuxt-link>
+          </router-link>
         </div>
       </div>
     </div>
@@ -116,11 +118,16 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { userLoginType } from '../types/userInfoType';
 import { UserStore } from '../store';
 import { auth } from '../plugins/firebase';
+import roundButton from '../components/atoms/button/roundBottun.vue'
+import inputA from '../components/atoms/input/inputA.vue'
 
 type DataType = {
   userInfo: userLoginType;
   isChecked: boolean;
   eye: boolean;
+};
+type headType = {
+  title: string;
 };
 
 export default Vue.extend({
@@ -135,9 +142,16 @@ export default Vue.extend({
       eye: false
     };
   },
+    head(): headType {
+    return {
+      title: 'ログイン',
+    };
+  },
   components: {
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
+    roundButton,
+    inputA
   },
   methods: {
     login(): void {

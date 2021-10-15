@@ -6,7 +6,6 @@ import VueMeta from 'vue-meta';
 
 import { createStore } from '../../.nuxt/store';
 import { initialiseStores } from '../../utils/store-accsessor.ts';
-import { jsxEmptyExpression } from '@babel/types';
 
 const localVue = createLocalVue();
 const router = new VueRouter();
@@ -93,13 +92,8 @@ describe('Testing OrderLog component', () => {
   it('cickでイベント(cancelOrder)が発火する',async () => {
     let cancelWrapper = wrapper.find('[data-testid="cancelOrder"]');
     cancelWrapper.trigger('click')
-    //cancelWrapper.vm.$emit('click');
     expect(cancelWrapper.trigger('cancelOrder')).toBeTruthy();
-  // await expect(CartStore.actions.cancelOrderAct).toBeCalled()
-
   })
-  
-  ;
   it('cickでイベント(openModal)が発火する', () => {
     let cancelWrapper = wrapper.find('square-bottun-stub');
     cancelWrapper.vm.$emit('click');

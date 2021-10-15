@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <search-group @searchItems="search"/>
+    <search-group data-testid="search" @searchItems="search" />
     <div class="my-5 text-base_red font-bold">
       <div v-show="resultNullFlg" class="text-center">
         ※該当する商品がありません
@@ -31,7 +31,8 @@
 import Vue from 'vue';
 import { itemType } from '../types/itemType';
 import { ItemsStore } from '../store';
-
+import Card from '../components/organisms/card.vue';
+import searchGroup from '../components/morecules/searchGroup.vue';
 type DataType = {
   keyWord: string;
   searchedItems: itemType[];
@@ -41,19 +42,25 @@ type DataType = {
 };
 
 export default Vue.extend({
+  head() {
+    return {
+      title: 'FUJIオリジナル商品',
+    };
+  },
+  components: { Card,searchGroup },
   data(): DataType {
     return {
       keyWord: '',
       searchedItems: [],
       keywordNullFlg: false, // 検索ワード未入力の場合
       resultNullFlg: false, // 該当結果無しの場合
-      routerName:{
-        fujiShop:'ItemDetail-itemId'
-      }
+      routerName: {
+        fujiShop: 'ItemDetail-itemId',
+      },
     };
   },
   methods: {
-    search(word:any): void {
+    search(word: any): void {
       this.searchedItems = [];
       // 検索ワードなし
       if (word === '') {

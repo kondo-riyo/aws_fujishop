@@ -50,8 +50,19 @@
 import Vue from 'vue';
 import { ApiItemsStore, ItemsStore } from '../store';
 import { itemType } from '../types/itemType';
-
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+import swipeCard from '../components/organisms/swipeCard.vue';
 export default Vue.extend({
+  head() {
+    return {
+      title: 'ホーム',
+    };
+  },
+  components: {
+    Swiper,
+    SwiperSlide,
+    swipeCard,
+  },
   data() {
     return {
       swiperOption: {
