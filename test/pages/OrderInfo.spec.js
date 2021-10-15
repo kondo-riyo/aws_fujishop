@@ -1,11 +1,11 @@
 
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import OrderInfo from '../pages/OrderInfo.vue';
+import OrderInfo from '../../pages/OrderInfo.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 
-import { createStore } from '../.nuxt/store';
-import { initialiseStores } from '../utils/store-accsessor.ts';
+import { createStore } from '../../.nuxt/store';
+import { initialiseStores } from '../../utils/store-accsessor.ts';
 
 const localVue = createLocalVue();
 const router = new VueRouter();
