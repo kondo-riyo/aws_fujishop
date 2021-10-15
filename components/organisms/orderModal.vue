@@ -12,7 +12,7 @@
         <p>
           お届け日時 <span class="font-bold">{{ orderInfo.deliveryDate }} {{ orderInfo.deliveryTime }}時</span>
         </p>
-        <p>支払状況 <span class="font-bold">{{ status | paymentStatus }}</span></p>
+        <p>支払状況 <span data-testid="paymentStatus" class="font-bold">{{ status | paymentStatus }}</span></p>
       </div>
     </div>
   </div>

@@ -121,7 +121,7 @@
                 </div>
                 <div class="w-1/3 md:w-1/6 px-0 py-1">
                   <square-bottun
-                  　@click="yubinbango()">
+                  @click="yubinbango()">
                     検索
                   </square-bottun>
                 </div>
