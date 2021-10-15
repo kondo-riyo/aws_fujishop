@@ -4,7 +4,7 @@ import { UserStore } from "../store";
 
 type idSatusType = {
     id: string;
-    status: number;
+    status: string;
     uid: string;
 }
 type idName = {
@@ -18,7 +18,7 @@ type idName = {
 export default class AdminStore extends VuexModule {
     //state-------------------------------------
         public id: string ='';
-        public status: number = 0;
+        public status: string = '';
         public users: idName[] = [];
         public storeLogItems: any[] = [];
 

@@ -250,10 +250,17 @@ import Vue from 'vue';
 import { UserStore, AdminStore } from '../../store';
 
 type DataType = {
-  selectStatus: number;
+  selectStatus: string;
   statusName: string;
   newlogItems: any;
   params: string;
+  options:[
+    {label: string, value: string},
+    {label: string, value: string},
+    {label: string, value: string},
+    {label: string, value: string},
+    {label: string, value: string},
+  ]
 };
 
 export default Vue.extend({
@@ -264,11 +271,17 @@ export default Vue.extend({
   },
   data(): DataType {
     return {
-      selectStatus: 0,
+      selectStatus: '',
       statusName: '',
       newlogItems: [],
       params: '',
-
+      options:[
+        {label: '未入金(代引き)', value: '1'},
+        {label: '入金済(クレジット)', value: '2'},
+        {label: '発送済', value: '3'},
+        {label: '配達済', value: '4'},
+        {label: 'キャンセル', value: '9'}
+      ]
     };
   },
   computed: {
@@ -307,13 +320,18 @@ export default Vue.extend({
   
   methods:{
       // statusを変えるためのStore呼び出し
-      statusChange(id:string, status:number, uid:string):void{
+      statusChange(id:string, status:string, uid:string):void{
           let idStatus= {id:id, status:status, uid:uid}
+          console.log('statusChange'+idStatus)
           AdminStore.updateStatusAct(idStatus)
       },
       back_onStep() {
         this.$router.push('/admin')
       },
+      selectToStatus(value: any) {
+        this.selectStatus = value
+        console.log('selectToStatus'+this.selectStatus)
+      }
       // displaySelect(): Array<void>|undefined{
       //   console.log(this.selectStatus)
       //   if(this.selectStatus == 0){

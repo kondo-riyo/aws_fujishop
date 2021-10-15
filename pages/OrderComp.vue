@@ -45,10 +45,16 @@
 import Vue from 'vue';
 import { UserStore } from '../store';
 import { userInfoType } from '../types/userInfoType';
+import roundBottun from '../components/atoms/button/roundBottun.vue'
 export default Vue.extend({
+  components:{
+    roundBottun
+  },
   computed: {
+    // userInfoFromStore() {
     userInfoFromStore(): userInfoType | null {
       return UserStore.getUserInfo;
+      // this.userInfoStore()
     },
   },
   head() {
