@@ -3,7 +3,7 @@ import inputA from '../../../components/atoms/input/inputA.vue';
 // @ts-ignore
 describe('Testing inputSearch component', () => {
   let inputWrapper;
-  beforeEach(() => {
+  beforeAll(() => {
     // 子コンポーネントのマウントを行わないマウント
     const wrapper = shallowMount(inputA, {
       // propsプロパティの設定

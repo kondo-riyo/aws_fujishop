@@ -162,6 +162,7 @@
                   class="block"
                   v-show="logItem.status === 1"
                   @click="cancelOrder(logItem)"
+                  data-testid="cancelOrder"
                   >注文キャンセル</square-bottun
                 >
                 <disableButton class="block" v-show="logItem.status === 9"
@@ -177,9 +178,11 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { UserStore, CartStore } from '../store';
+import { CartStore } from '../store';
 import { orderedItemType } from '../types/cartItemType';
-
+import disableButton from  '../components/atoms/button/disableButton.vue'
+import squareBottun from '../components/atoms/button/squareBottun.vue'
+import orderModal from '../components/organisms/orderModal.vue' 
 export default Vue.extend({
   head() {
     return {
@@ -187,6 +190,7 @@ export default Vue.extend({
       show: false,
     };
   },
+  components:{disableButton,squareBottun,orderModal},
   data() {
     return {
       showContent: false,
@@ -209,17 +213,10 @@ export default Vue.extend({
     },
   },
   async fetch(): Promise<void> {
-    if (!UserStore.userInfo) {
-      console.log('ログインしていません');
-    } else {
-      if (!UserStore.userInfo.uid) return;
-      console.log('logをfetch');
       await CartStore.fetchOrderLogAct();
-    }
-  },
+   },
   methods: {
     cancelOrder(logItem: orderedItemType) {
-      console.log('click');
       CartStore.cancelOrderAct(logItem);
     },
     openModal(logItem: any) {

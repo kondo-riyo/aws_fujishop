@@ -30,5 +30,4 @@ describe('Testing swipeCard component', () => {
     ringWrapper.vm.$emit('selectRing');
     expect(ringWrapper.trigger('changeImg')).toBeTruthy();
   });
-  //＋propsが受取れているかのテスト
 });
