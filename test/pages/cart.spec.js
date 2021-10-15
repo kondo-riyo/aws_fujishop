@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import home from '../../pages/index.vue';
+import Cart from '../../pages/Cart.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import VueMeta from 'vue-meta';
@@ -12,25 +12,25 @@ const router = new VueRouter();
 localVue.use(VueRouter);
 localVue.use(Vuex);
 localVue.use(VueMeta, { keyName: 'head' });
-describe('Testing home component', () => {
+describe('Testing Cart component', () => {
   let wrapper;
   let store;
+  let CartStore;
 
   beforeAll(() => {
     initialiseStores(createStore());
 
     store = new Vuex.Store();
-    wrapper = shallowMount(home, {
+    wrapper = shallowMount(Cart, {
       localVue,
       router,
       store,
     });
   });
-  it('homeが存在する', () => {
+  it('Cartが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
   it('headが存在する', () => {
-    expect(wrapper.vm.$metaInfo.title).toBe('ホーム');
+    expect(wrapper.vm.$metaInfo.title).toBe('カート');
   });
 });
-

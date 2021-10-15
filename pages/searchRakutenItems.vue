@@ -1,6 +1,6 @@
 <template>
   <div>
-    <search-group @searchItems="search" />
+    <search-group data-testid="search" @searchItems="search" />
 
     <!-- 検索エラー表示 -->
     <div class="text-center block py-5">
@@ -31,6 +31,8 @@
 import Vue from 'vue';
 import { ApiItemsStore } from '../store';
 import { itemType } from '../types/itemType';
+import Card from '../components/organisms/card.vue';
+import searchGroup from '../components/morecules/searchGroup.vue';
 
 type DataType = {
   keyWord: string;
@@ -41,6 +43,12 @@ type DataType = {
 };
 
 export default Vue.extend({
+  head() {
+    return {
+      title: '楽天商品',
+    };
+  },
+  components: { Card, searchGroup },
   data(): DataType {
     return {
       keyWord: '',
@@ -65,7 +73,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    async search(word:any): Promise<void> {
+    async search(word: any): Promise<void> {
       if (word !== '') {
         this.keywordNullFlg = false;
         await ApiItemsStore.searchApiItemsAct(word);
