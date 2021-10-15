@@ -31,9 +31,9 @@ export default Vue.extend({
   filters: {
     paymentStatus(status) {
       if (status === 1) {
-        return '入金済み';
-      } else if (status === 2) {
         return '未入金';
+      } else if (status === 2) {
+        return '入金済み';
       } else if (status === 9) {
         return 'キャンセル済み';
       }

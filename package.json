@@ -73,6 +73,10 @@
       "^@/(.*)$": "<rootDir>/src/$1"
     },
     "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/components/**/*.vue",
+      "<rootDir>/pages/**/*.vue"
+    ],
     "testEnvironment": "jsdom"
   }
 }
