@@ -31,6 +31,7 @@
     <div 
      v-show="userFromStore.uid==='NAkxF849wXcbaIf9gdvBIINweOi1' || adminPassword"
      class=""
+     id="admin_show"
     >
         <div class="
         bg-base_of bg-opacity-50
@@ -105,7 +106,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { UserStore, AdminStore } from '../store'
+import { UserStore } from '../store'
 import { db } from '../plugins/firebase'
 import inputA from '../components/atoms/input/inputA.vue';
 import RoundBottun from '../components/atoms/button/roundBottun.vue';
@@ -125,10 +126,10 @@ export default Vue.extend({
         }
     },
     async fetch(): Promise<void> {
-        if (!UserStore.userInfo) {
-        console.log('ログインしていません');
-        } else {
-        if (!UserStore.userInfo.uid) return;
+        // if (!UserStore.userInfo) {
+        // console.log('ログインしていません');
+        // } else {
+        // if (!UserStore.userInfo.uid) return;
         await db
             .collection(`users`)
             .get()
@@ -138,12 +139,9 @@ export default Vue.extend({
                 this.usersList.push(user.data());
             });
             });
-        }
+        // }
     },
     computed:{
-        adminFromStore(){
-            return AdminStore.getUsers
-        },
         userFromStore(){
             return UserStore.getUserInfo
         }

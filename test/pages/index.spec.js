@@ -33,3 +33,4 @@ describe('Testing home component', () => {
     expect(wrapper.vm.$metaInfo.title).toBe('ホーム');
   });
 });
+

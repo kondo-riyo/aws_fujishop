@@ -177,6 +177,8 @@ import { ItemsStore, ToppingsStore, CartStore, UserStore } from '../../store';
 import { itemType } from '../../types/itemType';
 import { toppingType } from '../../types/toppingType';
 import { cartItemType } from '../../types/cartItemType';
+import squareBottun from '../../components/atoms/button/squareBottun.vue';
+import Detail from '../../components/organisms/detail.vue';
 
 type DataType = {
   isSelectedM: null | number;
@@ -193,6 +195,10 @@ export default Vue.extend({
     return {
       title: '商品詳細',
     };
+  },
+  components: {
+    squareBottun,
+    Detail
   },
   data(): DataType {
     return {
@@ -285,13 +291,8 @@ export default Vue.extend({
     },
     back_onStep():void {
       this.$router.push('/searchFujiItems')
-    }
-  },
-  computed: {
-    getToppings(): toppingType[] {
-      return ToppingsStore.getToppings;
     },
-    calcTotalPrice(): number {
+    cartAllPrice():number {
       if (
         this.itemDetail === undefined ||
         this.itemDetail.price === undefined
@@ -301,6 +302,14 @@ export default Vue.extend({
       return (
         this.selectedItemNum * this.itemDetail.price + this.allToppingPrice
       );
+    }
+  },
+  computed: {
+    getToppings(): toppingType[] {
+      return ToppingsStore.getToppings;
+    },
+    calcTotalPrice():any{
+      return this.cartAllPrice()
     },
   },
 });
