@@ -208,6 +208,7 @@
                 @change="statusChange(logItem.orderId, logItem.status, params)"
                 name="配達status"
                 class="bg-base_red text-white text-center rounded"
+                data-testid="statusChange"
               >
                 <option value="1">未入金(代引き)</option>
                 <option value="2">入金済(クレジット)</option>
@@ -247,7 +248,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { UserStore, AdminStore } from '../../store';
+import { AdminStore } from '../../store';
 
 type DataType = {
   selectStatus: string;
@@ -301,37 +302,24 @@ export default Vue.extend({
     },
   },
   async fetch(): Promise<void> {
-  // async asyncData(context) {
-    if (!UserStore.userInfo) {
-      console.log('ログインしていません');
-    } else {
-      if (!UserStore.userInfo.uid) return;
-      // const id = context.params 
       this.params = String(this.$route.params.adminId);
-      // await this.params
-      console.log(this.params);
+      // console.log(this.params);
       await AdminStore.fetchLogItemsAct(this.params);
-    }
-  },
-  // created(){
-  //   this.newlogItems = this.getLogItems
-  //   console.log(this.getLogItems)
-  // },
-  
+  },  
   methods:{
       // statusを変えるためのStore呼び出し
       statusChange(id:string, status:string, uid:string):void{
           let idStatus= {id:id, status:status, uid:uid}
-          console.log('statusChange'+idStatus)
+          // console.log('statusChange'+idStatus)
           AdminStore.updateStatusAct(idStatus)
       },
       back_onStep() {
         this.$router.push('/admin')
       },
-      selectToStatus(value: any) {
-        this.selectStatus = value
-        console.log('selectToStatus'+this.selectStatus)
-      }
+      // selectToStatus(value: any) {
+      //   this.selectStatus = value
+      //   console.log('selectToStatus'+this.selectStatus)
+      // }
       // displaySelect(): Array<void>|undefined{
       //   console.log(this.selectStatus)
       //   if(this.selectStatus == 0){

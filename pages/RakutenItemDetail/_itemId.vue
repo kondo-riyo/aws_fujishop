@@ -61,6 +61,7 @@
               text-xm
             "
             @click="addCart"
+            data-testid="addCart"
           >
             追加
           </squareBottun>
@@ -94,26 +95,35 @@ import Vue from 'vue';
 import { ApiItemsStore, UserStore, CartStore } from '../../store';
 import { itemType } from '../../types/itemType';
 import { cartItemType } from '../../types/cartItemType';
+import Detail from '../../components/organisms/detail.vue';
+import squareBottun from '../../components/atoms/button/squareBottun.vue';
 
 type DataType = {
   itemDetail: itemType | undefined;
   itemNum: number[];
   selectedItemNum: number;
+  // params: string
 };
 
 export default Vue.extend({
+  components: {
+    Detail,
+    squareBottun,
+  },
   data(): DataType {
     return {
       itemDetail: {},
       itemNum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       selectedItemNum: 1,
+      // params: ''
     };
   },
   created(): void {
-    const params: string = this.$route.params.itemId;
-    const getItemDetail: itemType | undefined =
-      ApiItemsStore.getItemDetail(params);
-    this.itemDetail = getItemDetail;
+    const params = this.$route.params.itemId;
+    this.getItemDetail(params);
+    // const getItemDetail: itemType | undefined =
+    //   ApiItemsStore.getItemDetail(this.params);
+    // this.itemDetail = getItemDetail;
   },
   computed: {
     calcTotalPrice(): number {
@@ -127,6 +137,11 @@ export default Vue.extend({
     },
   },
   methods: {
+    getItemDetail( params: string ) {
+      const getItemDetail: itemType | undefined =
+        ApiItemsStore.getItemDetail(params);
+      this.itemDetail = getItemDetail;
+    },
     async addCart(): Promise<void> {
       console.log('add');
       if (!UserStore.userInfo) {
@@ -150,7 +165,7 @@ export default Vue.extend({
     },
     back_onStep():void {
       this.$router.push('/searchRakutenItems')
-    }
+    },
   },
 });
 </script>
