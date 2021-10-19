@@ -313,7 +313,7 @@ export default Vue.extend({
     return {
       userInfo: {
         name: '',
-        email:,
+        email:'',
         password: '',
         tel: '',
         postalcode: '',
