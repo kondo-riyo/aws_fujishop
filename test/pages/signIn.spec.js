@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import {mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import Signin from '../../pages/signin.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -24,11 +24,11 @@ describe('Testing Signin component', () => {
       localVue,
       router,
       store,
-      data(){
-          return{
-              isChecked:true
-          }
-      }
+      data() {
+        return {
+          isChecked: true,
+        };
+      },
     });
   });
   it('Signinが存在する', () => {
@@ -37,22 +37,23 @@ describe('Testing Signin component', () => {
   it('headが存在する', () => {
     expect(wrapper.vm.$metaInfo.title).toBe('ログイン');
   });
-  it('computedが正しい値(text)を返す', async() => {
-    let InputWrapper = wrapper.find('[data-testid="inputType"]');
-    //InputWrapper.trigger('input')
-    //await expect(InputWrapper.trigger('inputPassword')).toBeTruthy();
-   // expect(InputWrapper.isVisible()).toBe(false)
-    // InputWrapper.setValue("123456")
-    // expect(InputWrapper.element.value).toBe('123456');
+  it('computedが正しい値(text)を返す', async () => {
+    expect(wrapper.vm.inputType).toBe('text');
   });
-//   it('cickでイベント(Login)が発火する',async () => {
-//     let cancelWrapper = wrapper.get('[data-testid="roundButton"]');
-//     cancelWrapper.trigger('click')
-//     expect(cancelWrapper.trigger('login')).toBeTruthy();
-//   })
-//   it('cickでイベント(LonClick)が発火する',async () => {
-//     let cancelWrapper = wrapper.get('[data-testid="onClick"]');
-//     cancelWrapper.trigger('click')
-//     expect(cancelWrapper.trigger('onClick')).toBeTruthy();
-//   })
+  it('computedが正しい値(passwprd)を返す', async () => {
+    await wrapper.setData({ isChecked: false });
+    expect(wrapper.vm.inputType).toBe('password');
+  });
+  it('cickでイベント(onClick)が発火し、処理が正しく動作する', async () => {
+    let passWrapper = wrapper.get('div');
+    passWrapper.trigger('click');
+    // expect(passWrapper.trigger('onClick')).toBeTruthy();
+    expect(wrapper.vm.$data.isChecked).toBe(false);
+  });
+    //it('cickでイベント(Login)が発火する',async () => {
+   // let loginWrapper = wrapper.get('[data-testid="roundButton"]');
+   // console.log(loginWrapper)
+    //loginWrapper.trigger('click')
+    //expect(loginWrapper.trigger('login')).toBeTruthy();
+ // })
 });

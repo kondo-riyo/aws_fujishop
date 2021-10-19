@@ -1,30 +1,31 @@
 <template>
   <div class="sm:pl-10 p-1 flex">
     <div class="sm:w-3/4 my-0 mx-auto">
-     <!-- 戻るボタン追加 -->
-        <div 
-        @click="back_onStep"
-        class="
-        flex
-        group
-        m-2
-        ">
-          <div class="
-          group-hover:bg-base_red group-hover:bg-opacity-30
-          p-4
-          rounded-full
-          ">
-            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
-          </div>
-          <div class="text-base_red font-bold m-3 mx-1">
-            一覧に戻る
-          </div>
+      <!-- 戻るボタン追加 -->
+      <div @click="back_onStep" class="flex group m-2">
+        <div
+          class="
+            group-hover:bg-base_red group-hover:bg-opacity-30
+            p-4
+            rounded-full
+          "
+        >
+          <img
+            src="~assets/img/yajirusi_icon.webp"
+            class="transform rotate-90 w-5"
+          />
         </div>
+        <div class="text-base_red font-bold m-3 mx-1">一覧に戻る</div>
+      </div>
       <!-- <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div> -->
 
-      <Detail :itemDetail="itemDetail" :options="itemNum" v-model="selectedItemNum"/>
-      
-      <div class="sm:mt-5 mt-2 bg-white p-3 rounded-xl"> 
+      <Detail
+        :itemDetail="itemDetail"
+        :options="itemNum"
+        v-model="selectedItemNum"
+      />
+
+      <div class="sm:mt-5 mt-2 bg-white p-3 rounded-xl">
         <p class="mb-3 pl-2 text-xl">
           トッピング<span class="font-bold"> 少:200円 多:300円</span>
         </p>
@@ -37,6 +38,7 @@
             <div class="bg-base_cream bg-opacity-60 rounded p-1">
               <p>{{ topping.name }}</p>
               <input
+                id="cal-modalM"
                 type="radio"
                 :name="'radio' + index"
                 class="
@@ -64,6 +66,7 @@
               />
               <span class="font-normal text-sm">少</span>
               <input
+                id="cal-modalL"
                 type="radio"
                 :name="'radio' + index"
                 class="
@@ -92,6 +95,7 @@
               />
               <span class="font-normal text-sm">多</span>
               <input
+                id="cal-modalNone"
                 type="radio"
                 :checked="true"
                 :name="'radio' + index"
@@ -150,23 +154,21 @@
           </squareBottun>
         </div>
       </div>
-        <div 
-        @click="back_onStep"
-        class="
-        flex
-        group
-        ">
-          <div class="
-          group-hover:bg-base_red group-hover:bg-opacity-30
-          p-4
-          rounded-full
-          ">
-            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
-          </div>
-          <div class="text-base_red font-bold m-3 mx-1">
-            一覧に戻る
-          </div>
+      <div @click="back_onStep" class="flex group">
+        <div
+          class="
+            group-hover:bg-base_red group-hover:bg-opacity-30
+            p-4
+            rounded-full
+          "
+        >
+          <img
+            src="~assets/img/yajirusi_icon.webp"
+            class="transform rotate-90 w-5"
+          />
         </div>
+        <div class="text-base_red font-bold m-3 mx-1">一覧に戻る</div>
+      </div>
     </div>
   </div>
 </template>
@@ -198,7 +200,7 @@ export default Vue.extend({
   },
   components: {
     squareBottun,
-    Detail
+    Detail,
   },
   data(): DataType {
     return {
@@ -213,11 +215,14 @@ export default Vue.extend({
   },
   created(): void {
     const params: number = Number(this.$route.params.itemId);
-    const getItemDetail: itemType | undefined =
-      ItemsStore.getItemDetail(params);
-    this.itemDetail = getItemDetail;
+    this.getItemDetail(params);
   },
   methods: {
+    getItemDetail(params: number) {
+      const getItemDetail: itemType | undefined =
+      ItemsStore.getItemDetail(params);
+      this.itemDetail = getItemDetail;
+    },
     // トッピング追加----------------------------------------------------
     selectToppingSize(
       selectedName: string,
@@ -289,10 +294,10 @@ export default Vue.extend({
         }
       }
     },
-    back_onStep():void {
-      this.$router.push('/searchFujiItems')
+    back_onStep(): void {
+      this.$router.push('/searchFujiItems');
     },
-    cartAllPrice():number {
+    cartAllPrice(): number {
       if (
         this.itemDetail === undefined ||
         this.itemDetail.price === undefined
@@ -302,14 +307,14 @@ export default Vue.extend({
       return (
         this.selectedItemNum * this.itemDetail.price + this.allToppingPrice
       );
-    }
+    },
   },
   computed: {
     getToppings(): toppingType[] {
       return ToppingsStore.getToppings;
     },
-    calcTotalPrice():any{
-      return this.cartAllPrice()
+    calcTotalPrice(): any {
+      return this.cartAllPrice();
     },
   },
 });

@@ -155,7 +155,7 @@ export default Vue.extend({
   },
   methods: {
     login(): void {
-      if (typeof this.userInfo !== undefined) {
+    //  if (typeof this.userInfo !== undefined) {
         auth
           .signInWithEmailAndPassword(
             this.userInfo.email,
@@ -172,7 +172,7 @@ export default Vue.extend({
               () => this.$router.push('/')
             );
           });
-      } 
+     // } 
     },
     inputMail(newvalue:string): void {
       this.userInfo.email=newvalue

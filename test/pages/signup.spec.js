@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import Signup from '../../pages/signup.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -18,17 +18,21 @@ describe('Testing Signup component', () => {
 
   beforeAll(() => {
     initialiseStores(createStore());
-
+    let Stubs = ['roundBottun', 'inputA'];
     store = new Vuex.Store();
-    wrapper = shallowMount(Signup, {
+    wrapper = mount(Signup, {
+      stubs: Stubs,
       localVue,
       router,
       store,
-      data(){
-          return{
-              isChecked:true
+      data() {
+        return {
+          isChecked: true,
+          userInfo:{
+            name:"naman"
           }
-      }
+        };
+      },
     });
   });
   it('Signupが存在する', () => {
@@ -37,22 +41,44 @@ describe('Testing Signup component', () => {
   it('headが存在する', () => {
     expect(wrapper.vm.$metaInfo.title).toBe('会員登録');
   });
-//   it('computedが正しい値(text)を返す', async() => {
-//     let InputWrapper = wrapper.find('[data-testid="inputType"]');
-//     //InputWrapper.trigger('input')
-//     //await expect(InputWrapper.trigger('inputPassword')).toBeTruthy();
-//    // expect(InputWrapper.isVisible()).toBe(false)
-//     // InputWrapper.setValue("123456")
-//     // expect(InputWrapper.element.value).toBe('123456');
-//   });
-  it('cickでイベント(Login)が Unable to find [data-testid="roundButton"] within:発火する',async () => {
-    let cancelWrapper = wrapper.find('[data-testid="roundButton"]');
-    //cancelWrapper.trigger('click')
-    //expect(cancelWrapper.trigger('login')).toBeTruthy();
-  })
-//   it('cickでイベント(LonClick)が発火する',async () => {
-//     let cancelWrapper = wrapper.get('[data-testid="onClick"]');
-//     cancelWrapper.trigger('click')
-//     expect(cancelWrapper.trigger('onClick')).toBeTruthy();
-//   })
+  it('cickでイベント(onClick)が発火する', async () => {
+    let cancelWrapper = wrapper.get('[data-testid="onClick"]');
+    cancelWrapper.trigger('click');
+    expect(cancelWrapper.trigger('onClick')).toBeTruthy();
+  });
+  it('@inputでイベント(inputName)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="inputName"]');
+    userInfoWrapper.trigger('input');
+    expect(userInfoWrapper.trigger('inputName')).toBeTruthy();
+  });
+  it('@inputでイベント(inputTel)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="inputTel"]');
+    userInfoWrapper.trigger('input');
+    expect(userInfoWrapper.trigger('inputTel')).toBeTruthy();
+  });
+  it('@inputでイベント(inputPassword)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="inputPassword"]');
+    userInfoWrapper.trigger('input');
+    expect(userInfoWrapper.trigger('inputPassword')).toBeTruthy();
+  });
+  // it('@inputでイベント(inputMail)が発火する', async () => {
+  //   let userInfoWrapper = wrapper.find('[data-testid="inputMail"]');
+  //   userInfoWrapper.trigger('input');
+  //  // userInfoWrapper.element.value='mail@co.jp'
+  //  // await userInfoWrapper.setValue('mail@co.jp')
+  //   console.log(userInfoWrapper.element.value)
+  //   console.log(wrapper.vm.userInfo.email)
+  //   console.log(wrapper.vm.userInfo)
+  //   console.log(vm.userInfo.email)
+  //   await expect(vm.userInfo.email).toEqual('mail@co.jp')
+   // expect(userInfoWrapper.trigger('inputMail')).toBeTruthy();
+ // });
+  //   it('computedが正しい値(text)を返す', async() => {
+  //     let InputWrapper = wrapper.find('[data-testid="inputType"]');
+  //     //InputWrapper.trigger('input')
+  //     //await expect(InputWrapper.trigger('inputPassword')).toBeTruthy();
+  //    // expect(InputWrapper.isVisible()).toBe(false)
+  //     // InputWrapper.setValue("123456")
+  //     // expect(InputWrapper.element.value).toBe('123456');
+  //   });
 });
