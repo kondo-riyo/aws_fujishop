@@ -368,6 +368,7 @@
                   @click="OrderSubmit()"
                   :disabled="invalid"
                   v-if="!invalid"
+                  data-testid="OrderSubmit"
                   >
                   ご注文を確定する
                 </round-bottun>
@@ -388,7 +389,11 @@ import {
   orderItemType,
 } from '../types/cartItemType';
 import { userInfoType } from '../types/userInfoType';
+
 import DeliverySelect from '../components/atoms/input/deliverySelect.vue';
+import roundBottun from '../components/atoms/button/roundBottun.vue';
+import inputA from '../components/atoms/input/inputA.vue';
+import squareBottun from '../components/atoms/button/squareBottun.vue';
 
 let YubinBango = require('yubinbango-core2')
 
@@ -439,7 +444,10 @@ export default Vue.extend({
   components: {
     ValidationProvider,
     ValidationObserver,
-    DeliverySelect
+    DeliverySelect,
+    roundBottun,
+    inputA,
+    squareBottun
   },
   methods: {
     OrderSubmit():void {
