@@ -5,7 +5,6 @@ import Vuex from 'vuex';
 
 import { createStore } from '../../.nuxt/store';
 import { initialiseStores } from '../../utils/store-accsessor.ts';
-//import { CartStore } from '../store';
 
 const localVue = createLocalVue();
 const router = new VueRouter();
@@ -50,9 +49,6 @@ describe('Testing cartTable component', () => {
       localVue,
       router,
       store,
-      methods: {
-        // toppingSize:jest.fn(el=> if(el==1){"多"})
-      },
     });
   });
   //他のファイルにも[true]がリークするためテストの前後にモックと復元を行う

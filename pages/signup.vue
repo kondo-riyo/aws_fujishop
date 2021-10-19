@@ -52,7 +52,7 @@
                 rules="required|max:10"
               >
                 <inputA
-                  v-model="userInfo.name"
+                  data-testid="inputName"
                   name="名前"
                   type="text"
                   placeholder="例)田中 太朗"
@@ -85,7 +85,7 @@
                 rules="required|email"
               >
                 <inputA
-                  v-model="userInfo.email"
+                  data-testid="inputMail"
                   name="メールアドレス"
                   type="text"
                   placeholder="例)sample@gmail.com"
@@ -132,7 +132,7 @@
                 </validation-provider>
               </div>
               <div class="w-1/3 mt-8">
-                <round-bottun 　@click="yubinbango()" class="bg-base_gray pt-3">
+                <round-bottun @click="yubinbango()" class="bg-base_gray pt-3">
                   検索
                 </round-bottun>
               </div>
@@ -191,7 +191,7 @@
                 rules="required|min:10|max:11"
               >
                 <inputA
-                  v-model="userInfo.tel"
+                  data-testid="inputTel"
                   name="電話番号"
                   type="text"
                   placeholder="例)090XXXXXXXX"
@@ -225,14 +225,14 @@
               >
                 <div class="flex">
                   <inputA
-                    v-model="userInfo.password"
+                    data-testid="inputPassword"
                     name="パスワード"
                     :type="inputType"
                     placeholder="例)*******"
                     @input="inputPassword"
                     class="rounded-full"
                   />
-                  <div @click="onClick" class="w-16">
+                  <div @click="onClick" class="w-16" data-testid="onClick">
                     <div v-show="isChecked">
                       <img src="~/assets/img/eye_icon.webp" />
                     </div>
@@ -289,8 +289,8 @@ import Vue from 'vue';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import firebase, { auth, db } from '../plugins/firebase';
 import { userInfoType } from '../types/userInfoType';
-import roundButton from '../components/atoms/button/roundBottun.vue'
-import inputA from '../components/atoms/input/inputA.vue'
+import roundButton from '../components/atoms/button/roundBottun.vue';
+import inputA from '../components/atoms/input/inputA.vue';
 
 let YubinBango = require('yubinbango-core2');
 
@@ -303,17 +303,17 @@ type headType = {
   title: string;
 };
 export default Vue.extend({
-    components: {
+  components: {
     ValidationProvider,
     ValidationObserver,
     roundButton,
-    inputA
+    inputA,
   },
   data(): DataType {
     return {
       userInfo: {
         name: '',
-        email: '',
+        email:,
         password: '',
         tel: '',
         postalcode: '',
