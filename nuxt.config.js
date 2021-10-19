@@ -2,7 +2,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'FUJI COFFE',
-    titleTemplate: "%s| FUJI COFFE",
+    titleTemplate: '%s| FUJI COFFE',
     htmlAttrs: {
       lang: 'ja',
     },
@@ -20,7 +20,10 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/firebase.ts'],
-  plugins: [{ src: '~/plugins/veeValidate', ssr: false }, { src: '~/plugins/swiper' }],
+  plugins: [
+    { src: '~/plugins/veeValidate', ssr: false },
+    { src: '~/plugins/swiper' },
+  ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -37,6 +40,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/pwa',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -71,4 +75,15 @@ export default {
       pathPrefix: false,
     },
   ],
+  manifest: {
+    name: 'FujiShop',
+    lang: 'ja',
+    short_name: 'FujiShop',
+    title: 'FujiShop',
+    'og:title': 'FujiShop',
+    description: 'FujiShopオフィシャルサイトです',
+    'og:description': 'FujiShopオフィシャルサイトです',
+    theme_color: '#212121',
+    background_color: '#212121',
+  },
 };

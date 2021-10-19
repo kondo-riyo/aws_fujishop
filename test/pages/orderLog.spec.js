@@ -86,9 +86,6 @@ describe('Testing OrderLog component', () => {
     closeWrapper.vm.$emit('close');
     expect(closeWrapper.trigger('closeModal')).toBeTruthy();
   });
-
-
-
   it('cickでイベント(cancelOrder)が発火する',async () => {
     let cancelWrapper = wrapper.find('[data-testid="cancelOrder"]');
     cancelWrapper.trigger('click')
@@ -99,4 +96,9 @@ describe('Testing OrderLog component', () => {
     cancelWrapper.vm.$emit('click');
     expect(cancelWrapper.trigger('openModal')).toBeTruthy();
   });
+  it('fetchのfetchitemInfoActアクションがレンダリング前に動作する',()=>{
+      const context = {store}
+      wrapper.vm.$options.fetch(context);
+      expect(context.store.fetchitemInfoAct).toHaveBeenCalled
+  })
 });
