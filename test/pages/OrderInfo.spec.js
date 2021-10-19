@@ -45,20 +45,6 @@ describe('Testing OrderInfo component', () => {
         cart: CartStore,
       }
     })
-    // CartStore = {
-    //   namespaced: true,
-    //   actions: {
-    //     deleteCartItemAct: fn,
-    //     fetchitemInfoAct: fn,
-    //   },
-    // };
-
-    // store = new Vuex.Store({
-    //   modules: {
-    //     // cart: CartStore,
-    //   },
-    // });
-    // window.confirm = () => {};
     wrapper = mount(OrderInfo, {
       localVue,
       router,
