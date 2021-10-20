@@ -121,9 +121,7 @@
                 </div>
                 <div class="w-1/3 md:w-1/6 px-0 py-1">
                   <square-bottun
-                  @click="yubinbango()"
-                  data-testid="yubinbango"
-                  >
+                  @click="yubinbango()">
                     検索
                   </square-bottun>
                 </div>
@@ -370,7 +368,6 @@
                   @click="OrderSubmit()"
                   :disabled="invalid"
                   v-if="!invalid"
-                  data-testid="OrderSubmit"
                   >
                   ご注文を確定する
                 </round-bottun>
@@ -391,11 +388,7 @@ import {
   orderItemType,
 } from '../types/cartItemType';
 import { userInfoType } from '../types/userInfoType';
-
 import DeliverySelect from '../components/atoms/input/deliverySelect.vue';
-import roundBottun from '../components/atoms/button/roundBottun.vue';
-import inputA from '../components/atoms/input/inputA.vue';
-import squareBottun from '../components/atoms/button/squareBottun.vue';
 
 let YubinBango = require('yubinbango-core2')
 
@@ -446,10 +439,7 @@ export default Vue.extend({
   components: {
     ValidationProvider,
     ValidationObserver,
-    DeliverySelect,
-    roundBottun,
-    inputA,
-    squareBottun
+    DeliverySelect
   },
   methods: {
     OrderSubmit():void {

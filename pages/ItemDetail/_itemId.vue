@@ -38,7 +38,7 @@
             <div class="bg-base_cream bg-opacity-60 rounded p-1">
               <p>{{ topping.name }}</p>
               <input
-                id="cal-modalM"
+                data-testid="cal-modalM"
                 type="radio"
                 :name="'radio' + index"
                 class="
@@ -66,7 +66,7 @@
               />
               <span class="font-normal text-sm">少</span>
               <input
-                id="cal-modalL"
+                data-testid="cal-modalL"
                 type="radio"
                 :name="'radio' + index"
                 class="
@@ -95,7 +95,7 @@
               />
               <span class="font-normal text-sm">多</span>
               <input
-                id="cal-modalNone"
+                data-testid="cal-modalNone"
                 type="radio"
                 :checked="true"
                 :name="'radio' + index"
@@ -220,7 +220,7 @@ export default Vue.extend({
   methods: {
     getItemDetail(params: number) {
       const getItemDetail: itemType | undefined =
-      ItemsStore.getItemDetail(params);
+        ItemsStore.getItemDetail(params);
       this.itemDetail = getItemDetail;
     },
     // トッピング追加----------------------------------------------------
@@ -230,34 +230,28 @@ export default Vue.extend({
       toppingPrice: number,
       toppingSize: number
     ): void {
-      // 同じトッピングを選択していないかチェック
+      //同じトッピングを選択していないかチェック
       const duplicatedTopping = this.selectedTopping.findIndex(
         (topping) => topping.id === selecteId
       );
       // toppingの重複が無いとき
-      if (duplicatedTopping < 0) {
-        const pushTopping: toppingType = {
-          name: selectedName,
-          id: selecteId,
-          price: toppingPrice,
-          size: toppingSize,
-        };
-        this.selectedTopping.push(pushTopping);
-      }
-      // 同じtoppingを選んだとき
+       if (duplicatedTopping < 0) {
+      const pushTopping: toppingType = {
+        name: selectedName,
+        id: selecteId,
+        price: toppingPrice,
+        size: toppingSize,
+      };
+      this.selectedTopping.push(pushTopping);
+       }
+      //同じtoppingを選んだとき
       else if (duplicatedTopping >= 0) {
         // サイズを変更したとき
         if (this.selectedTopping[duplicatedTopping].size !== toppingSize) {
           this.selectedTopping[duplicatedTopping].size = toppingSize;
           this.selectedTopping[duplicatedTopping].price = toppingPrice;
-        } // 取り消したいとき(同じトッピング・サイズを選んだとき)
-        else {
-          this.selectedTopping[duplicatedTopping].size = 0;
-          this.selectedTopping = this.selectedTopping.filter(
-            (topping) => topping.size !== 0
-          );
-        }
-      }
+        } 
+       }
       // topping価格の更新
       this.allToppingPrice = this.selectedTopping.reduce(
         (sum: number, addTopping: any) => sum + addTopping.price,
@@ -267,10 +261,17 @@ export default Vue.extend({
 
     //トッピングを未選択に戻す
     clearTopping(selecteId: number): void {
+      this.selectedTopping = this.selectedTopping.filter(
+        (topping) => topping.size !== 0
+      );
       const deleteToppigIndex = this.selectedTopping.findIndex(
         (topping) => topping.id === selecteId
       );
       this.selectedTopping.splice(deleteToppigIndex, 1);
+            this.allToppingPrice = this.selectedTopping.reduce(
+        (sum: number, addTopping: any) => sum + addTopping.price,
+        0
+      );
     },
 
     // カートに追加-------------------------------------------------------------------

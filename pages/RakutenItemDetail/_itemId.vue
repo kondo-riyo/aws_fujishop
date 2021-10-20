@@ -2,25 +2,22 @@
   <div class="sm:pl-10 p-1 flex">
     <div v-if="!itemDetail">リロードして再度ご確認ください</div>
     <div class="sm:w-3/4 my-0 mx-auto" v-if="itemDetail">
-     <!-- 戻るボタン追加 -->
-        <div 
-        @click="back_onStep"
-        class="
-        flex
-        group
-        m-2
-        ">
-          <div class="
-          group-hover:bg-base_red group-hover:bg-opacity-30
-          p-4
-          rounded-full
-          ">
-            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
-          </div>
-          <div class="text-base_red font-bold m-3 mx-1">
-            一覧に戻る
-          </div>
+      <!-- 戻るボタン追加 -->
+      <div data-testid="back_onStep" @click="back_onStep" class="flex group m-2">
+        <div
+          class="
+            group-hover:bg-base_red group-hover:bg-opacity-30
+            p-4
+            rounded-full
+          "
+        >
+          <img
+            src="~assets/img/yajirusi_icon.webp"
+            class="transform rotate-90 w-5"
+          />
         </div>
+        <div class="text-base_red font-bold m-3 mx-1">一覧に戻る</div>
+      </div>
       <!-- <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div> -->
       <Detail
         :itemDetail="itemDetail"
@@ -29,9 +26,9 @@
       />
 
       <div class="sm:mt-5 mt-2 bg-white p-3 rounded-xl">
-        <span class="font-bold"> {{itemDetail.shopName}}</span>
+        <span class="font-bold"> {{ itemDetail.shopName }}</span>
         <p class="mb-3 pl-2 text-xl">
-          {{itemDetail.moreDescription}}
+          {{ itemDetail.moreDescription }}
         </p>
         <!-- <div class="flex flex-wrap"></div> -->
       </div>
@@ -67,25 +64,22 @@
           </squareBottun>
         </div>
       </div>
-     <!-- 戻るボタン追加 -->
-        <div 
-        @click="back_onStep"
-        class="
-        flex
-        group
-        m-2
-        ">
-          <div class="
-          group-hover:bg-base_red group-hover:bg-opacity-30
-          p-4
-          rounded-full
-          ">
-            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
-          </div>
-          <div class="text-base_red font-bold m-3 mx-1">
-            一覧に戻る
-          </div>
+      <!-- 戻るボタン追加 -->
+      <div @click="back_onStep" class="flex group m-2">
+        <div
+          class="
+            group-hover:bg-base_red group-hover:bg-opacity-30
+            p-4
+            rounded-full
+          "
+        >
+          <img
+            src="~assets/img/yajirusi_icon.webp"
+            class="transform rotate-90 w-5"
+          />
         </div>
+        <div class="text-base_red font-bold m-3 mx-1">一覧に戻る</div>
+      </div>
     </div>
   </div>
 </template>
@@ -102,7 +96,7 @@ type DataType = {
   itemDetail: itemType | undefined;
   itemNum: number[];
   selectedItemNum: number;
-  // params: string
+  params: string;
 };
 
 export default Vue.extend({
@@ -115,18 +109,22 @@ export default Vue.extend({
       itemDetail: {},
       itemNum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       selectedItemNum: 1,
-      // params: ''
+      params: '',
     };
   },
+  async asyncData({ params }) {
+    const paramsId = params.itemId;
+    return { params: paramsId };
+  },
   created(): void {
-    const params = this.$route.params.itemId;
-    this.getItemDetail(params);
+    // const params = this.$route.params.itemId;
+    this.getItemDetail();
     // const getItemDetail: itemType | undefined =
     //   ApiItemsStore.getItemDetail(this.params);
     // this.itemDetail = getItemDetail;
   },
-  computed: {
-    calcTotalPrice(): number {
+  methods: {
+    cartAllPrice(): number {
       if (
         this.itemDetail === undefined ||
         this.itemDetail.price === undefined
@@ -135,11 +133,10 @@ export default Vue.extend({
       }
       return this.selectedItemNum * this.itemDetail.price;
     },
-  },
-  methods: {
-    getItemDetail( params: string ) {
-      const getItemDetail: itemType | undefined =
-        ApiItemsStore.getItemDetail(params);
+    getItemDetail() {
+      const getItemDetail: itemType | undefined = ApiItemsStore.getItemDetail(
+        this.params
+      );
       this.itemDetail = getItemDetail;
     },
     async addCart(): Promise<void> {
@@ -163,8 +160,20 @@ export default Vue.extend({
         }
       }
     },
-    back_onStep():void {
-      this.$router.push('/searchRakutenItems')
+    back_onStep(): void {
+      this.$router.push('/searchRakutenItems');
+    },
+  },
+  computed: {
+    calcTotalPrice(): any {
+      return this.cartAllPrice();
+      //   if (
+      //     this.itemDetail === undefined ||
+      //     this.itemDetail.price === undefined
+      //   ) {
+      //     return 0;
+      //   }
+      //   return this.selectedItemNum * this.itemDetail.price;
     },
   },
 });

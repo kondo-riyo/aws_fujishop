@@ -18,6 +18,7 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
   let wrapper;
   let divWrapper;
   let CartStore;
+  let ToppingsStore;
   let store;
   let squareBottunWrapper;
   let inputWrapper;
@@ -26,6 +27,13 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
   initialiseStores(createStore());
 
   beforeAll(() => {
+    // (pushTopping = {
+    //   name: 'はちみつ',
+    //   id: 1,
+    //   price: 100,
+    //   size: 'M',
+    // }),
+    //   (duplicatedTopping = -1);
     CartStore = {
       namespaced: true,
       getters: {
@@ -35,10 +43,36 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
         addItemToCartAct: fn,
       },
     };
+    // ToppingsStore = {
+    //   namespaced: true,
+    //   getters: {
+    //     getToppings: jest.fn(() => {
+    //       return [
+    //         {
+    //           id: 1,
+    //           name: 'アイス',
+    //           priceL: 300,
+    //           priceM: 200,
+    //           isActiveM: false,
+    //           isActiveL: false,
+    //         },
+    //         {
+    //           id: 2,
+    //           name: 'はちみつ',
+    //           priceL: 300,
+    //           priceM: 200,
+    //           isActiveM: false,
+    //           isActiveL: false,
+    //         },
+    //       ];
+    //     }),
+    //   },
+    // };
     let stub2 = ['squareBottun', 'Detail'];
     store = new Vuex.Store({
       modules: {
         cart: CartStore,
+        // topping: ToppingsStore,
       },
     });
     wrapper = mount(FujiItemId, {
@@ -53,15 +87,7 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
               id: 1,
               name: 'アイス',
               priceL: 300,
-              priceM: 200,
-              isActiveM: false,
-              isActiveL: false,
-            },
-            {
-              id: 2,
-              name: 'はちみつ',
-              priceL: 300,
-              priceM: 200,
+              priceM: 500,
               isActiveM: false,
               isActiveL: false,
             },
@@ -75,39 +101,52 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
     confirmSpy = jest.spyOn(window, 'confirm');
     confirmSpy.mockImplementation(jest.fn(() => true));
   });
+
   it('itemId.vueが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
   it('headが表示されるか', () => {
     expect(wrapper.vm.$metaInfo.title).toBe('商品詳細');
   });
-  it('clickイベント(back_onStep)が発火されている', () => {
+  it('clickイベント(Step)が発火されている', () => {
     divWrapper.get('div').trigger('click');
     expect(divWrapper.trigger('back_onStep')).toBeTruthy();
   });
+  // it('$router.pushの引数が正しいか', () => {
+  //   const mockRouterPush = jest.fn();
+  //   const app_mount = shallowMount(FujiItemId, {
+  //     mocks: {
+  //       $router: {
+  //         push: mockRouterPush
+  //       },
+  //     }
+  //   });
+  //   app_mount.find('div').trigger('click');
+  //   expect(mockRouterPush).toHaveBeenCalledWith
+  // });
   it('squareBottunのクリックイベント(addCart)が発火されている', () => {
     squareBottunWrapper.trigger('click');
     expect(store.addItemToCartAct).toHaveBeenCalled;
   });
   it('changeイベント(selectToppngSize)が発火', () => {
-    const radioWrapper = wrapper.get('#cal-modalM');
-    radioWrapper.trigger('change');
+    const radioWrapper = wrapper.get('[data-testid="cal-modalM"]');
+    expect(radioWrapper.trigger('change')).toBeTruthy();
   });
   it('changeイベント(selectToppngSize)が発火', () => {
-    const radioWrapper = wrapper.get('#cal-modalL');
-    radioWrapper.trigger('change');
+    const radioWrapper = wrapper.get('[data-testid="cal-modalL"]');
+    expect(radioWrapper.trigger('change')).toBeTruthy();
   });
   it('changeイベント(selectToppngSize)が発火', () => {
-    const radioWrapper = wrapper.get('#cal-modalNone');
-    radioWrapper.trigger('change');
+    const radioWrapper = wrapper.get('[data-testid="cal-modalNone"]');
+    expect(radioWrapper.trigger('change')).toBeTruthy();
   });
   it('created(getItemdetail)が発火する', () => {
     wrapper.setMethods({
-      getItemDetail:jest.fn()
-      })
-      expect(wrapper.vm.getItemDetail).toBeCalled
+      getItemDetail: jest.fn(),
+    });
+    expect(wrapper.vm.getItemDetail).toBeCalled;
   });
-  it('calcTotalPriceが正しく表示される(分岐➀:itemdetailが存在する場合)', async () => {
+  it('calcTotalPriceが正しく表示される(分岐:itemdetailが存在するパターン)', async () => {
     wrapper.setData({
       itemDetail: {
         price: 100,
@@ -120,14 +159,55 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
     });
     await expect(wrapper.vm.calcTotalPrice).toEqual(300);
   });
-  it('calcTotalPriceが正しく表示される(分岐➁:itemdetailがundefinedの場合)', async () => {
-    wrapper.setData({
-      itemDetail: {},
-      selectedItemNum: 1,
-      allToppingPrice: 200,
-    });
-    await expect(wrapper.vm.calcTotalPrice).toEqual(0);
-  });
+  //   it('selectToppingSizeが正しく分岐する(分岐:toppingの重複が無い場合)', async () => {
+  //     wrapper.setData({
+  //       selectedTopping: [],
+  //     });
+  //     let mypushTopping = [
+  //       {
+  //         id: 1,
+  //         name: 'アイス',
+  //         price: 500,
+  //         size: 1,
+  // },
+  //     ];
+  //     // const radioWrapper = wrapper.get('[data-testid="cal-modalM"]');
+  //     const radioWrapper = wrapper.get('input');
+  //     await radioWrapper.trigger('change');
+  //     console.log(wrapper.vm.selectedTopping)
+  //     await expect(wrapper.vm.selectedTopping).toEqual(mypushTopping);
+  //   });
+
+  //   it('selectToppingSizeが正しく分岐する(分岐:同じtoppingを選んだ場合)', async () => {
+  //     wrapper.setData({
+  //       selectedTopping: [],
+  //     });
+  //     let mypushTopping = [
+  //       {
+  //         id: 1,
+  //         name: 'アイス',
+  //         price: 500,
+  //         size: 1,
+  // },
+  //     ];
+  //     const radioWrapper = wrapper.get('[data-testid="cal-modalM"]');
+  //     await radioWrapper.trigger('change');
+  //     duplicatedTopping = 1
+  //     console.log(wrapper.vm.selectedTopping)
+
+  //     await expect(wrapper.vm.selectedTopping).toEqual(mypushTopping);
+  //   });
+  // it('calcTotalPriceが正しく表示される(分岐➁:itemdetailがundefinedの場合)', async () => {
+  //   wrapper.setData({
+  //     itemDetail: {},
+  //     selectedItemNum: 1,
+  //     allToppingPrice: 200,
+  //   });
+  //   await expect(wrapper.vm.calcTotalPrice).toEqual(0);
+  // });
+  // it('computed(getToppings)が正しく表示される', () => {
+  //   expect(store.getToppings).toHaveBeenCalled;
+  // });
   // it('computed(getToppings)が正しく表示される', () => {
   //   expect(wrapper.vm.getToppings).toEqual([
   //     {
