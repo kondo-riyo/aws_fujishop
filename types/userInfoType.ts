@@ -17,3 +17,9 @@ export interface userLoginType {
 export interface orderInfoDataType {
     userInfo:orderInfoDataType
 }
+
+export interface idNameType {
+    orderId?: string;
+    uid?: string;
+    name?: string;
+}

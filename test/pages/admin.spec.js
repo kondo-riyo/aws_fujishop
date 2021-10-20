@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import admin from '../../pages/admin.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -6,8 +6,9 @@ import VueMeta from 'vue-meta'
 
 import { createStore } from '../../.nuxt/store';
 import { initialiseStores } from '../../utils/store-accsessor.ts';
-// import { UserStore } from '~/store';
+import { config } from '@vue/test-utils'
 
+config.showDeprecationWarnings = false
 const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
@@ -19,29 +20,50 @@ describe('Testing admin component', () => {
   let trWrapper;
   let buttonWrapper;
   let store;
-  let UserStore;
-//   let divWrapper;
+//   let UserStore;
+  let AdminStore;
+  const ifFactory = (values = {}) => {
+    return mount(admin, {
+      stubs:['DeliverySelect','round-bottun','inputA'],
+      data () {
+        return {
+          ...values
+        }
+      }
+    })
+  }    
+
   beforeAll(()=> {
       initialiseStores(createStore());
 
       let fn = jest.fn();
-      UserStore = {
+      let stub2 = ['roundBottun','inputA'];
+    //   UserStore = {
+    //       namespaced: true,
+    //       getters: {
+    //           getUserInfo: fn,
+    //       },
+    //   };
+      AdminStore = {
           namespaced: true,
-          getters: {
-              getUsers: fn,
+          getters:{
+              getUsersList: fn,
           },
-        //   actions: {
-        //   }
-      };
+          actions: {
+              fetchUsersAct: fn,
+          }
+      }
       store = new Vuex.Store({
           modules: {
-              users: UserStore,
+            //   users: UserStore,
+              admin: AdminStore
           }
       });
-      wrapper = shallowMount(admin, {
+      wrapper = mount(admin, {
           localVue,
           router,
           store,
+          stubs: stub2,
           data() {
               return {
                   adminPassword_num: '123456',
@@ -77,7 +99,21 @@ describe('Testing admin component', () => {
   });
   it('clickイベント(adminPassword_push)が発火してるか', ()=>{
       buttonWrapper.get('button').trigger('click');
-  })
+  });
+//   it('fetchがレンダリング前に呼ばれているか', ()=> {
+//     const contextStore = {store};
+//     wrapper.vm.$options.fetch(contextStore);
+//     expect(contextStore.store.fetchUsersAct).toHaveBeenCalled;
+//   });
+//   it('adminPassword_push()の条件分岐',()=> {
+//     const ifWrapper = ifFactory({adminPasssword_num: '123456'})
+//     expect(ifWrapper.find('.adminPassword_push').exists()).toBeTruthy()
+//     // let buttonWrapper = ifWrapper.find('button');
+//     // buttonWrapper.trigger('click')
+//     // expect(buttonWrapper.trigger('adminPassword_push')).toBeTruthy();
+//   })
+
+
 //   it('if', ()=> {
     
 //   })

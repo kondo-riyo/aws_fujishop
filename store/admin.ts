@@ -1,17 +1,18 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
 import { db } from "../plugins/firebase";
 import { UserStore } from "../store";
+import {idNameType} from '../types/userInfoType';
 
 type idSatusType = {
     id: string;
     status: string;
     uid: string;
 }
-type idName = {
-    orderId?: string;
-    uid?: string;
-    name?: string;
-}
+// type idName = {
+//     orderId?: string;
+//     uid?: string;
+//     name?: string;
+// }
 
 @Module({ name: 'admin', namespaced: true ,stateFactory: true})
 
@@ -19,11 +20,12 @@ export default class AdminStore extends VuexModule {
     //state-------------------------------------
         public id: string ='';
         public status: string = '';
-        public users: idName[] = [];
+        public users: idNameType[] = [];
         public storeLogItems: any[] = [];
+        public usersList: idNameType[] = [];
 
     //getters-----------------------------------
-        public get getUsers(): idName[]{
+        public get getUsers(): idNameType[]{
             return this.users;
         }
 
@@ -31,6 +33,10 @@ export default class AdminStore extends VuexModule {
             return this.storeLogItems
         }
         
+        public get getUsersList(): idNameType[]{
+            return this.usersList;
+        }
+
     //mutation----------------------------------
     @Mutation
     private updateStatusMut(idStatus: idSatusType){
@@ -42,7 +48,11 @@ export default class AdminStore extends VuexModule {
     public fetchLogItemsMut(logItems:any[]):void{
         this.storeLogItems = logItems;
     }
-
+    
+    @Mutation
+    private fetchUsersMut(usersList: idNameType[]): void {
+        this.usersList = usersList
+    }
     // @Mutation
     // private addAdminMut(idName: idName){
     //     this.getUsers.push(idName)
@@ -69,7 +79,7 @@ export default class AdminStore extends VuexModule {
         //     })
         //     this.addAdminMut(idName)
         // }
-        public addAdminAct(idName:idName):void {
+        public addAdminAct(idName:idNameType):void {
             console.log(idName)
             // this.addAdminMut(idName)
             db.collection(`users`).doc(idName.uid).set({
@@ -96,6 +106,22 @@ export default class AdminStore extends VuexModule {
           this.fetchLogItemsMut(logItems);
         });
         }  
+
+        //usersをfetchする
+        @Action({rawError: true})
+        public async fetchUsersAct():Promise<void> {
+            await db
+            .collection(`users`)
+            .get()
+            .then((users) => {
+                let usersList: any[] = []
+            users.forEach((user) => {
+                //@ts-ignore
+                usersList.push(user.data());
+            });
+            this.fetchUsersMut(usersList)
+            });
+        }
 
 }
 

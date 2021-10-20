@@ -1,78 +1,4 @@
-// import { shallowMount, createLocalVue } from '@vue/test-utils';
-// import { createStore } from '../../.nuxt/store'
-// import Vuex from 'vuex'
-// import Header from '../../components/templates/Header.vue';
-// // import assert from 'assert'
-// import { initialiseStores } from '../../utils/store-accsessor'
-
-// const localVue = createLocalVue();
-// localVue.use(Vuex);
-
-// // const res = [{
-// //     email: 'sample@sample.com',
-// //     password: '123456',
-// //     name: 'kondo',
-// //     tel: '00011112222',
-// //     postalcode: '1230000',
-// //     address: 'tokyo',
-// //     uid: 'aaaa'
-// // }]
-
-// describe('Testing Header component', () => {
-//   let store;
-//   let headerStoreMock;
-//   let wrapper;
-//   let fn;
-
-// beforeEach(()=> {
-//     initialiseStores(createStore())
-//     fn = jest.fn();
-//     //vuexstoreのMockを作成
-//     headerStoreMock = {
-//       namespaced: true,
-//       getters : {
-//         getUserInfo: UserInfo,
-//       },
-//     };
-//     const UserInfo = () => {
-//         return {
-//             userInfo:[{
-//                 email: 'sample@sample.com',
-//                 password: '123456',
-//                 name: 'kondo',
-//                 tel: '00011112222',
-//                 postalcode: '1230000',
-//                 address: 'tokyo',
-//                 uid: 'aaaa'
-//                 }]
-//         };
-//     };
-//     store = new Vuex.Store({
-//         modules: {
-//           users:headerStoreMock 
-//         },
-//     });
-
-//     window.confirm = () => {};
-
-//     // shallowMountだと子コンポーネントをスタブによって描画しなくなる(高速化)
-//     wrapper = shallowMount(Header, { 
-//         // propsData: {
-
-//         // }
-//         store, 
-//         localVue 
-//     });
-// });
-
-//   it('Headerが存在する', () => {
-//     expect(wrapper.exists()).toBeTruthy();
-//   });
-// });
-
-//---------------------------
-
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, mount, createLocalVue } from '@vue/test-utils';
 import Header from '../../components/templates/Header.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -122,4 +48,30 @@ describe('Testing Header component', () => {
   it('click(logout)が発火されている', () => {
     divWrapper.get('div').trigger('click');
   });
+//   it('$router.pushが発火してるか', () => {
+//     const mockRouterPush = jest.fn();
+//     // const mockRouteParams = jest.fn();
+//     const app_mount = shallowMount(Header, {
+//       stubs:['router-link'],
+//       mocks: {
+//         $router: {
+//           push: mockRouterPush
+//         },
+//         // $route: {
+//         //   params: mockRouteParams
+//         // }
+//       }
+//     });
+//     expect(mockRouterPush.mock.calls.length).toBe(0)
+//     let ringWrapper = app_mount.find('[data-testid="logout"]');
+//     ringWrapper.vm.$emit('click');
+//     expect(ringWrapper.emitted('logout')).toBeTruthy();
+
+//     // app_mount.find('[data-testid="logout"]').trigger('click');
+//     // expect(mockRouterPush).toHaveBeenCalledWith
+//     expect(mockRouterPush.mock.calls.length).toBe(1);
+//     // expect(mockRouteParams).toHaveBeenCalledWith
+//   });
 });
+
+// npm run test /test/templates/Header.spec.js

@@ -52,7 +52,7 @@
           <img src="~/assets/img/setting.png"
         /></router-link>
       </div>
-      <div class="sm:w-8 w-7 mr-5" v-if="userInfoFromStore" @click="logout">
+      <div class="sm:w-8 w-7 mr-5" data-testid="logout" v-if="userInfoFromStore" @click="logout">
         <img src="~/assets/img/logout_icon.webp" />
       </div>
       <div class="sm:w-8 w-7 mr-5" v-if="!userInfoFromStore">
@@ -74,24 +74,18 @@
 import { UserStore } from '../../store';
 import Vue from 'vue';
 import { userInfoType } from '../../types/userInfoType';
-// import { orderItemType } from '../../types/cartItemType';
 
 export default Vue.extend({
   methods: {
     logout(): void {
-      // if (this.userInfoFromStore) {
         UserStore.logout();
         this.$router.push('/');
-      // }
     },
   },
   computed: {
     userInfoFromStore(): userInfoType | null {
       return UserStore.getUserInfo;
     },
-    // itemInfoFromStore(): orderItemType[] | null {
-    //   return CartStore.getitemInfo;
-    // }
   },
 });
 </script>
