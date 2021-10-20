@@ -45,11 +45,13 @@
                     rules="required|max:10"
                   >
                   <inputA
+                    data-testid="inputName"
                     v-model="name"
                     name="名前"
                     type="text"
                     placeholder="例)田中 太朗"
-                    @input="inputName"/>
+                    @input="inputName"
+                    />
                     <span class="text-xs text-red-700">
                       {{ errors[0] }}
                     </span>
@@ -76,6 +78,7 @@
                     rules="required|email"
                   >
                   <inputA
+                    data-testid="inputMail"
                     v-model="email"
                     name="メールアドレス"
                     type="text"
@@ -109,6 +112,7 @@
                     rules="required|yubin"
                   >
                   <inputA
+                    data-testid="inputPostalcode"
                     v-model="postalcode"
                     name="郵便番号"
                     type="text"
@@ -148,6 +152,7 @@
                     rules="required"
                   >
                   <inputA
+                    data-testid="inputAddress"
                     v-model="address"
                     name="住所"
                     type="text"
@@ -181,6 +186,7 @@
                     rules="required|min:10|max:11"
                   >
                   <inputA
+                    data-testid="inputTel"
                     v-model="tel"
                     name="電話番号"
                     type="text"
@@ -212,6 +218,7 @@
                     rules="required"
                   >
                   <inputA
+                    data-testid="inputDeliveryDate"
                     v-model="deliveryDate"
                     name="配達日"
                     type="date"
@@ -314,12 +321,12 @@
                     "
                     >
                       <input
+                        data-testid="creditPay"
                         v-model="payment"
                         type="radio"
                         name="クレジットカード払い"
                         value="2"
                         @click="creditPay()"
-                        data-testid="show_cartItems"
                       />クレジットカード
                     </label>
                   </div>
@@ -331,6 +338,7 @@
                 <div
                   class="w-full md:w-1/2 px-3 mb-6 md:mb-0"
                   v-if="selectPayment == true"
+                  id="selectPayment"
                 >
                   <label
                     class="
@@ -351,6 +359,7 @@
                     rules="required|creditNum"
                   >
                   <inputA
+                    data-testid="inputCreditCardNum"
                     v-model="creditCardNum"
                     name="クレジットカード番号"
                     type="text"
@@ -507,9 +516,6 @@ export default Vue.extend({
       this.tel=value
     },
     inputDeliveryDate(value:string): void {
-      this.deliveryDate=value
-    },
-    inputDeliveryTime(value:string): void {
       this.deliveryDate=value
     },
     inputCreditCardNum(value:string): void {

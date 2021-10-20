@@ -98,19 +98,6 @@ beforeAll(() => {
     selectWrapper.trigger('change')
     expect(selectWrapper.trigger('statusChange')).toBeTruthy();
   });
-  it('totalItemPriceが期待通りか', async () => {
-    await expect(wrapper.vm.totalItemPrice).toEqual(800);
-  });
-  it('getLogItemsが期待通りか', async () => {
-    await expect(wrapper.vm.getLogItems).toEqual([
-      {
-        orderInfo: { allPrice: 0 },
-        orderId: '123456',
-        itemInfo: [{ totalPrice: 400 }, { totalPrice: 400 }],
-        status: '1',
-      },
-    ]);
-  });
   it('fetchがレンダリング前に呼ばれているか', ()=> {
     const context = {store};
     wrapper.vm.$options.fetch(context);

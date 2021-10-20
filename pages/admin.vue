@@ -83,7 +83,7 @@
             </thead>
             <tbody class="divide-y bg-white bg-opacity-70">
             <tr 
-            v-for="(user, index) in usersList" :key="user.orderId"
+            v-for="(user, index) in adminFromStore" :key="user.orderId"
             class="
                 border-t-4 border-base_gray
                 hover:bg-base_of
@@ -106,10 +106,16 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { UserStore } from '../store'
-import { db } from '../plugins/firebase'
+import { UserStore, AdminStore } from '../store'
+// import { db } from '../plugins/firebase'
 import inputA from '../components/atoms/input/inputA.vue';
 import RoundBottun from '../components/atoms/button/roundBottun.vue';
+
+type DataType = {
+    adminPassword: boolean,
+    adminPassword_num: string
+};
+
 
 export default Vue.extend({
   components: { inputA, RoundBottun },
@@ -118,9 +124,8 @@ export default Vue.extend({
         title: '注文管理(管理者)',
         };
     },
-    data() {
+    data():DataType {
         return{
-            usersList: [],
             adminPassword: false,
             adminPassword_num: ''
         }
@@ -130,20 +135,24 @@ export default Vue.extend({
         // console.log('ログインしていません');
         // } else {
         // if (!UserStore.userInfo.uid) return;
-        await db
-            .collection(`users`)
-            .get()
-            .then((users) => {
-            users.forEach((user) => {
-                //@ts-ignore
-                this.usersList.push(user.data());
-            });
-            });
+        // await db
+        //     .collection(`users`)
+        //     .get()
+        //     .then((users) => {
+        //     users.forEach((user) => {
+        //         //@ts-ignore
+        //         this.usersList.push(user.data());
+        //     });
+        //     });
         // }
+        await AdminStore.fetchUsersAct();
     },
     computed:{
         userFromStore(){
             return UserStore.getUserInfo
+        },
+        adminFromStore() {
+            return AdminStore.getUsersList
         }
     },
     methods:{
@@ -156,7 +165,7 @@ export default Vue.extend({
             } else {
                 this.adminPassword = false
             }
-        }
+        },
     }
 })
 </script>
