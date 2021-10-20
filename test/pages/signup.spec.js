@@ -1,12 +1,13 @@
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import Signup from '../../pages/signup.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import VueMeta from 'vue-meta';
-
 import { createStore } from '../../.nuxt/store';
 import { initialiseStores } from '../../utils/store-accsessor.ts';
+import { config } from '@vue/test-utils';
 
+config.showDeprecationWarnings = false;
 const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
@@ -28,14 +29,16 @@ describe('Testing Signup component', () => {
       data() {
         return {
           isChecked: true,
-          userInfo:{
-            name:"naman"
-          }
+          userInfo: {
+            name: 'namae',
+            postalCode: '1660003',
+            addRess: '',
+          },
         };
       },
     });
   });
-  it('Signupが存在する', () => {
+  it('Signup.vueが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
   it('headが存在する', () => {
@@ -48,31 +51,50 @@ describe('Testing Signup component', () => {
   });
   it('@inputでイベント(inputName)が発火する', async () => {
     let userInfoWrapper = wrapper.find('[data-testid="inputName"]');
-    userInfoWrapper.trigger('input');
+    userInfoWrapper.vm.$emit('input');
     expect(userInfoWrapper.trigger('inputName')).toBeTruthy();
   });
   it('@inputでイベント(inputTel)が発火する', async () => {
     let userInfoWrapper = wrapper.find('[data-testid="inputTel"]');
-    userInfoWrapper.trigger('input');
+    userInfoWrapper.vm.$emit('input');
     expect(userInfoWrapper.trigger('inputTel')).toBeTruthy();
   });
   it('@inputでイベント(inputPassword)が発火する', async () => {
     let userInfoWrapper = wrapper.find('[data-testid="inputPassword"]');
-    userInfoWrapper.trigger('input');
+    userInfoWrapper.vm.$emit('input');
     expect(userInfoWrapper.trigger('inputPassword')).toBeTruthy();
   });
-  // it('@inputでイベント(inputMail)が発火する', async () => {
-  //   let userInfoWrapper = wrapper.find('[data-testid="inputMail"]');
-  //   userInfoWrapper.trigger('input');
-  //  // userInfoWrapper.element.value='mail@co.jp'
-  //  // await userInfoWrapper.setValue('mail@co.jp')
-  //   console.log(userInfoWrapper.element.value)
-  //   console.log(wrapper.vm.userInfo.email)
-  //   console.log(wrapper.vm.userInfo)
-  //   console.log(vm.userInfo.email)
-  //   await expect(vm.userInfo.email).toEqual('mail@co.jp')
-   // expect(userInfoWrapper.trigger('inputMail')).toBeTruthy();
- // });
+  it('@inputでイベント(inputMail)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="inputMail"]');
+    userInfoWrapper.vm.$emit('input');
+    expect(userInfoWrapper.trigger('inputMail')).toBeTruthy();
+  });
+  it('@inputでイベント(inputPostalcode)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="inputPostalcode"]');
+    userInfoWrapper.vm.$emit('input');
+    expect(userInfoWrapper.trigger('inputPostalcode')).toBeTruthy();
+  });
+  it('@inputでイベント(inputAddress)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="inputAddress"]');
+    userInfoWrapper.vm.$emit('input');
+    expect(userInfoWrapper.trigger('inputAddress')).toBeTruthy();
+  });
+  it('@inputでイベント(inputAddress)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="inputAddress"]');
+    userInfoWrapper.vm.$emit('input');
+    expect(userInfoWrapper.trigger('inputAddress')).toBeTruthy();
+  });
+  it('@clickでイベント(yubinbango)が発火する', async () => {
+    wrapper.setMethods({ yubinango: jest.fn() })
+    let userInfoWrapper = wrapper.find('[data-testid="yubinbango"]');
+    userInfoWrapper.vm.$emit('click');
+    expect(userInfoWrapper.trigger('yubinbango')).toBeTruthy();
+  });
+  it('@clickでイベント(signup)が発火する', async () => {
+    let userInfoWrapper = wrapper.find('[data-testid="signup"]');
+    userInfoWrapper.vm.$emit('click');
+    expect(userInfoWrapper.trigger('signup')).toBeTruthy();
+  });
   //   it('computedが正しい値(text)を返す', async() => {
   //     let InputWrapper = wrapper.find('[data-testid="inputType"]');
   //     //InputWrapper.trigger('input')

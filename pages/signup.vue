@@ -119,6 +119,7 @@
                   rules="required|yubin"
                 >
                   <inputA
+                    data-testid="inputPostalcode"
                     v-model="userInfo.postalcode"
                     name="郵便番号"
                     type="number"
@@ -132,7 +133,11 @@
                 </validation-provider>
               </div>
               <div class="w-1/3 mt-8">
-                <round-bottun @click="yubinbango()" class="bg-base_gray pt-3">
+                <round-bottun
+                  data-testid="yubinbango"
+                  @click="yubinbango()"
+                  class="bg-base_gray pt-3"
+                >
                   検索
                 </round-bottun>
               </div>
@@ -158,6 +163,7 @@
                 rules="required"
               >
                 <inputA
+                  data-testid="inputAddress"
                   v-model="userInfo.address"
                   name="住所"
                   type="text"
@@ -265,6 +271,7 @@
               </div>
               <div class="">
                 <round-bottun
+                  data-testid="signup"
                   @click="signup"
                   :disabled="invalid"
                   v-if="!invalid"
@@ -313,7 +320,7 @@ export default Vue.extend({
     return {
       userInfo: {
         name: '',
-        email:'',
+        email: '',
         password: '',
         tel: '',
         postalcode: '',
