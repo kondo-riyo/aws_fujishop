@@ -41,7 +41,7 @@ describe('Testing orderModal component', () => {
       },
     });
     let modalWrapper = newWrapper.get('[data-testid="paymentStatus"]');
-    expect(modalWrapper.text()).toBe('入金済み');
+    expect(modalWrapper.text()).toBe('入金済');
   });
   it('filter statusが９の時はキャンセル済と表示する', () => {
     const newWrapper = shallowMount(orderModal, {
@@ -53,6 +53,6 @@ describe('Testing orderModal component', () => {
       },
     });
     let modalWrapper = newWrapper.get('[data-testid="paymentStatus"]');
-    expect(modalWrapper.text()).toBe('キャンセル済み');
+    expect(modalWrapper.text()).toBe('キャンセル');
   });
 });

@@ -33,9 +33,13 @@ export default Vue.extend({
       if (status === 1) {
         return '未入金';
       } else if (status === 2) {
-        return '入金済み';
+        return '入金済';
+      } else if (status === 3) {
+        return '発送済';
+      } else if (status === 4) {
+        return '配達済';
       } else if (status === 9) {
-        return 'キャンセル済み';
+        return 'キャンセル';
       }
     },
   },
