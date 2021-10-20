@@ -5,21 +5,16 @@ import {idNameType} from '../types/userInfoType';
 
 type idSatusType = {
     id: string;
-    status: string;
+    status: number;
     uid: string;
 }
-// type idName = {
-//     orderId?: string;
-//     uid?: string;
-//     name?: string;
-// }
 
 @Module({ name: 'admin', namespaced: true ,stateFactory: true})
 
 export default class AdminStore extends VuexModule {
     //state-------------------------------------
         public id: string ='';
-        public status: string = '';
+        public status: number = 0;
         public users: idNameType[] = [];
         public storeLogItems: any[] = [];
         public usersList: idNameType[] = [];
@@ -63,28 +58,18 @@ export default class AdminStore extends VuexModule {
         @Action({rawError: true})
         public updateStatusAct(idStatus:idSatusType):void {
             db.collection(`users/${idStatus.uid}/order`).doc(idStatus.id).update({
-                status: idStatus.status
+                status: Number(idStatus.status)
             })
             this.updateStatusMut(idStatus)
         }
 
       // ◉admin/{adminId} のDBにnameとorderIdとuidを追加
         @Action({rawError: true})
-        // public addAdminAct(idName:idName):void {
-        //     console.log(idName.name)
-        //     db.collection(`admin`).add({
-        //         name: idName.name,
-        //         orderId: idName.orderId,
-        //         uid: idName.uid
-        //     })
-        //     this.addAdminMut(idName)
-        // }
         public addAdminAct(idName:idNameType):void {
-            console.log(idName)
             // this.addAdminMut(idName)
             db.collection(`users`).doc(idName.uid).set({
                 name: idName.name,
-                orderId: idName.orderId,
+                // orderId: idName.orderId,
                 uid: idName.uid
             })
         }
@@ -97,7 +82,6 @@ export default class AdminStore extends VuexModule {
         .get()
         .then((orders) => {
           let logItems: any[] = []
-        //   if(orders.docs.length>thos) 
           orders.forEach((order) => {
             if(order.data().status!=0){
                 logItems.push(order.data());

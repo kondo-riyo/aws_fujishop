@@ -111,7 +111,6 @@ import { UserStore } from "../store";
     public updateOrderAct(orderInfoToDb:orderedItemType):void{
         if(orderInfoToDb.orderInfo===undefined)return
         orderInfoToDb.status= orderInfoToDb.orderInfo.payment
-        console.log(orderInfoToDb);
         if(UserStore.userInfo){
             db.collection(`users/${UserStore.userInfo.uid}/order`).doc(orderInfoToDb.orderId).update(orderInfoToDb).then(()=>{
                 if(orderInfoToDb.orderId===undefined)return
@@ -143,7 +142,7 @@ import { UserStore } from "../store";
             let orderedItems:orderItemType[] = []
             if(itemInfoAll.docs.length>this.itemInfo.length){
             itemInfoAll.forEach(itemInfo=>{
-                    if(itemInfo.data().status===1||itemInfo.data().status===2||itemInfo.data().status===9){
+                    if(itemInfo.data().status===1||itemInfo.data().status===2||itemInfo.data().status===3||itemInfo.data().status===4||itemInfo.data().status===9){
                     orderedItems.push(itemInfo.data());
                     }
             })}

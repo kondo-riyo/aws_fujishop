@@ -207,14 +207,14 @@
                 v-model="logItem.status"
                 @change="statusChange(logItem.orderId, logItem.status, params)"
                 name="配達status"
-                class="bg-base_red text-white text-center rounded"
+                class="p-1 bg-base_red text-white text-center rounded"
                 data-testid="statusChange"
               >
-                <option value="1">未入金(代引き)</option>
-                <option value="2">入金済(クレジット)</option>
-                <option value="3">発送済</option>
-                <option value="4">配達済</option>
-                <option value="9">キャンセル</option>
+                <option value=1>未入金(代引き)</option>
+                <option value=2>入金済</option>
+                <option value=3>発送済</option>
+                <option value=4>配達済</option>
+                <option value=9>キャンセル</option>
               </select>
             </div>
           </div>
@@ -256,11 +256,11 @@ type DataType = {
   newlogItems: any;
   params: string;
   options:[
-    {label: string, value: string},
-    {label: string, value: string},
-    {label: string, value: string},
-    {label: string, value: string},
-    {label: string, value: string},
+    {label: string, value: number},
+    {label: string, value: number},
+    {label: string, value: number},
+    {label: string, value: number},
+    {label: string, value: number},
   ]
 };
 
@@ -277,11 +277,11 @@ export default Vue.extend({
       newlogItems: [],
       params: '',
       options:[
-        {label: '未入金(代引き)', value: '1'},
-        {label: '入金済(クレジット)', value: '2'},
-        {label: '発送済', value: '3'},
-        {label: '配達済', value: '4'},
-        {label: 'キャンセル', value: '9'}
+        {label: '未入金(代引き)', value: 1},
+        {label: '入金済', value: 2},
+        {label: '発送済', value: 3},
+        {label: '配達済', value: 4},
+        {label: 'キャンセル', value: 9}
       ]
     };
   },
@@ -303,14 +303,12 @@ export default Vue.extend({
   },
   async fetch(): Promise<void> {
       this.params = String(this.$route.params.adminId);
-      // console.log(this.params);
       await AdminStore.fetchLogItemsAct(this.params);
   },  
   methods:{
       // statusを変えるためのStore呼び出し
-      statusChange(id:string, status:string, uid:string):void{
-          let idStatus= {id:id, status:status, uid:uid}
-          // console.log('statusChange'+idStatus)
+      statusChange(id:string, status:number, uid:string):void{
+          let idStatus= {id:id, status:Number(status), uid:uid}
           AdminStore.updateStatusAct(idStatus)
       },
       back_onStep() {
