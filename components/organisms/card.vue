@@ -18,7 +18,7 @@
       bg-white bg-opacity-50
     "
   >
-    <div class="w-1/2 sm:w-full">
+    <div class="sm:w-auto w-1/2">
       <router-link
         :to="{
           name: `${routerName}`,
@@ -29,8 +29,8 @@
       </router-link>
     </div>
 
-    <div>
-      <div class="">
+    <div class="sm:w-auto w-1/2">
+      <div >
         <rings @selectRing="changeImg" :item="item" />
         <h1 class="mt-5 sm:text-lg font-semibold text-center truncate">
           {{ item.name }}

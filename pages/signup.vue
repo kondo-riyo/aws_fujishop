@@ -136,7 +136,7 @@
                 <round-bottun
                   data-testid="yubinbango"
                   @click="yubinbango()"
-                  class="bg-base_gray pt-3"
+                  class="bg-base_gray pt-3 w-20"
                 >
                   検索
                 </round-bottun>

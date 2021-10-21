@@ -26,9 +26,10 @@ module.exports = {
         base_cream: '#f2e0ca',
         base_gray: '#998675',
         base_of: '#f6f5f1',
-        base_yellow:'#f0e4d5'
+        base_yellow: '#f0e4d5',
       },
       width: {
+        550: '550px',
         600: '600px',
         650: '650px',
         700: '700px',
@@ -37,9 +38,10 @@ module.exports = {
         1000: '1000px',
       },
       height: {
-        400: '400px'},
+        400: '400px',
+      },
       rotate: {
-        '270': '270deg'
+        270: '270deg',
       },
       // backgroundImage: theme => ({
       //   'cafe-pattern': "url('./assets/img/cafe_background.jpeg')",
