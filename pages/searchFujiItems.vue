@@ -60,12 +60,16 @@ export default Vue.extend({
     };
   },
   methods: {
-    search(word: any): void {
+    search(word: any) {
       this.searchedItems = [];
       // 検索ワードなし
       if (word === '') {
-        this.keywordNullFlg = true;
-        this.resultNullFlg = false;
+        // this.keywordNullFlg = true;
+        // this.resultNullFlg = false;
+        return {
+          keywordNullFlg: true,
+          resultNullFlg: false
+        }
       } else {
         this.keywordNullFlg = false;
         this.resultNullFlg = false;
