@@ -40,6 +40,7 @@
               rules="required|email"
             >
               <inputA
+                data-testid="inputMail"
                  v-model="userInfo.email"
                  name="メールアドレス"
                  type="text"
@@ -71,14 +72,14 @@
             >
             <div class="flex">
               <inputA
-                 data-testid="inputType"
+                 data-testid="inputPassword"
                  v-model="userInfo.password"
                  name="パスワード"
                  :type="inputType"
                  placeholder="*******"
                  @input="inputPassword"
                  class="rounded-full"></inputA>
-               <div data-testid="onClick" @click="onClick" class="w-16">
+               <div data-testid="hidePassword" @click="hidePassword" class="w-16">
                  <div v-show="isChecked">
                    <img src="~/assets/img/eye_icon.webp">
                   </div>
@@ -118,7 +119,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import { userLoginType } from '../types/userInfoType';
 import { UserStore } from '../store';
 import { auth } from '../plugins/firebase';
-import roundButton from '../components/atoms/button/roundBottun.vue'
+import roundBottun from '../components/atoms/button/roundBottun.vue'
 import inputA from '../components/atoms/input/inputA.vue'
 
 type DataType = {
@@ -150,7 +151,7 @@ export default Vue.extend({
   components: {
     ValidationProvider,
     ValidationObserver,
-    roundButton,
+    roundBottun,
     inputA
   },
   methods: {
@@ -162,14 +163,16 @@ export default Vue.extend({
             this.userInfo.password
           )
           .then((authUser):void => {
-            if (
-              authUser.user === null ||
-              authUser.user.email === null ||
-              authUser.user.uid === null
-            )
-              return;
-            UserStore.loginAct(authUser.user.email, authUser.user.uid).then(
-              () => this.$router.push('/')
+            // if (
+            //   authUser.user === null ||
+            //   authUser.user.email === null ||
+            //   authUser.user.uid === null
+            // )
+            //   return;
+            UserStore.loginAct(authUser.user!.email!, authUser.user!.uid).then(
+              () => 
+              console.log('login完了'),
+              this.$router.push('/')
             );
           });
      // } 
@@ -180,7 +183,7 @@ export default Vue.extend({
     inputPassword(value:string): void {
       this.userInfo.password=value
     },
-    onClick() {
+  hidePassword() {
       this.isChecked = !this.isChecked;
     }
   },

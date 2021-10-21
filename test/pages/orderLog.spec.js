@@ -89,7 +89,10 @@ describe('Testing OrderLog component', () => {
   it('cickでイベント(cancelOrder)が発火する',async () => {
     let cancelWrapper = wrapper.find('[data-testid="cancelOrder"]');
     cancelWrapper.trigger('click')
+    cancelWrapper.trigger('cancelOrder')
     expect(cancelWrapper.trigger('cancelOrder')).toBeTruthy();
+    //↓passするがカバレッジに変化なし↓
+    //expect(store.cancelOrderAct).toHaveBeenCalled;
   })
   it('cickでイベント(openModal)が発火する', () => {
     let cancelWrapper = wrapper.find('square-bottun-stub');
@@ -102,3 +105,4 @@ describe('Testing OrderLog component', () => {
       expect(context.store.fetchitemInfoAct).toHaveBeenCalled
   })
 });
+// npm run test test/pages/orderLog.spec.js

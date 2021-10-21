@@ -18,6 +18,7 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
   let wrapper;
   let divWrapper;
   let CartStore;
+  let UserStore;
   let ToppingsStore;
   let store;
   let squareBottunWrapper;
@@ -27,13 +28,11 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
   initialiseStores(createStore());
 
   beforeAll(() => {
-    // (pushTopping = {
-    //   name: 'はちみつ',
-    //   id: 1,
-    //   price: 100,
-    //   size: 'M',
-    // }),
-    //   (duplicatedTopping = -1);
+    UserStore = {
+      namespaced: true,
+       // userInfo: { name: 'テストさん' },
+       userInfo: jest.fn(()=>{return null}),
+    };
     CartStore = {
       namespaced: true,
       getters: {
@@ -43,36 +42,37 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
         addItemToCartAct: fn,
       },
     };
-    // ToppingsStore = {
-    //   namespaced: true,
-    //   getters: {
-    //     getToppings: jest.fn(() => {
-    //       return [
-    //         {
-    //           id: 1,
-    //           name: 'アイス',
-    //           priceL: 300,
-    //           priceM: 200,
-    //           isActiveM: false,
-    //           isActiveL: false,
-    //         },
-    //         {
-    //           id: 2,
-    //           name: 'はちみつ',
-    //           priceL: 300,
-    //           priceM: 200,
-    //           isActiveM: false,
-    //           isActiveL: false,
-    //         },
-    //       ];
-    //     }),
-    //   },
-    // };
+    ToppingsStore = {
+      namespaced: true,
+      getters: {
+        getToppings: jest.fn(() => {
+          return [
+            {
+              id: 1,
+              name: 'アイス',
+              priceL: 300,
+              priceM: 200,
+              isActiveM: false,
+              isActiveL: false,
+            },
+            {
+              id: 2,
+              name: 'はちみつ',
+              priceL: 300,
+              priceM: 200,
+              isActiveM: false,
+              isActiveL: false,
+            },
+          ];
+        }),
+      },
+    };
     let stub2 = ['squareBottun', 'Detail'];
     store = new Vuex.Store({
       modules: {
         cart: CartStore,
-        // topping: ToppingsStore,
+        topping: ToppingsStore,
+        user: UserStore
       },
     });
     wrapper = mount(FujiItemId, {
@@ -87,7 +87,15 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
               id: 1,
               name: 'アイス',
               priceL: 300,
-              priceM: 500,
+              priceM: 200,
+              isActiveM: false,
+              isActiveL: false,
+            },
+            {
+              id: 2,
+              name: 'はちみつ',
+              priceL: 300,
+              priceM: 200,
               isActiveM: false,
               isActiveL: false,
             },
@@ -101,6 +109,7 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
     confirmSpy = jest.spyOn(window, 'confirm');
     confirmSpy.mockImplementation(jest.fn(() => true));
   });
+  afterAll(() => confirmSpy.mockRestore());
 
   it('itemId.vueが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
@@ -124,20 +133,16 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
   //   app_mount.find('div').trigger('click');
   //   expect(mockRouterPush).toHaveBeenCalledWith
   // });
-  it('squareBottunのクリックイベント(addCart)が発火されている', () => {
-    squareBottunWrapper.trigger('click');
-    expect(store.addItemToCartAct).toHaveBeenCalled;
-  });
   it('changeイベント(selectToppngSize)が発火', () => {
-    const radioWrapper = wrapper.get('[data-testid="cal-modalM"]');
+    const radioWrapper = wrapper.find('[data-testid="cal-modalM"]');
     expect(radioWrapper.trigger('change')).toBeTruthy();
   });
   it('changeイベント(selectToppngSize)が発火', () => {
-    const radioWrapper = wrapper.get('[data-testid="cal-modalL"]');
+    const radioWrapper = wrapper.find('[data-testid="cal-modalL"]');
     expect(radioWrapper.trigger('change')).toBeTruthy();
   });
   it('changeイベント(selectToppngSize)が発火', () => {
-    const radioWrapper = wrapper.get('[data-testid="cal-modalNone"]');
+    const radioWrapper = wrapper.find('[data-testid="cal-modalNone"]');
     expect(radioWrapper.trigger('change')).toBeTruthy();
   });
   it('created(getItemdetail)が発火する', () => {
@@ -158,6 +163,35 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
       allToppingPrice: 200,
     });
     await expect(wrapper.vm.calcTotalPrice).toEqual(300);
+  });
+  it('computed(getToppings)が正しく表示される', () => {
+    console.log(wrapper.store);
+    expect(wrapper.vm.getToppings).toEqual([
+      {
+        id: 1,
+        name: 'アイス',
+        priceL: 300,
+        priceM: 200,
+        isActiveM: false,
+        isActiveL: false,
+      },
+      {
+        id: 2,
+        name: 'はちみつ',
+        priceL: 300,
+        priceM: 200,
+        isActiveM: false,
+        isActiveL: false,
+      },
+    ]);
+  });
+  it('squareBottunのクリックイベント(addCart)が発火されている', () => {
+    squareBottunWrapper.trigger('click');
+    expect(store.addItemToCartAct).toHaveBeenCalled;
+  });
+  it('addCartが正しく分岐する', () => {
+    confirmSpy.mockImplementation(jest.fn(() => false));
+    squareBottunWrapper.vm.$emit('click');
   });
   //   it('selectToppingSizeが正しく分岐する(分岐:toppingの重複が無い場合)', async () => {
   //     wrapper.setData({
@@ -207,26 +241,6 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
   // });
   // it('computed(getToppings)が正しく表示される', () => {
   //   expect(store.getToppings).toHaveBeenCalled;
-  // });
-  // it('computed(getToppings)が正しく表示される', () => {
-  //   expect(wrapper.vm.getToppings).toEqual([
-  //     {
-  //       id: 1,
-  //       name: 'アイス',
-  //       priceL: 300,
-  //       priceM: 200,
-  //       isActiveM: false,
-  //       isActiveL: false,
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'はちみつ',
-  //       priceL: 300,
-  //       priceM: 200,
-  //       isActiveM: false,
-  //       isActiveL: false,
-  //     },
-  //   ]);
   // });
 });
 

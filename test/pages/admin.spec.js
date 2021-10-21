@@ -81,7 +81,6 @@ describe('Testing admin component', () => {
                     address: 'tokyo',
                     uid: '123456'
                 }]
-                // UserStore.getUserInfo
             }
           }
       });
@@ -100,6 +99,23 @@ describe('Testing admin component', () => {
   it('clickイベント(adminPassword_push)が発火してるか', ()=>{
       buttonWrapper.get('button').trigger('click');
   });
+  it('adminPassword_push()が正しく分岐しているか:adminPassword_num === 123456ではない', ()=>{
+    wrapper.setData({adminPassword_num: '111111',adminPassword: false})
+    buttonWrapper.get('button').trigger('click');
+    expect(wrapper.vm.adminPassword).toEqual(false)
+});
+it('userFronStore()で正しい値を返せている',()=>{
+  expect(wrapper.vm.userFromStore).toEqual([{
+    email: 'fuji@sample.com',
+    password: '123456',
+    name: 'fuji',
+    tel: '00011112222',
+    postalcode: '1230000',
+    address: 'tokyo',
+    uid: '123456'
+}])
+})
+
 //   it('fetchがレンダリング前に呼ばれているか', ()=> {
 //     const contextStore = {store};
 //     wrapper.vm.$options.fetch(contextStore);

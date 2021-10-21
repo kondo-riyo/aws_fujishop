@@ -14,7 +14,6 @@ localVue.use(Vuex);
 describe('Testing cartTable component', () => {
   let wrapper;
   let store;
-  let actions;
   let fn;
   let CartStore;
   let confirmSpy;
@@ -28,11 +27,6 @@ describe('Testing cartTable component', () => {
         fetchitemInfoAct: fn,
       },
     };
-
-    const itemInfo = () => {
-      return { itemInfo: [{ itemName: 'name' }], status: 0 };
-    };
-
     store = new Vuex.Store({
       modules: {
         cart: CartStore,
@@ -43,7 +37,7 @@ describe('Testing cartTable component', () => {
 
     wrapper = shallowMount(cartTable, {
       propsData: {
-        cartItemFromStore: { itemInfo: [{ itemName: 'name' }], status: 0 },
+        cartItemFromStore: { itemInfo: [{ itemName: 'name',toppings:[{name:'はちみつ',size:1}] }], status: 0 },
         routerName: '',
       },
       localVue,
@@ -51,9 +45,7 @@ describe('Testing cartTable component', () => {
       store,
     });
   });
-  //他のファイルにも[true]がリークするためテストの前後にモックと復元を行う
   afterAll(() => confirmSpy.mockRestore());
-
   it('cartTableが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
@@ -66,10 +58,28 @@ describe('Testing cartTable component', () => {
   it('@clickでtoppingSizeが発火する', () => {
     wrapper.vm.toppingSize();
   });
-
   it('@clickでdeleteCartItemが発火する', () => {
-    wrapper.get('[data-testid="show_cartItems"]').trigger('click');
-    // confirm('カートから商品を削除しますか？')が呼ばれるか
-    expect(window.confirm).toBeCalled();
+     wrapper.get('[data-testid="show_cartItems"]').trigger('click');
+    expect(store.deleteCartItemAct).toHaveBeenCalled
   });
+  it('toppingSizeで正しい値を返す➀:el=1の時「多」を返す',()=>{
+   const divWrapper = wrapper.find('[data-testid="toppingSize"]')
+   expect(divWrapper.text()).toEqual('+ はちみつ (多)')
+  })
+  it('toppingSizeで正しい値を返す➀:el=1の時「少」を返す',async ()=>{
+   await wrapper.setProps({cartItemFromStore: { itemInfo: [{ itemName: 'name',toppings:[{name:'はちみつ',size:2}] }]},})
+    const divWrapper = wrapper.find('[data-testid="toppingSize"]')
+    expect(divWrapper.text()).toEqual('+ はちみつ (少)')
+   })
+   it('fetchのfetchitemInfoActアクションがレンダリング前に動作する',()=>{
+    const context = {store}
+    wrapper.vm.$options.fetch(context);
+    expect(context.store.fetchitemInfoAct).toHaveBeenCalled
+})
+it('compirmがfalseの場合なにも呼ばない',()=>{
+  confirmSpy.mockImplementation(jest.fn(() => false));
+  wrapper.get('[data-testid="show_cartItems"]').trigger('click');
+ expect(store.deleteCartItemAct).toHaveBeenCalled
+})
 });
+// npm run test test/template/cartTable.spec.js

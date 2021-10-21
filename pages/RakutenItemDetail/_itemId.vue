@@ -43,6 +43,7 @@
         </div>
         <div class="py-1 px-6 sm:py-2 sm:px-8">
           <squareBottun
+          data-testid="addCart"
             class="
               text-white
               font-semibold
@@ -58,7 +59,6 @@
               text-xm
             "
             @click="addCart"
-            data-testid="addCart"
           >
             追加
           </squareBottun>
