@@ -13,16 +13,6 @@
           >
           ×
         </p>
-        <!-- <p>
-          注文者 <span class="font-bold"> {{ orderInfo.name }}さん</span>
-        </p>
-        <p>お届け先 <span class="font-bold">{{ orderInfo.address }}</span></p>
-        <p>電話番号 <span class="font-bold">{{ orderInfo.tel }}</span></p>
-        <p>メール <span class="font-bold">{{ orderInfo.email }}</span></p>
-        <p>
-          お届け日時 <span class="font-bold">{{ orderInfo.deliveryDate }} {{ orderInfo.deliveryTime }}時</span>
-        </p>
-        <p>支払状況 <span data-testid="paymentStatus" class="font-bold">{{ status | paymentStatus }}</span></p> -->
         <table class="sm:m-3">
           <tr class="text-left m-4">
             <th class="text-base_gray sm:px-10">注文者</th>
