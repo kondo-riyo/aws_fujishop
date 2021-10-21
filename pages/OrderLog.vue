@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-2 w-screen">
+  <div class="pt-2">
     <div v-if="getOrderLogs.length === 0" class="grid p-20">
       <div class="mr-auto ml-auto font-bold sm:text-2xl text-lg">
         ※注文履歴はありません
