@@ -13,32 +13,32 @@
           >
           ×
         </p>
-        <table class="sm:m-3">
-          <tr class="text-left m-4">
-            <th class="text-base_gray sm:px-10">注文者</th>
-            <th>{{ orderInfo.name }} さん</th>
-          </tr>
-          <tr class="text-left m-4">
-            <th class="text-base_gray sm:px-10">お届け先</th>
-            <th>{{ orderInfo.address }}</th>
-          </tr>
-          <tr class="text-left m-4">
-            <th class="text-base_gray sm:px-10">電話番号 </th>
-            <th>{{ orderInfo.tel }}</th>
-          </tr>
-          <tr class="text-left m-4">
-            <th class="text-base_gray sm:px-10">メール</th>
-            <th>{{ orderInfo.email }}</th>
-          </tr>
-          <tr class="text-left m-4">
-            <th class="text-base_gray sm:px-10">配達日時 </th>
-            <th>{{ orderInfo.deliveryDate }} {{ orderInfo.deliveryTime }}時</th>
-          </tr>
-          <tr class="text-left m-4">
-            <th class="text-base_gray sm:px-10">支払状況</th>
-            <th>{{ status | paymentStatus }}</th>
-          </tr>
-        </table>
+        <div class="sm:m-3">
+          <div class="sm:flex text-left m-4">
+            <div class="sm:w-2/5 text-base_gray sm:px-10">注文者</div>
+            <div class="sm:w-3/5">{{ orderInfo.name }} さん</div>
+          </div>
+          <div class="text-left m-4 sm:flex">
+            <div class="sm:w-2/5 text-base_gray sm:px-10">お届け先</div>
+            <div class="sm:w-3/5">{{ orderInfo.address }}</div>
+          </div>
+          <div class="sm:flex text-left m-4">
+            <div class="sm:w-2/5 text-base_gray sm:px-10">電話番号 </div>
+            <div class="sm:w-3/5">{{ orderInfo.tel }}</div>
+          </div>
+          <div class="sm:flex text-left m-4">
+            <div class="sm:w-2/5 text-base_gray sm:px-10">メール</div>
+            <div class="sm:w-3/5">{{ orderInfo.email }}</div>
+          </div>
+          <div class="sm:flex text-left m-4">
+            <div class="sm:w-2/5 text-base_gray sm:px-10">配達日時 </div>
+            <div class="sm:w-3/5">{{ orderInfo.deliveryDate }} {{ orderInfo.deliveryTime }}時</div>
+          </div>
+          <div class="sm:flex text-left m-4">
+            <div class="sm:w-2/5 text-base_gray sm:px-10">支払状況</div>
+            <div class="sm:w-3/5">{{ status | paymentStatus }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
