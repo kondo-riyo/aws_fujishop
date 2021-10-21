@@ -95,12 +95,4 @@ describe('Testing Signup component', () => {
     userInfoWrapper.vm.$emit('click');
     expect(userInfoWrapper.trigger('signup')).toBeTruthy();
   });
-  //   it('computedが正しい値(text)を返す', async() => {
-  //     let InputWrapper = wrapper.find('[data-testid="inputType"]');
-  //     //InputWrapper.trigger('input')
-  //     //await expect(InputWrapper.trigger('inputPassword')).toBeTruthy();
-  //    // expect(InputWrapper.isVisible()).toBe(false)
-  //     // InputWrapper.setValue("123456")
-  //     // expect(InputWrapper.element.value).toBe('123456');
-  //   });
 });

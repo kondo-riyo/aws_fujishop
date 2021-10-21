@@ -1,4 +1,4 @@
-import {mount, shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import Signin from '../../pages/signin.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -15,20 +15,16 @@ localVue.use(VueMeta, { keyName: 'head' });
 describe('Testing Signin component', () => {
   let wrapper;
   let store;
-
+  let stubComponents = ['roundBottun', 'inputA'];
   beforeAll(() => {
     initialiseStores(createStore());
 
     store = new Vuex.Store();
-    wrapper = shallowMount(Signin, {
+    wrapper = mount(Signin, {
       localVue,
       router,
       store,
-      data() {
-        return {
-          isChecked: true,
-        };
-      },
+      stubs: stubComponents,
     });
   });
   it('Signinが存在する', () => {
@@ -38,22 +34,28 @@ describe('Testing Signin component', () => {
     expect(wrapper.vm.$metaInfo.title).toBe('ログイン');
   });
   it('computedが正しい値(text)を返す', async () => {
+    await wrapper.setData({ isChecked: true });
     expect(wrapper.vm.inputType).toBe('text');
   });
   it('computedが正しい値(passwprd)を返す', async () => {
     await wrapper.setData({ isChecked: false });
     expect(wrapper.vm.inputType).toBe('password');
   });
-  it('cickでイベント(onClick)が発火し、処理が正しく動作する', async () => {
-    let passWrapper = wrapper.get('div');
-    passWrapper.trigger('click');
-    // expect(passWrapper.trigger('onClick')).toBeTruthy();
-    expect(wrapper.vm.$data.isChecked).toBe(false);
+  it('cickでイベント(hidePassword)が発火し、処理が正しく動作する', async () => {
+    let passWrapper = wrapper.get('[data-testid="hidePassword"]');
+    wrapper.setData({ isChecked: false });
+    await passWrapper.trigger('click');
+    expect(wrapper.vm.isChecked).toBe(true);
   });
-    //it('cickでイベント(Login)が発火する',async () => {
-   // let loginWrapper = wrapper.get('[data-testid="roundButton"]');
-   // console.log(loginWrapper)
-    //loginWrapper.trigger('click')
-    //expect(loginWrapper.trigger('login')).toBeTruthy();
- // })
+  it('@inputでイベント(inputMail)が発火する', async () => {
+    let loginWrapper = wrapper.get('[data-testid="inputMail"]');
+    loginWrapper.vm.$emit('input');
+    expect(loginWrapper.trigger('inputMail')).toBeTruthy();
+  });
+  it('@inputでイベント(inputPassword)が発火する', async () => {
+    let loginWrapper = wrapper.get('[data-testid="inputPassword"]');
+    loginWrapper.vm.$emit('input');
+    expect(loginWrapper.trigger('inputPassword')).toBeTruthy();
+  });
 });
+// npm run test test/pages/signIn.spec.js

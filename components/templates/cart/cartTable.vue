@@ -91,6 +91,7 @@
                       </p>
                     </div>
                     <div
+                      data-testid="toppingSize"
                       v-for="topping in cartitem.toppings"
                       :key="topping.id"
                       class="sm:text-sm text-xs"
@@ -178,8 +179,8 @@ export default Vue.extend({
   },
   async fetch() {
     //if (!this.moniterCarts.orderId) {
-      const fetchitemInfo = CartStore.fetchitemInfoAct();
-      await Promise.all([fetchitemInfo]);
+    const fetchitemInfo = CartStore.fetchitemInfoAct();
+    await Promise.all([fetchitemInfo]);
     //}
   },
   methods: {

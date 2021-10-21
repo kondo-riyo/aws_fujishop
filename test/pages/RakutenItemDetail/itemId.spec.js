@@ -15,9 +15,9 @@ localVue.use(Vuex);
 describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
   let wrapper;
   let divWrapper;
-  // let squareWrapper;
   let store;
   let ApiItemsStore;
+  let confirmSpy;
 
   beforeAll(() => {
     initialiseStores(createStore());
@@ -35,7 +35,8 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
     });
 
     let stub2 = ['squareBottun', 'Detail'];
-
+    confirmSpy = jest.spyOn(window, 'confirm');
+    confirmSpy.mockImplementation(jest.fn(() => true));
     wrapper = mount(RakuItemId, {
       localVue,
       router,
@@ -49,6 +50,7 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
     });
     divWrapper = wrapper.find('div');
   });
+  afterAll(() => confirmSpy.mockRestore());
 
   it('itemId.vueが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
@@ -71,7 +73,7 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
   it('totalItemPriceが期待通りか', async () => {
     await expect(wrapper.vm.calcTotalPrice).toEqual(0);
   });
-  it('$router.pushが発火してるか', async() => {
+  it('$router.pushが発火してるか', async () => {
     const mockRouterPush = jest.fn();
     const mockRouteParams = jest.fn();
     const app_mount = mount(RakuItemId, {
@@ -84,8 +86,8 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
         },
       },
     });
-   await app_mount.setData({
-      itemDetail: {id:1},
+    await app_mount.setData({
+      itemDetail: { id: 1 },
     });
     app_mount.find('[data-testid="back_onStep"]').trigger('click');
     expect(mockRouterPush).toHaveBeenCalledWith;
@@ -110,9 +112,14 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
         rank: 13,
       },
     });
-    let buttonWrapper = wrapper.find('squarebottun-stub');
+    let buttonWrapper = wrapper.find('[data-testid="addCart"]');
     buttonWrapper.vm.$emit('click');
     expect(buttonWrapper.trigger('addCart')).toBeTruthy();
+  });
+  it('addCartが正しく分岐する', () => {
+    confirmSpy.mockImplementation(jest.fn(() => false));
+    let buttonWrapper = wrapper.find('[data-testid="addCart"]');
+    buttonWrapper.vm.$emit('click');
   });
   it('createdの発火', () => {
     wrapper.setMethods({

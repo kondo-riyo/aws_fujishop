@@ -26,7 +26,7 @@ describe('Testing searchRakutenItems component', () => {
       actions: { searchApiItemsAct: fn },
       getters: {
         getSearchItemsFromApi: jest.fn(()=>{return [{},{}]}),
-        getItemsFromApi:jest.fn(()=>{return [{},{}]}),
+        getItemsFromApi:jest.fn(()=>{return [{name:"らくてん"},{name:"楽天"}]}),
       },
     };
 
@@ -62,13 +62,15 @@ describe('Testing searchRakutenItems component', () => {
     let cancelWrapper = wrapper.find('[data-testid="search"]');
     cancelWrapper.vm.$emit('searchItems');
     cancelWrapper.trigger('search');
-    //await expect(ApiItemsStore.actions.searchApiItemsAct).toBeCalled()
   });
-//   it(' seaachが正しく動く：キーワード＝"" ', async () => {
-//     let cancelWrapper = wrapper.find('[data-testid="search"]');
-//    // cancelWrapper.vm.$emit('searchItems');
-//     cancelWrapper.trigger('searchItems');
-//     await expect(ApiItemsStore.actions.searchApiItemsAct).toBeCalled()
-//     await expect(wrapper.vm.keywordNullFlg).toBe(false);
-//   });
+  it(' seaachが正しく動く：キーワード＝"" ', async () => {
+    wrapper.setData({keywordNullFlg:true})
+    let searchWrapper = wrapper.find('[data-testid="search"]');
+     searchWrapper.vm.$emit('searchItems');
+    await expect(wrapper.vm.keywordNullFlg).toBe(false);
+    await expect(wrapper.vm.searchItemNullFlg).toBe(false);
+    await expect(wrapper.vm.defaultItemsFlg).toBe(true);
+  });
 });
+
+// npm run test test/pages/searchRakutenItems.spec.js

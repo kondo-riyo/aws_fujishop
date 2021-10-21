@@ -17,13 +17,12 @@ localVue.use(VueMeta, { keyName: 'head' })
 
 describe('Testing OrderInfo component', () => {
   let wrapper;
-  let inputWrapper;
   let UserStore;
   let CartStore;
   let AdminStore;
   let store;
   let confirmSpy;
-
+  let inputWrapper;
   beforeAll(() => {
     initialiseStores(createStore());
     let fn = jest.fn();
@@ -135,7 +134,6 @@ describe('Testing OrderInfo component', () => {
   });
   it('inputAddress()が発火されている', () => {
     let inputAWrapper = wrapper.find('[data-testid="inputAddress"]');
-    console.log(inputAWrapper.html())
     inputAWrapper.vm.$emit('input')
     expect(inputAWrapper.trigger('inputAddress')).toBeTruthy();
   });
@@ -144,12 +142,6 @@ describe('Testing OrderInfo component', () => {
     inputAWrapper.vm.$emit('input')
     expect(inputAWrapper.trigger('inputTel')).toBeTruthy();
   });
-  // it('inputCreditCardNum()が発火されている', () => {
-  //   let inputAWrapper = wrapper.find('[data-testid="inputCreditCardNum"]');
-  //   console.log(inputAWrapper.html())
-  //   inputAWrapper.vm.$emit('input')
-  //   expect(inputAWrapper.trigger('inputCreditCardNum')).toBeTruthy();
-  // });
   it('inputDeliveryDate()が発火されている', () => {
     let inputAWrapper = wrapper.find('[data-testid="inputDeliveryDate"]');
     inputAWrapper.vm.$emit('input')
@@ -177,14 +169,16 @@ describe('Testing OrderInfo component', () => {
     squbuttonWrapper.vm.$emit('click')
     expect(squbuttonWrapper.trigger('yubinbango')).toBeTruthy();
   });
-  // 後でやるーーーーーーーーーーーーーーーーーーーーー
-  // ➀
   it('OrderSubmit()が発火されている', () => {
     let buttonWrapper = wrapper.find('[data-testid="OrderSubmit"]');
     buttonWrapper.vm.$emit('click')
     expect(buttonWrapper.trigger('OrderSubmit')).toBeTruthy();
-    //expect(window.confirm).toBeCalled();
   });  
+  it('compirmがfalseの場合なにも呼ばない',()=>{
+    confirmSpy.mockImplementation(jest.fn(() => false));
+    let buttonWrapper = wrapper.find('[data-testid="OrderSubmit"]');
+    buttonWrapper.vm.$emit('click')
+  })
 });
 
 

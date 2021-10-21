@@ -20,6 +20,7 @@ describe('Testing orderModal component', () => {
       status: 1,
     },
   });
+
   it('orderModalが存在する', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
@@ -43,11 +44,35 @@ describe('Testing orderModal component', () => {
     let modalWrapper = newWrapper.get('[data-testid="paymentStatus"]');
     expect(modalWrapper.text()).toBe('入金済');
   });
-  it('filter statusが９の時はキャンセル済と表示する', () => {
+  it('filter statusが3の時は発送済と表示する', () => {
     const newWrapper = shallowMount(orderModal, {
       propsData: {
         orderInfo: {
           name: 'テストユーザ3',
+        },
+        status: 3,
+      },
+    });
+    let modalWrapper = newWrapper.get('[data-testid="paymentStatus"]');
+    expect(modalWrapper.text()).toBe('発送済');
+  });
+  it('filter statusが4の時は配達済と表示する', () => {
+    const newWrapper = shallowMount(orderModal, {
+      propsData: {
+        orderInfo: {
+          name: 'テストユーザ4',
+        },
+        status: 4,
+      },
+    });
+    let modalWrapper = newWrapper.get('[data-testid="paymentStatus"]');
+    expect(modalWrapper.text()).toBe('配達済');
+  });
+  it('filter statusが9の時は配達済と表示する', () => {
+    const newWrapper = shallowMount(orderModal, {
+      propsData: {
+        orderInfo: {
+          name: 'テストユーザ9',
         },
         status: 9,
       },
@@ -56,3 +81,4 @@ describe('Testing orderModal component', () => {
     expect(modalWrapper.text()).toBe('キャンセル');
   });
 });
+//npm run test test/organisms/orderModal.spec.js
