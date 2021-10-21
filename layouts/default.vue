@@ -8,6 +8,7 @@
         bg-opacity-25
         min-h-screen
         text-gray-800
+        w-screen
       "
     />
   </div>
