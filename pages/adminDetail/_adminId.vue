@@ -5,9 +5,11 @@
     class="
     flex
     group
+    m-1
     ">
       <div class="
-      group-hover:bg-base_red group-hover:bg-opacity-30
+      bg-base_red bg-opacity-30 sm:bg-transparent
+      sm:group-hover:bg-base_red sm:group-hover:bg-opacity-30
       p-4
       rounded-full
       ">
@@ -233,7 +235,8 @@
     group
     ">
       <div class="
-      group-hover:bg-base_red group-hover:bg-opacity-30
+      bg-base_red bg-opacity-30 sm:bg-transparent
+      sm:group-hover:bg-base_red sm:group-hover:bg-opacity-30
       p-4
       rounded-full
       ">
