@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, mount, createLocalVue } from '@vue/test-utils';
 import searchFujiItems from '../../pages/searchFujiItems.vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -12,6 +12,7 @@ const router = new VueRouter();
 localVue.use(VueRouter);
 localVue.use(Vuex);
 localVue.use(VueMeta, { keyName: 'head' });
+
 describe('Testing searchFujiItems component', () => {
   let wrapper;
   let store;
@@ -33,6 +34,7 @@ describe('Testing searchFujiItems component', () => {
         items: ItemsStore,
       },
     });
+
     wrapper = shallowMount(searchFujiItems, {
       localVue,
       router,
@@ -41,6 +43,7 @@ describe('Testing searchFujiItems component', () => {
         return {
           KeyWord: '',
           keywordNullFlg: false,
+          resultNullFlg: false,
         };
       },
     });
@@ -56,27 +59,15 @@ describe('Testing searchFujiItems component', () => {
     cancelWrapper.vm.$emit('searchItems');
     expect(cancelWrapper.trigger('search')).toBeTruthy();
   });
-  it(' seaachが正しく動く：キーワード＝"" ', async () => {
-    let cancelWrapper = wrapper.find('[data-testid="search"]');
-    cancelWrapper.vm.$emit('searchItems');
-    cancelWrapper.trigger('search')
-   await expect(wrapper.vm.keywordNullFlg).toBe(false)
+  it('search()のword=""の時', ()=>{
+    const newWrapper = mount(searchFujiItems, {
+      propsData: {
+        word: ''
+      }
+    });
+    let searchWrapper = newWrapper.get('[data-testid="search"]');
+    expect(searchWrapper.trigger('search')).toBeTruthy()
   });
-  it(' seaachが正しく動く：キーワード＝"みかん" ', () => {
-    const newWrapper = shallowMount(searchFujiItems, {
-        localVue,
-        router,
-        store,
-        data() {
-          return {
-            KeyWord: 'みかん',
-            keywordNullFlg: false,
-          };
-        },
-      });
-      let cancelWrapper = newWrapper.find('[data-testid="search"]');
-      cancelWrapper.vm.$emit('searchItems');
-      cancelWrapper.trigger('search')
-     expect(newWrapper.vm.keywordNullFlg).toBe(false)
-      });
 });
+
+// npm run test /test/pages/searchFujiItems.spec.js

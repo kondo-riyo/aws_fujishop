@@ -20,30 +20,12 @@ describe('Testing admin component', () => {
   let trWrapper;
   let buttonWrapper;
   let store;
-//   let UserStore;
   let AdminStore;
-  const ifFactory = (values = {}) => {
-    return mount(admin, {
-      stubs:['DeliverySelect','round-bottun','inputA'],
-      data () {
-        return {
-          ...values
-        }
-      }
-    })
-  }    
-
   beforeAll(()=> {
       initialiseStores(createStore());
 
       let fn = jest.fn();
       let stub2 = ['roundBottun','inputA'];
-    //   UserStore = {
-    //       namespaced: true,
-    //       getters: {
-    //           getUserInfo: fn,
-    //       },
-    //   };
       AdminStore = {
           namespaced: true,
           getters:{
@@ -55,7 +37,6 @@ describe('Testing admin component', () => {
       }
       store = new Vuex.Store({
           modules: {
-            //   users: UserStore,
               admin: AdminStore
           }
       });
@@ -81,7 +62,6 @@ describe('Testing admin component', () => {
                     address: 'tokyo',
                     uid: '123456'
                 }]
-                // UserStore.getUserInfo
             }
           }
       });
@@ -100,41 +80,6 @@ describe('Testing admin component', () => {
   it('clickイベント(adminPassword_push)が発火してるか', ()=>{
       buttonWrapper.get('button').trigger('click');
   });
-//   it('fetchがレンダリング前に呼ばれているか', ()=> {
-//     const contextStore = {store};
-//     wrapper.vm.$options.fetch(contextStore);
-//     expect(contextStore.store.fetchUsersAct).toHaveBeenCalled;
-//   });
-//   it('adminPassword_push()の条件分岐',()=> {
-//     const ifWrapper = ifFactory({adminPasssword_num: '123456'})
-//     expect(ifWrapper.find('.adminPassword_push').exists()).toBeTruthy()
-//     // let buttonWrapper = ifWrapper.find('button');
-//     // buttonWrapper.trigger('click')
-//     // expect(buttonWrapper.trigger('adminPassword_push')).toBeTruthy();
-//   })
-
-
-//   it('if', ()=> {
-    
-//   })
-//   it('userFromStoreが期待通りか', async () => {
-//     await expect(wrapper.vm.userFromStore).toEqual([
-//       {
-//         email: 'fuji@sample.com',
-//         password: '123456',
-//         name: 'fuji',
-//         tel: '00011112222',
-//         postalcode: '1230000',
-//         address: 'tokyo',
-//         uid: '123456'
-//       },
-//     ]);
-//   });
-
-//   it("test App Component",() => {
-//     const admin_show = wrapper.get('#admin_show');
-//     expect(admin_show.isVisible()).toBe(true)
-//   })
 });
 
 // npm run test /test/pages/admin.spec.js
