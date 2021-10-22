@@ -25,7 +25,7 @@ describe('Testing orderModal component', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
   it('selectタグで@changeが発火されている', () => {
-    wrapper.find('button').trigger('click');
+    wrapper.find('div').trigger('click');
   });
 
   it('filter statusが1の時は未入金と表示する', () => {
