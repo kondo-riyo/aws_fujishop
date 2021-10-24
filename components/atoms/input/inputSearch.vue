@@ -11,7 +11,7 @@
       shadow-md
       border border-gray-300
       focus:outline-none
-      hover:bg-base_cream
+      hover:bg-base_of
       ring
       ring-base_red
       ring-offset-2

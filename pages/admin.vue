@@ -36,16 +36,17 @@
         <div class="
         bg-base_of bg-opacity-50
         py-4
+        text-base_brown
         ">
         <div class="
         text-center 
-        text-base_gray sm:text-black font-bold text-2xl font-mono
+        font-bold text-2xl
         ">
             ようこそ！ {{userFromStore.name}} さん
         </div>
         <div class="
         text-center 
-        text-base_gray sm:text-black text-xl
+        text-xl
         ">
             ここでは各ユーザーの注文履歴の確認、配達状況の変更ができます
         </div>
@@ -53,11 +54,17 @@
         <div class="
         text-center 
         mt-5 sm:mt-10 mb-2
-        text-base_gray sm:text-base_of font-bold text-3xl font-mono
+        text-base_brown font-bold text-3xl font-mono
         ">
             ユーザー情報
         </div>
-        <div class="flex justify-center content-start flex-wrap">
+        <div class="flex justify-center content-start flex-wrap rounded-lg">
+            <div class="flex bg-base_gray text-white w-full sm:w-3/4">
+                <div class="w-1/4 sm:w-1/6 top-0 sm:px-6 sm:py-3 text-center">No.</div>
+                <div class="w-2/4 sm:w-2/6 top-0 sm:px-6 sm:py-3 text-center">名前</div>
+                <div class="w-0 sm:w-2/6 top-0 sm:px-6 sm:py-3 hidden sm:inline-block  text-center">ID</div>
+                <div class="w-1/4 sm:w-1/6 top-0 sm:px-6 sm:py-3 text-center ml-6"></div>
+            </div>
         <div class="
         flex-grow
         overflow-auto 
@@ -67,38 +74,32 @@
         items-center
         rounded
         ">
-        <table class="
+        <div class="
         relative
         w-full
-        sm:w-3/4 sm:max-h-52
+        sm:w-3/4 sm:max-h-96
         m-1 sm:m-0
         ">
-            <thead>
-            <tr class="bg-base_gray text-white">
-                <th class="sticky top-0 sm:px-6 sm:py-3">No.</th>
-                <th class="sticky top-0 sm:px-6 sm:py-3">名前</th>
-                <th class="sticky top-0 sm:px-6 sm:py-3 hidden sm:inline-block">ID</th>
-                <th class="sticky top-0 sm:px-6 sm:py-3"></th>
-            </tr>
-            </thead>
-            <tbody class="divide-y bg-white bg-opacity-70">
-            <tr 
+            <div class="divide-y bg-white bg-opacity-70">
+            <div 
             v-for="(user, index) in adminFromStore" :key="user.orderId"
             class="
-                border-t-4 border-base_gray
+                flex
+                border-base_gray
                 hover:bg-base_of
+                text-base_brown
             "
             @click="userLog(user.uid)"
             >
-                    <td class="sm:px-6 py-2 sm:py-4 text-center">{{index+1}}</td>
-                    <td class="sm:px-6 py-2 sm:py-4 text-center">{{user.name}}</td>
-                    <td class="sm:px-6 py-2 sm:py-4 text-center hidden sm:inline-block">{{user.uid}}</td>
-                    <td class="sm:px-6 py-2 sm:py-4 text-center">
-                        <img src="~/assets/img/pencil_icon.webp" class="w-8">
-                    </td>
-            </tr>
-            </tbody>
-        </table>
+                    <div class="w-1/4 sm:w-1/6 sm:px-6 py-2 sm:py-4 text-center">{{index+1}}</div>
+                    <div class="w-2/4 sm:w-2/6 sm:px-6 py-2 sm:py-4 text-center">{{user.name}}</div>
+                    <div class="w-0 sm:w-2/6 sm:px-6 py-2 sm:py-4 text-center hidden sm:inline-block">{{user.uid}}</div>
+                    <div class="w-1/4 sm:w-1/6 sm:px-6 py-2 sm:py-4 ml-6">
+                        <img src="~/assets/img/pencil_icon.webp" class="w-6 sm:w-8">
+                    </div>
+            </div>
+            </div>
+        </div>
         </div>
     </div>
     </div>
