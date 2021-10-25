@@ -36,7 +36,7 @@
           </div>
           <div class="sm:flex text-left m-4">
             <div class="sm:w-2/5 text-base_gray sm:px-10">支払状況</div>
-            <div class="sm:w-3/5">{{ status | paymentStatus }}</div>
+            <div data-testid="paymentStatus" class="sm:w-3/5">{{ status | paymentStatus }}</div>
           </div>
         </div>
       </div>

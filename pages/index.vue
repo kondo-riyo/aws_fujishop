@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:mt-10 mt-10">
+  <div class="sm:mt-10 mt-0">
     <div class="sm:mb-20">
       <swiper :options="headSwiperOption">
         <swiper-slide>
@@ -13,12 +13,21 @@
         </swiper-slide>
       </swiper>
     </div>
-
-    <router-link
+    
+    <div>
+    <!-- <router-link
       to="searchRakutenItems"
       class="block border-t-2 p-5 text-center text-2xl font-bold text-gray-700"
-      >楽天商品</router-link
-    >
+      > -->
+    <router-link
+      to="searchRakutenItems"
+      class="block border-t-2 border-base_gray border-opacity-50 p-5 text-2xl font-bold text-gray-700"
+      >
+      <div class="flex w-full justify-center text-base_brown">
+      <div><img src="~/assets/img/Rakuten.webp" class="w-8"/></div>
+      <div class="">楽天商品</div>
+      </div>
+      </router-link>
     <div class="mb-10">
       <swiper :options="swiperOption">
         <swiper-slide v-for="item in RakutenItemsFromStore" :key="item.id">
@@ -28,12 +37,17 @@
         <div class="swiper-button-next" slot="button-next"></div>
       </swiper>
     </div>
+    </div>
 
     <router-link
       to="searchFujiItems"
-      class="block border-t-2 p-5 text-center text-2xl font-bold text-gray-700"
-      >FujiCoffeeオリジナル商品</router-link
-    >
+      class="block border-t-2 border-base_gray border-opacity-50 p-5 text-center text-2xl font-bold"
+      >
+      <div class="flex w-full justify-center items-end text-base_brown">
+      <div><img src="~/assets/img/fujicoffee.webp" class="w-12"/></div>
+      <div>FujiCoffeeオリジナル商品</div>
+      </div>
+    </router-link>
     <div class="mb-10">
       <swiper :options="swiperOption">
         <swiper-slide v-for="item in FujiItemsFromStore" :key="item.id">

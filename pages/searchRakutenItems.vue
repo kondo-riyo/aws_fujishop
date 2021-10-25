@@ -1,6 +1,16 @@
 <template>
   <div>
-    <search-group data-testid="search" @searchItems="search" />
+      <div 
+       class="
+        flex 
+        w-full justify-center items-end 
+        text-base_brown mt-4 -mb-2 text-center text-3xl font-bold
+      ">
+      <div><img src="~/assets/img/Rakuten.webp" class="w-10"/></div>
+      <div class="">楽天商品</div>
+      </div>
+
+    <search-group data-testid="search" @searchItems="search" class="md:ml-24" />
 
     <!-- 検索エラー表示 -->
     <div class="text-center block py-5">

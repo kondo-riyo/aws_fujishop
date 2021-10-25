@@ -6,7 +6,7 @@
         <router-link to="/">
           <img class="h-20 w-20 mx-4" src="~/assets/img/6.webp"
         /></router-link>
-        <span class="font-semibold text-2xl">Fuji Shop</span>
+        <span class="font-semibold text-2xl sm:text-3xl text-base_brown">FUJI SHOP</span>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
     >
       <div
         v-if="userInfoFromStore"
-        class="inline-block text-lg pl-6 py-2 mr-5 font-bold"
+        class="inline-block text-lg pl-6 py-2 mr-5 font-bold text-base_brown"
       >
         {{ userInfoFromStore.name }}さん
       </div>
@@ -49,7 +49,7 @@
       </div>
       <div class="sm:w-8 w-7 mr-5">
         <router-link to="/admin" v-if="userInfoFromStore">
-          <img src="~/assets/img/setting.png"
+          <img src="~/assets/img/setting.webp"
         /></router-link>
       </div>
       <div class="sm:w-8 w-7 mr-5" data-testid="logout" v-if="userInfoFromStore" @click="logout">
@@ -57,7 +57,7 @@
       </div>
       <div class="sm:w-8 w-7 mr-5" v-if="!userInfoFromStore">
         <router-link class="block" to="/signup">
-          <img src="~/assets/img/user.png"
+          <img src="~/assets/img/user.webp"
         /></router-link>
       </div>
 

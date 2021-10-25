@@ -67,7 +67,7 @@ describe('Testing admin component', () => {
         },
       },
     });
-    trWrapper = wrapper.find('tr');
+    trWrapper = wrapper.find('div');
     buttonWrapper = wrapper.find('button');
   });
   it('adminが存在する', () => {
@@ -77,7 +77,7 @@ describe('Testing admin component', () => {
     expect(wrapper.vm.$metaInfo.title).toBe('注文管理(管理者)');
   });
   it('clickイベント(userLog)が発火してるか', () => {
-    trWrapper.get('tr').trigger('click');
+    trWrapper.get('div').trigger('click');
   });
   it('clickイベント(adminPassword_push)が発火してるか', () => {
     buttonWrapper.get('button').trigger('click');
