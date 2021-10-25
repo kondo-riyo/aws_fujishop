@@ -11,7 +11,7 @@
       <div class="pt-2">FujiCoffeeオリジナル商品</div>
       </div>
     </div>
-    <search-group data-testid="search" @searchItems="search" class="md:ml-24" />
+    <search-group data-testid="search" @searchItems="search" class="my-0 mx-auto" />
     <div class="my-5 text-base_red font-bold">
       <div v-show="resultNullFlg" class="text-center">
         ※該当する商品がありません

@@ -10,7 +10,7 @@
       <div class="">楽天商品</div>
       </div>
 
-    <search-group data-testid="search" @searchItems="search" class="md:ml-24" />
+    <search-group data-testid="search" @searchItems="search" class="my-0 mx-auto" />
 
     <!-- 検索エラー表示 -->
     <div class="text-center block py-5">

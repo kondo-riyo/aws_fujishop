@@ -1,8 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'FUJI COFFE',
-    titleTemplate: '%s| FUJI COFFE',
+    title: 'FUJI SHOP',
+    titleTemplate: '%s| FUJI SHOP',
     htmlAttrs: {
       lang: 'ja',
     },
@@ -86,4 +86,7 @@ export default {
     theme_color: '#212121',
     background_color: '#212121',
   },
+  workbox: {
+    dev: false, // Service Workerを開発環境で使用するかどうか
+  }
 };
