@@ -15,13 +15,9 @@
     </div>
     
     <div>
-    <!-- <router-link
-      to="searchRakutenItems"
-      class="block border-t-2 p-5 text-center text-2xl font-bold text-gray-700"
-      > -->
     <router-link
       to="searchRakutenItems"
-      class="block border-t-2 border-base_gray border-opacity-50 p-5 text-2xl font-bold text-gray-700"
+      class="block border-t-2 border-base_gray border-opacity-50 p-5 text-xl sm:text-2xl font-bold text-gray-700"
       >
       <div class="flex w-full justify-center text-base_brown">
       <div><img src="~/assets/img/Rakuten.webp" class="w-8"/></div>
@@ -41,11 +37,11 @@
 
     <router-link
       to="searchFujiItems"
-      class="block border-t-2 border-base_gray border-opacity-50 p-5 text-center text-2xl font-bold"
+      class="block border-t-2 border-base_gray border-opacity-50 p-5 text-center text-lg sm:text-2xl font-bold"
       >
-      <div class="flex w-full justify-center items-end text-base_brown">
+      <div class="flex w-full justify-center items-center text-base_brown">
       <div><img src="~/assets/img/fujicoffee.webp" class="w-12"/></div>
-      <div>FujiCoffeeオリジナル商品</div>
+      <div class="pt-2">FujiCoffeeオリジナル商品</div>
       </div>
     </router-link>
     <div class="mb-10">

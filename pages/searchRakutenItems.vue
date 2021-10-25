@@ -4,9 +4,9 @@
        class="
         flex 
         w-full justify-center items-end 
-        text-base_brown mt-4 -mb-2 text-center text-3xl font-bold
+        text-base_brown mt-4 -mb-2 text-center text-xl sm:text-3xl font-bold
       ">
-      <div><img src="~/assets/img/Rakuten.webp" class="w-10"/></div>
+      <div><img src="~/assets/img/Rakuten.webp" class="w-8 sm:w-10"/></div>
       <div class="">楽天商品</div>
       </div>
 

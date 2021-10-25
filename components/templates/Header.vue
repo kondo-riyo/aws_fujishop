@@ -2,11 +2,11 @@
   <nav class="w-screen sm:flex items-center bg-base_of sm:py-6 py-2 px-2">
     <!-- mainLogoとuserName -->
     <div class="sm:w-2/5 w-screen flex items-center text-gray-700 mr-6">
-      <div class="flex items-center">
-        <router-link to="/">
-          <img class="h-20 w-20 mx-4" src="~/assets/img/6.webp"
-        /></router-link>
-        <span class="font-semibold text-2xl sm:text-3xl text-base_brown">FUJI SHOP</span>
+      <div class="">
+        <router-link to="/" class="flex items-center">
+          <img class="h-20 w-20 mx-4" src="~/assets/img/6.webp"/>
+          <span class="font-semibold text-2xl sm:text-3xl text-base_brown">FUJI SHOP</span>
+        </router-link>
       </div>
     </div>
 

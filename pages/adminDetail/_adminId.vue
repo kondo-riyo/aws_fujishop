@@ -4,18 +4,19 @@
     @click="back_onStep"
     class="
     flex
+    items-center
     group
     m-1
     ">
       <div class="
-      bg-base_red bg-opacity-30 sm:bg-transparent
-      sm:group-hover:bg-base_red sm:group-hover:bg-opacity-30
-      p-4
+      bg-base_aka bg-opacity-30 sm:bg-transparent
+      sm:group-hover:bg-base_aka sm:group-hover:bg-opacity-30
+      p-3 sm:p-4
       rounded-full
       ">
-        <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
+        <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-3 sm:w-5">
       </div>
-      <div class="text-base_red font-bold m-3 mx-1">
+      <div class="text-base_aka text-opacity-80 text-sm sm:text-base font-bold m-3 mx-1">
         ユーザー情報一覧に戻る
       </div>
     </div>
@@ -48,9 +49,9 @@
       {{this.statusName}}商品はありません
     </div> -->
     <div
-      class="grid lg:m-5 m-1 justify-items-center"
+      class="grid justify-items-center"
     >
-      <div class="bg-white bg-opacity-60 rounded-xl w-10/12">
+      <div class="bg-white bg-opacity-60 rounded-xl w-screen lg:w-1000">
         <div
           class="
             bg-base_red
@@ -64,7 +65,9 @@
             text-center
           "
         >
-          <div class="p-1 lg:w-3/5 lg:text-center text-2xl">商品情報</div>
+          <div class="p-1 lg:w-3/5 lg:text-center text-2xl">
+            商品情報
+          </div>
           <div class="p-1 lg:w-1/5 text-2xl hidden lg:inline-block">
             配達情報
           </div>
@@ -85,19 +88,26 @@
         > 
         <!--   1. アイテム情報 -->
           <div 
-           class="p-2 lg:w-3/5" >
+           class="p-1 lg:w-3/5" >
             <div
               v-for="item in logItem.itemInfo"
               :key="item.specialId"
-              class="m-1 p-1"
+              class="m-1 p-0"
             >
-              <div class="flex items-center justify-center">
+              <div 
+                class="
+                  flex
+                  items-center
+                  lg:w-auto
+                  w-screen
+                  justify-center
+              ">
                 <div class="lg:w-1/4 w-2/5">
                   <img class="rounded shadow-xl" :src="item.itemImg" />
                 </div>
-                <div class="flex flex-col ml-2 w-96 w-2/4">
-                  <div class="p-1 flex">
-                    <div class="w-3/4">
+                <div class="flex flex-col ml-1 w-96 w-3/5 lg:w-3/4">
+                  <div class="p-0 flex">
+                    <div class="w-3/4 truncate">
                       <span class="font-bold lg:text-xl">{{
                         item.itemName
                       }}</span
@@ -136,15 +146,14 @@
                 border-base_gray
                 border-opacity-20
                 mt-3
-                pt-3
-                pb-3
+                py-3
               "
             >
               <div class="w-16"></div>
-              <div class="lg:text-2xl text-xl lg:pr-0 pr-2 lg:w-2/6">
+              <div class="lg:text-2xl text-lg lg:pr-0 pr-2 lg:w-2/6">
                 合計金額
               </div>
-              <div class="lg:text-3xl text-xl font-bold w-1/4">
+              <div class="lg:text-3xl text-xl font-bold">
                 {{ logItem.orderInfo.allPrice }}円
               </div>
             </div>
@@ -232,21 +241,22 @@
     @click="back_onStep"
     class="
     flex
+    items-center
     group
+    m-1
     ">
       <div class="
-      bg-base_red bg-opacity-30 sm:bg-transparent
-      sm:group-hover:bg-base_red sm:group-hover:bg-opacity-30
-      p-4
+      bg-base_aka bg-opacity-30 sm:bg-transparent
+      sm:group-hover:bg-base_aka sm:group-hover:bg-opacity-30
+      p-3 sm:p-4
       rounded-full
       ">
-        <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-5">
+        <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-3 sm:w-5">
       </div>
-      <div class="text-base_red font-bold m-3 mx-1">
+      <div class="text-base_aka text-opacity-80 text-sm sm:text-base font-bold m-3 mx-1">
         ユーザー情報一覧に戻る
       </div>
     </div>
-
    </div>
 </template>
 <script lang="ts">

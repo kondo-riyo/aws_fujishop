@@ -135,20 +135,22 @@
             class="
               sm:bg-base_gray
               sm:bg-opacity-20
-              text-lg
               flex
               sm:flex-col
               justify-center
               items-center
-              px-2
+              px-1
               py-3
               sm:w-1/3
               w-full
             "
           >
-            <square-bottun class="mr-1 sm:mr-0" @click="openModal(logItem)"
-              >配送情報確認</square-bottun
+            <square-bottun 
+             class="sm:mr-0 text-base sm:text-lg" 
+             @click="openModal(logItem)"
             >
+              配送情報確認
+            </square-bottun>
             <div>
               <order-modal
                 :status="mordalStatus"
@@ -159,13 +161,13 @@
 
               <div class="sm:mt-2 ml-1 sm:ml-0">
                 <square-bottun
-                  class="block"
+                  class="block text-base sm:text-lg"
                   v-show="logItem.status === 1"
                   @click="cancelOrder(logItem)"
                   data-testid="cancelOrder"
                   >注文キャンセル</square-bottun
                 >
-                <disableButton class="block" v-show="logItem.status === 9"
+                <disableButton class="block text-base sm:text-lg" v-show="logItem.status === 9"
                   >キャンセル済み</disableButton
                 >
               </div>

@@ -3,21 +3,26 @@
     <div v-if="!itemDetail">リロードして再度ご確認ください</div>
     <div class="sm:w-3/4 my-0 mx-auto" v-if="itemDetail">
       <!-- 戻るボタン追加 -->
-      <div data-testid="back_onStep" @click="back_onStep" class="flex group m-2">
-        <div
-          class="
-            group-hover:bg-base_red group-hover:bg-opacity-30
-            p-4
-            rounded-full
-          "
-        >
-          <img
-            src="~assets/img/yajirusi_icon.webp"
-            class="transform rotate-90 w-5"
-          />
+        <div 
+        @click="back_onStep"
+        class="
+        flex
+        items-center
+        group
+        m-1
+        ">
+          <div class="
+          bg-base_aka bg-opacity-30 sm:bg-transparent
+          sm:group-hover:bg-base_aka sm:group-hover:bg-opacity-30
+          p-3 sm:p-4
+          rounded-full
+          ">
+            <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-3 sm:w-5">
+          </div>
+          <div class="text-base_aka text-opacity-80 text-sm sm:text-base font-bold m-3 mx-1">
+            一覧に戻る
+          </div>
         </div>
-        <div class="text-base_red font-bold m-3 mx-1">一覧に戻る</div>
-      </div>
       <!-- <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div> -->
       <Detail
         :itemDetail="itemDetail"
@@ -65,20 +70,25 @@
         </div>
       </div>
       <!-- 戻るボタン追加 -->
-      <div @click="back_onStep" class="flex group m-2">
-        <div
-          class="
-            group-hover:bg-base_red group-hover:bg-opacity-30
-            p-4
-            rounded-full
-          "
-        >
-          <img
-            src="~assets/img/yajirusi_icon.webp"
-            class="transform rotate-90 w-5"
-          />
+      <div 
+      @click="back_onStep"
+      class="
+      flex
+      items-center
+      group
+      m-1
+      ">
+        <div class="
+        bg-base_aka bg-opacity-30 sm:bg-transparent
+        sm:group-hover:bg-base_aka sm:group-hover:bg-opacity-30
+        p-3 sm:p-4
+        rounded-full
+        ">
+          <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-3 sm:w-5">
         </div>
-        <div class="text-base_red font-bold m-3 mx-1">一覧に戻る</div>
+        <div class="text-base_aka text-opacity-80 text-sm sm:text-base font-bold m-3 mx-1">
+          一覧に戻る
+        </div>
       </div>
     </div>
   </div>
