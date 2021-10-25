@@ -4,7 +4,7 @@
       flex
       sm:flex-col
       container
-      sm:p-10
+      p-0 sm:p-10
       max-w-xs
       overflow-hidden
       hover:shadow-xl
@@ -43,7 +43,7 @@
           }"
         >
           <img
-            class="sm:w-48 sm:h-48 rounded-sm"
+            class="w-36 sm:w-48 rounded-sm"
             :src="swipeItem.img"
             alt="Colors"
           />
