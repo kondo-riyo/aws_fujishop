@@ -40,13 +40,14 @@
         ">
         <div class="
         text-center 
-        font-bold text-2xl
+        font-bold text-xl sm:text-2xl
         ">
             ようこそ！ {{userFromStore.name}} さん
         </div>
         <div class="
         text-center 
-        text-xl
+        text-base
+        sm:text-xl
         ">
             ここでは各ユーザーの注文履歴の確認、配達状況の変更ができます
         </div>
@@ -54,7 +55,7 @@
         <div class="
         text-center 
         mt-5 sm:mt-10 mb-2
-        text-base_brown font-bold text-3xl font-mono
+        text-base_brown font-bold text-xl sm:text-3xl
         ">
             ユーザー情報
         </div>

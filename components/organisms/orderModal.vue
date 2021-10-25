@@ -14,27 +14,27 @@
           ×
         </p>
         <div class="sm:m-3">
-          <div class="sm:flex text-left m-4">
+          <div class="sm:flex text-left mx-4 sm:m-4">
             <div class="sm:w-2/5 text-base_gray sm:px-10">注文者</div>
             <div class="sm:w-3/5">{{ orderInfo.name }} さん</div>
           </div>
-          <div class="text-left m-4 sm:flex">
+          <div class="text-left mx-4 sm:m-4 sm:flex">
             <div class="sm:w-2/5 text-base_gray sm:px-10">お届け先</div>
             <div class="sm:w-3/5">{{ orderInfo.address }}</div>
           </div>
-          <div class="sm:flex text-left m-4">
+          <div class="sm:flex text-left mx-4 sm:m-4">
             <div class="sm:w-2/5 text-base_gray sm:px-10">電話番号 </div>
             <div class="sm:w-3/5">{{ orderInfo.tel }}</div>
           </div>
-          <div class="sm:flex text-left m-4">
+          <div class="sm:flex text-left mx-4 sm:m-4">
             <div class="sm:w-2/5 text-base_gray sm:px-10">メール</div>
             <div class="sm:w-3/5">{{ orderInfo.email }}</div>
           </div>
-          <div class="sm:flex text-left m-4">
+          <div class="sm:flex text-left mx-4 sm:m-4">
             <div class="sm:w-2/5 text-base_gray sm:px-10">配達日時 </div>
             <div class="sm:w-3/5">{{ orderInfo.deliveryDate }} {{ orderInfo.deliveryTime }}時</div>
           </div>
-          <div class="sm:flex text-left m-4">
+          <div class="sm:flex text-left mx-4 sm:m-4">
             <div class="sm:w-2/5 text-base_gray sm:px-10">支払状況</div>
             <div data-testid="paymentStatus" class="sm:w-3/5">{{ status | paymentStatus }}</div>
           </div>
