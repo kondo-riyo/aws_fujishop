@@ -43,7 +43,7 @@
           }"
         >
           <img
-            class="w-36 sm:w-48 rounded-sm"
+            class="w-36 h-36 sm:w-48 sm:h-48 rounded-sm"
             :src="swipeItem.img"
             alt="Colors"
           />
