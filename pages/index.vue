@@ -3,13 +3,13 @@
     <div class="sm:mb-20">
       <swiper :options="headSwiperOption">
         <swiper-slide>
-          <img src="~/assets/img/pancakes.webp" />
+          <img src="~/assets/img/pancakes.webp" class="w-full h-full" />
         </swiper-slide>
         <swiper-slide>
-          <img src="~/assets/img/cookies.webp" />
+          <img src="~/assets/img/cookies.webp" class="w-full h-full" />
         </swiper-slide>
         <swiper-slide>
-          <img src="~/assets/img/breakfast640.webp" />
+          <img src="~/assets/img/breakfast640.webp" class="w-full h-full" />
         </swiper-slide>
       </swiper>
     </div>
@@ -20,7 +20,7 @@
       class="block border-t-2 border-base_gray border-opacity-50 p-5 text-xl sm:text-2xl font-bold text-gray-700"
       >
       <div class="flex w-full justify-center text-base_brown">
-      <div><img src="~/assets/img/Rakuten.webp" class="w-8"/></div>
+      <div><img src="~/assets/img/Rakuten.webp" class="w-8 h-8"/></div>
       <div class="">楽天商品</div>
       </div>
       </router-link>
@@ -40,7 +40,7 @@
       class="block border-t-2 border-base_gray border-opacity-50 p-5 text-center text-lg sm:text-2xl font-bold"
       >
       <div class="flex w-full justify-center items-center text-base_brown">
-      <div><img src="~/assets/img/fujicoffee.webp" class="w-12"/></div>
+      <div><img src="~/assets/img/fujicoffee.webp" class="w-12 h-12"/></div>
       <div class="pt-2">FujiCoffeeオリジナル商品</div>
       </div>
     </router-link>

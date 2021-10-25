@@ -4,7 +4,7 @@
     <div class="sm:w-2/5 w-screen flex items-center text-gray-700 mr-6">
       <div class="">
         <router-link to="/" class="flex items-center">
-          <img class="h-20 w-20 mx-4" src="~/assets/img/6.webp"/>
+          <img class="h-20 w-20 mx-4" src="~/assets/img/6.5.webp"/>
           <span class="font-semibold text-2xl sm:text-3xl text-base_brown">FUJI SHOP</span>
         </router-link>
       </div>
@@ -42,26 +42,26 @@
         />
         </router-link>
       </div>
-      <div class="sm:w-8 w-7 mr-5">
+      <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5">
         <router-link to="/orderLog" v-if="userInfoFromStore">
-          <img src="~/assets/img/rireki.webp"
+          <img src="~/assets/img/rireki.webp" class=""
         /></router-link>
       </div>
-      <div class="sm:w-8 w-7 mr-5">
+      <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5">
         <router-link to="/admin" v-if="userInfoFromStore">
           <img src="~/assets/img/setting.webp"
         /></router-link>
       </div>
-      <div class="sm:w-8 w-7 mr-5" data-testid="logout" v-if="userInfoFromStore" @click="logout">
+      <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5" data-testid="logout" v-if="userInfoFromStore" @click="logout">
         <img src="~/assets/img/logout_icon.webp" />
       </div>
-      <div class="sm:w-8 w-7 mr-5" v-if="!userInfoFromStore">
+      <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5" v-if="!userInfoFromStore">
         <router-link class="block" to="/signup">
           <img src="~/assets/img/user.webp"
         /></router-link>
       </div>
 
-      <div class="sm:w-8 w-7 mr-5" v-if="!userInfoFromStore">
+      <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5" v-if="!userInfoFromStore">
         <router-link class="block" to="/signin">
           <img src="~/assets/img/login_icon.webp"
         /></router-link>
