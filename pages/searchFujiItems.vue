@@ -45,15 +45,17 @@ import { ItemsStore } from '../store';
 import Card from '../components/organisms/card.vue';
 import searchGroup from '../components/morecules/searchGroup.vue';
 type DataType = {
-  keyWord: string;
   searchedItems: itemType[];
   keywordNullFlg: boolean;
   resultNullFlg: boolean;
   routerName: Object;
 };
+type headType = {
+  title: string;
+};
 
 export default Vue.extend({
-  head() {
+  head(): headType {
     return {
       title: 'FUJIオリジナル商品',
     };
@@ -61,7 +63,6 @@ export default Vue.extend({
   components: { Card,searchGroup },
   data(): DataType {
     return {
-      keyWord: '',
       searchedItems: [],
       keywordNullFlg: false, // 検索ワード未入力の場合
       resultNullFlg: false, // 該当結果無しの場合
@@ -71,12 +72,10 @@ export default Vue.extend({
     };
   },
   methods: {
-    search(word: any) {
+    search(word: string): {keywordNullFlg: boolean; resultNullFlg:boolean;}|undefined {
       this.searchedItems = [];
       // 検索ワードなし
       if (word === '') {
-        // this.keywordNullFlg = true;
-        // this.resultNullFlg = false;
         return {
           keywordNullFlg: true,
           resultNullFlg: false

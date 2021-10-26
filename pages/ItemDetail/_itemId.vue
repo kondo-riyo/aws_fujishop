@@ -193,17 +193,18 @@ import squareBottun from '../../components/atoms/button/squareBottun.vue';
 import Detail from '../../components/organisms/detail.vue';
 
 type DataType = {
-  isSelectedM: null | number;
-  isSelectedL: null | number;
   itemDetail: itemType | undefined;
   itemNum: number[];
   selectedItemNum: number;
   allToppingPrice: number;
   selectedTopping: toppingType[];
 };
+type headType = {
+  title: string;
+};
 
 export default Vue.extend({
-  head() {
+  head(): headType {
     return {
       title: '商品詳細',
     };
@@ -214,8 +215,6 @@ export default Vue.extend({
   },
   data(): DataType {
     return {
-      isSelectedM: null,
-      isSelectedL: null,
       itemDetail: {},
       itemNum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       selectedItemNum: 1,
@@ -228,7 +227,7 @@ export default Vue.extend({
     this.getItemDetail(params);
   },
   methods: {
-    getItemDetail(params: number) {
+    getItemDetail(params: number): void {
       const getItemDetail: itemType | undefined =
         ItemsStore.getItemDetail(params);
       this.itemDetail = getItemDetail;
@@ -324,7 +323,7 @@ export default Vue.extend({
     getToppings(): toppingType[] {
       return ToppingsStore.getToppings;
     },
-    calcTotalPrice(): any {
+    calcTotalPrice(): number {
       return this.cartAllPrice();
     },
   },

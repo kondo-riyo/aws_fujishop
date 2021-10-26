@@ -181,19 +181,28 @@
 <script lang="ts">
 import Vue from 'vue';
 import { CartStore } from '../store';
-import { orderedItemType } from '../types/cartItemType';
+import { orderedItemType, orderItemType } from '../types/cartItemType';
 import disableButton from  '../components/atoms/button/disableButton.vue'
 import squareBottun from '../components/atoms/button/squareBottun.vue'
 import orderModal from '../components/organisms/orderModal.vue' 
+
+type DataType = {
+      showContent: boolean,
+      mordalOrderInfo: string,
+      mordalStatus: number,
+}
+type headType = {
+  title: string;
+};
+
 export default Vue.extend({
-  head() {
+  head(): headType {
     return {
       title: '注文履歴',
-      show: false,
     };
   },
   components:{disableButton,squareBottun,orderModal},
-  data() {
+  data(): DataType {
     return {
       showContent: false,
       mordalOrderInfo: '',
@@ -201,16 +210,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    totalItemPrice(): number {
-      let totalPrice: number = 0;
-      this.getOrderLogs.forEach((item) => {
-        item.itemInfo!.forEach((price) => {
-          totalPrice = totalPrice + price.totalPrice!;
-        });
-      });
-      return totalPrice;
-    },
-    getOrderLogs() {
+    getOrderLogs(): orderItemType[] {
       return CartStore.getOrderLog;
     },
   },
@@ -218,15 +218,15 @@ export default Vue.extend({
       await CartStore.fetchOrderLogAct();
    },
   methods: {
-    cancelOrder(logItem: orderedItemType) {
+    cancelOrder(logItem: orderedItemType): void {
       CartStore.cancelOrderAct(logItem);
     },
-    openModal(logItem: any) {
+    openModal(logItem: any): void {
       this.showContent = true;
       this.mordalOrderInfo = logItem.orderInfo;
       this.mordalStatus = logItem.status;
     },
-    closeModal() {
+    closeModal(): void {
       this.showContent = false;
     },
   },

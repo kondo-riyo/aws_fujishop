@@ -281,32 +281,6 @@
                       name="配達時間"
                       rules="required|delivary_validation:@配達日"
                     >
-                      <!-- <select
-                      v-model="deliveryTime"
-                      name="配達時間"
-                      class="
-                        appearance-none
-                        block
-                        w-full
-                        bg-base_gray bg-opacity-25
-                        text-gray-700
-                        border border-gray-200
-                        rounded
-                        py-3
-                        px-4
-                        leading-tight
-                        focus:outline-none focus:bg-white focus:border-gray-500
-                      "
-                    >
-                      <option value="10">10時</option>
-                      <option value="11">11時</option>
-                      <option value="12">12時</option>
-                      <option value="13">13時</option>
-                      <option value="14">14時</option>
-                      <option value="15">15時</option>
-                      <option value="16">16時</option>
-                      <option value="17">17時</option>
-                    </select> -->
                       <delivery-select
                         v-model="deliveryTime"
                         name="配達時間"
@@ -403,7 +377,7 @@
                     v-if="invalid"
                     class="
                       font-semibold
-                      text-base_red
+                      text-base_aka
                       bg-base_cream
                       py-3
                       px-4
@@ -418,6 +392,7 @@
                     @click="OrderSubmit()"
                     :disabled="invalid"
                     v-if="!invalid"
+                    class="bg-base_aka"
                   >
                     ご注文を確定する
                   </round-bottun>
@@ -455,14 +430,14 @@ type DataType = {
   selectPayment: boolean;
   options: Array<{ [field: string]: any }>;
 };
+
+type headType = {
+  title: string;
+};
+
 export default Vue.extend({
   data(): DataType {
     return {
-      // name : UserStore.getUserInfo!.name,
-      // email : UserStore.getUserInfo!.email,
-      // postalcode : UserStore.getUserInfo!.postalcode,
-      // address : UserStore.getUserInfo!.address,
-      // tel : UserStore.getUserInfo!.tel,
       name: '',
       email: '',
       postalcode: '',
@@ -494,7 +469,7 @@ export default Vue.extend({
     inputA,
   },
   methods: {
-    OrderSubmit(): void {
+    OrderSubmit(): void{
       // cartの商品のstatusを1又は２に変更。
       let orderInfo = {
         name: this.name,
@@ -529,7 +504,7 @@ export default Vue.extend({
     notcreditPay(): void {
       this.selectPayment = false;
     },
-    yubinbango() {
+    yubinbango(): void {
       let newAddress = '';
       new YubinBango.Core(this.postalcode, (addr: any) => {
         newAddress = addr.region + addr.locality + addr.street;
@@ -558,11 +533,6 @@ export default Vue.extend({
       this.creditCardNum = value;
     },
   },
-  // async fetch():Promise<void> {
-  //   const fetchitemInfoFromStore = CartStore.fetchitemInfoAct();
-  //   await Promise.all([fetchitemInfoFromStore]);
-  // },
-
   //async fetchでcartの商品を取得する(cartStore)
   computed: {
     userInfoFromStore(): userInfoType | null {
@@ -580,14 +550,14 @@ export default Vue.extend({
       return allPrice;
     },
   },
-  // mounted() {
+  // mounted(): void {
   //     this.name = UserStore.getUserInfo!.name,
   //     this.email = UserStore.getUserInfo!.email,
   //     this.postalcode = UserStore.getUserInfo!.postalcode,
   //     this.address = UserStore.getUserInfo!.address,
   //     this.tel = UserStore.getUserInfo!.tel
   // },
-  head() {
+  head(): headType {
     return {
       title: 'お届け先情報入力',
     };

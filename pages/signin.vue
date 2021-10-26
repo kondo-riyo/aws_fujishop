@@ -125,7 +125,6 @@ import inputA from '../components/atoms/input/inputA.vue'
 type DataType = {
   userInfo: userLoginType;
   isChecked: boolean;
-  eye: boolean;
 };
 type headType = {
   title: string;
@@ -140,7 +139,6 @@ export default Vue.extend({
         password: '',
       },
       isChecked: false,
-      eye: false
     };
   },
     head(): headType {
@@ -156,26 +154,18 @@ export default Vue.extend({
   },
   methods: {
     login(): void {
-    //  if (typeof this.userInfo !== undefined) {
         auth
           .signInWithEmailAndPassword(
             this.userInfo.email,
             this.userInfo.password
           )
           .then((authUser):void => {
-            // if (
-            //   authUser.user === null ||
-            //   authUser.user.email === null ||
-            //   authUser.user.uid === null
-            // )
-            //   return;
             UserStore.loginAct(authUser.user!.email!, authUser.user!.uid).then(
               () => 
               console.log('login完了'),
               this.$router.push('/')
             );
           });
-     // } 
     },
     inputMail(newvalue:string): void {
       this.userInfo.email=newvalue
@@ -183,7 +173,7 @@ export default Vue.extend({
     inputPassword(value:string): void {
       this.userInfo.password=value
     },
-  hidePassword() {
+    hidePassword(): void {
       this.isChecked = !this.isChecked;
     }
   },
