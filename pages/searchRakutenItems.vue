@@ -45,15 +45,18 @@ import Card from '../components/organisms/card.vue';
 import searchGroup from '../components/morecules/searchGroup.vue';
 
 type DataType = {
-  keyWord: string;
   defaultItemsFlg: boolean;
   keywordNullFlg: boolean;
   searchItemNullFlg: boolean;
   routerName: Object;
 };
 
+type headType = {
+  title: string;
+};
+
 export default Vue.extend({
-  head() {
+  head(): headType {
     return {
       title: '楽天商品',
     };
@@ -61,7 +64,6 @@ export default Vue.extend({
   components: { Card, searchGroup },
   data(): DataType {
     return {
-      keyWord: '',
       defaultItemsFlg: true,
       keywordNullFlg: false,
       searchItemNullFlg: false,
@@ -70,7 +72,7 @@ export default Vue.extend({
       },
     };
   },
-  created() {
+  created(): void{
     // 遷移したらtop30が表示される
     this.defaultItemsFlg = true;
   },

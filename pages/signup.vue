@@ -304,7 +304,6 @@ let YubinBango = require('yubinbango-core2');
 type DataType = {
   userInfo: userInfoType;
   isChecked: boolean;
-  eye: boolean;
 };
 type headType = {
   title: string;
@@ -328,7 +327,6 @@ export default Vue.extend({
         uid: '',
       },
       isChecked: false,
-      eye: false,
     };
   },
   head(): headType {
@@ -388,7 +386,7 @@ export default Vue.extend({
     inputAddress(value: string): void {
       this.userInfo.address = value;
     },
-    yubinbango() {
+    yubinbango(): void {
       console.log(this.userInfo.postalcode);
       let newAddress = '';
       new YubinBango.Core(this.userInfo.postalcode, (addr: any) => {
@@ -396,7 +394,7 @@ export default Vue.extend({
         this.userInfo.address = newAddress;
       });
     },
-    onClick() {
+    onClick(): void {
       this.isChecked = !this.isChecked;
     },
   },

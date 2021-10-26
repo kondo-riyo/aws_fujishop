@@ -262,6 +262,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { AdminStore } from '../../store';
+import { orderItemType } from '../../types/cartItemType';
 
 type DataType = {
   selectStatus: string;
@@ -276,9 +277,12 @@ type DataType = {
     {label: string, value: number},
   ]
 };
+type headType = {
+  title: string;
+};
 
 export default Vue.extend({
-  head() {
+  head(): headType {
     return {
       title: '注文履歴',
     };
@@ -299,19 +303,9 @@ export default Vue.extend({
     };
   },
   computed: {
-    getLogItems(){
+    getLogItems(): orderItemType[]{
       //@ts-ignore
       return AdminStore.getstoreLogItems
-    },
-    totalItemPrice():number {
-      let totalPrice: number = 0;
-      //@ts-ignore
-      this.logItems.forEach((item:any) => {
-        item.itemInfo!.forEach((price:any) => {
-          totalPrice = totalPrice + price.totalPrice!;
-        });
-      });
-      return totalPrice;
     },
   },
   async fetch(): Promise<void> {
@@ -324,7 +318,7 @@ export default Vue.extend({
           let idStatus= {id:id, status:Number(status), uid:uid}
           AdminStore.updateStatusAct(idStatus)
       },
-      back_onStep() {
+      back_onStep(): void {
         this.$router.push('/admin')
       },
       // selectToStatus(value: any) {
