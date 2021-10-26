@@ -177,20 +177,20 @@ export default Vue.extend({
       }),
     },
   },
-  async fetch() {
+  async fetch() :Promise<void> {
     //if (!this.moniterCarts.orderId) {
     const fetchitemInfo = CartStore.fetchitemInfoAct();
     await Promise.all([fetchitemInfo]);
     //}
   },
   methods: {
-    toppingSize(el: number): string | undefined {
+    toppingSize(el: number): string {
       if (el === 1) {
         return '多';
       } else if (el === 2) {
         return '少';
       } else {
-        return;
+        return '';
       }
     },
     deleteCartItem(id: string): void {
@@ -208,7 +208,7 @@ export default Vue.extend({
       });
       return price;
     },
-    moniterCarts() {
+    moniterCarts():void {
       // @ts-ignore
       return this.cartItemFromStore;
     },

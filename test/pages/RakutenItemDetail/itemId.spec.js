@@ -17,6 +17,7 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
   let divWrapper;
   let store;
   let ApiItemsStore;
+  let UserStore;
   let confirmSpy;
 
   beforeAll(() => {
@@ -28,9 +29,13 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
         getItemDetail: fn,
       },
     };
+    UserStore = {
+      userInfo:{name:'ユーザー'}
+    }
     store = new Vuex.Store({
       modules: {
         apis: ApiItemsStore,
+        users: UserStore
       },
     });
 
@@ -73,7 +78,7 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
   it('totalItemPriceが期待通りか', async () => {
     await expect(wrapper.vm.calcTotalPrice).toEqual(0);
   });
-  it('$router.pushが発火してるか', async () => {
+  it('$router.pushが発火してるか(back_onStep)', async () => {
     const mockRouterPush = jest.fn();
     const mockRouteParams = jest.fn();
     const app_mount = mount(RakuItemId, {
@@ -116,11 +121,6 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
     buttonWrapper.vm.$emit('click');
     expect(buttonWrapper.trigger('addCart')).toBeTruthy();
   });
-  it('addCartが正しく分岐する', () => {
-    confirmSpy.mockImplementation(jest.fn(() => false));
-    let buttonWrapper = wrapper.find('[data-testid="addCart"]');
-    buttonWrapper.vm.$emit('click');
-  });
   it('createdの発火', () => {
     wrapper.setMethods({
       getItemDetail: jest.fn(),
@@ -150,6 +150,21 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
     });
     await expect(wrapper.vm.calcTotalPrice).toEqual(1000);
   });
+  // it('addCartが正しく分岐する', () => {
+  //   confirmSpy.mockImplementation(jest.fn(() => false));
+  //   const mockRouterPush = jest.fn();
+  //   const app_mount = mount(RakuItemId, {
+  //     mocks: {
+  //       $router: {
+  //         push: mockRouterPush,
+  //       },
+  //     },
+  //   });
+  //   let buttonWrapper = app_mount.find('[data-testid="addCart"]');
+  //   console.log(buttonWrapper.html())
+  //   buttonWrapper.vm.$emit('click');
+  //   expect(mockRouterPush).toHaveBeenCalledWith;
+  // });
 });
 
 // npm run test /test/pages/RakutenItemDetail/itemId.spec.js

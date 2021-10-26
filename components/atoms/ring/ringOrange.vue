@@ -22,7 +22,7 @@ import Vue from 'vue';
 export default Vue.extend({
   props: ['item'],
   methods: {
-    selectRing(img: any) {
+    selectRing(img: string):void {
       this.$emit('selectRing', img);
     },
   },

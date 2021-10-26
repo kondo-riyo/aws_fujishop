@@ -80,5 +80,17 @@ describe('Testing orderModal component', () => {
     let modalWrapper = newWrapper.get('[data-testid="paymentStatus"]');
     expect(modalWrapper.text()).toBe('キャンセル');
   });
+  it('filter statusが上記以外の時は確認中と表示する', () => {
+    const newWrapper = shallowMount(orderModal, {
+      propsData: {
+        orderInfo: {
+          name: 'テストユーザ9',
+        },
+        status: 8,
+      },
+    });
+    let modalWrapper = newWrapper.get('[data-testid="paymentStatus"]');
+    expect(modalWrapper.text()).toBe('確認中');
+  });
 });
 //npm run test test/organisms/orderModal.spec.js

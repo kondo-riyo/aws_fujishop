@@ -52,7 +52,7 @@
           <img src="~/assets/img/setting.webp"
         /></router-link>
       </div>
-      <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5" data-testid="logout" v-if="userInfoFromStore" @click="logout">
+      <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5" data-testid="logout" v-show="userInfoFromStore" @click="logout">
         <img src="~/assets/img/logout_icon.webp" />
       </div>
       <div class="sm:w-8 sm:h-8 w-7 h-7 mr-5" v-if="!userInfoFromStore">
@@ -83,8 +83,8 @@ export default Vue.extend({
     },
   },
   computed: {
-    userInfoFromStore(): userInfoType | null {
-      return UserStore.getUserInfo;
+    userInfoFromStore(): userInfoType {
+      return UserStore.getUserInfo!;
     },
   },
 });

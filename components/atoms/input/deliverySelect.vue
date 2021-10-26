@@ -26,7 +26,7 @@
   </fieldset>
 </template>
 
-<script>
+<script >
 export default {
   name: "deliverySelect",
   props: {
@@ -35,7 +35,7 @@ export default {
     name: { type: String, require: true }
   },
   methods: {
-    updateValue (e) {
+    updateValue (e){
       this.$emit("input", e.target.value);
     },
     mountedEmit() {
