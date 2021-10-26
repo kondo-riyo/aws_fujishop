@@ -72,6 +72,7 @@ type DataType = {
         autoplay: {
           delay: number;
           disableOnInteraction: boolean;
+           lazyLoading: boolean,
         };
         pagination: {
           el: string;

@@ -24,11 +24,9 @@
     "jwt-decode": "^3.1.2",
     "lodash.clonedeep": "^4.5.0",
     "nuxt": "^2.15.8",
-    "nuxt-lazy-load": "^1.2.7",
     "swiper": "^5.4.5",
     "tailwindcss": "^2.2.7",
     "universal-cookie": "^4.0.4",
-    "v-lazy-image": "^2.0.1",
     "vee-validate": "^3.4.11",
     "vue-awesome-swiper": "^4.1.1",
     "yubinbango-core2": "^0.6.3"
