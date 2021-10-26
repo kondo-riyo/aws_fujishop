@@ -17,7 +17,7 @@
 import Vue from 'vue'
 export default Vue.extend({
   methods: {
-    click() {
+    click():void {
       this.$emit("click");
     }
   }

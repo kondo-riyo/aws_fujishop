@@ -47,31 +47,15 @@ describe('Testing Header component', () => {
     divWrapper.get('div').trigger('click');
     expect(store.logout).toHaveBeenCalled;
   });
-
-  //   it('$router.pushが発火してるか', () => {
-  //     const mockRouterPush = jest.fn();
-  //     // const mockRouteParams = jest.fn();
-  //     const app_mount = shallowMount(Header, {
-  //       stubs:['router-link'],
-  //       mocks: {
-  //         $router: {
-  //           push: mockRouterPush
-  //         },
-  //         // $route: {
-  //         //   params: mockRouteParams
-  //         // }
-  //       }
-  //     });
-  //     expect(mockRouterPush.mock.calls.length).toBe(0)
-  //     let ringWrapper = app_mount.find('[data-testid="logout"]');
-  //     ringWrapper.vm.$emit('click');
-  //     expect(ringWrapper.emitted('logout')).toBeTruthy();
-
-  //     // app_mount.find('[data-testid="logout"]').trigger('click');
-  //     // expect(mockRouterPush).toHaveBeenCalledWith
-  //     expect(mockRouterPush.mock.calls.length).toBe(1);
-  //     // expect(mockRouteParams).toHaveBeenCalledWith
-  //   });
+ // v-ifでuserInfoがない場合にdata-tesiidが表示されないので、
+ // v-showに切り替えています
+  it('クリック時に$route.pushが実行される', async () => {
+    const $route = {
+      name: null
+    }
+    wrapper.find('[data-testid="logout"]').trigger('click');
+    expect(wrapper.vm.$route.name).toBe($route.name)
+  });
 });
 
 // npm run test /test/templates/Header.spec.js

@@ -79,6 +79,7 @@ export default Vue.extend({
         autoplay: {
           delay: 4000,
           disableOnInteraction: false,
+          lazyLoading: true,
         },
         pagination: {
           el: '.swiper-pagination',

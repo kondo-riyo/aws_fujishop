@@ -18,7 +18,7 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'roundBottun',
   methods: {
-    click() {
+    click():void {
       this.$emit("click");
     }
   }

@@ -115,7 +115,8 @@ export default Vue.extend({
   },
   props: ['itemDetail', 'options'],
   methods: {
-    updateValue(e: any): void {
+    updateValue(e: string): void {
+      //@ts-ignore
       this.$emit('input', e.target.value);
     },
     changeImg(img: string): void {

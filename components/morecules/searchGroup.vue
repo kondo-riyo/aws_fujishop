@@ -10,12 +10,16 @@ import Vue from 'vue';
 import inputSearch from "../atoms/input/inputSearch.vue"
 import searchLogo from "../atoms/logo/searchLogo.vue"
 
+type DataType = {
+  keyword: string
+};
+
 export default Vue.extend({
   components:{
     inputSearch,
     searchLogo
   },
-  data(){
+  data(): DataType{
     return{
       keyword:''
     }
@@ -25,7 +29,7 @@ export default Vue.extend({
       this.$emit('searchItems',this.keyword);
     },
 
-    inputKeyWord(keyWord:any){
+    inputKeyWord(keyWord:string):void{
       this.keyword = keyWord;
     },
   },

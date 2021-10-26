@@ -5,6 +5,7 @@
       <!-- 戻るボタン追加 -->
         <div 
         @click="back_onStep"
+        data-testid="back_onStep"
         class="
         flex
         items-center
