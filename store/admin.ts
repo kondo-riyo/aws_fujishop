@@ -2,6 +2,7 @@ import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators"
 import { db } from "../plugins/firebase";
 import { UserStore } from "../store";
 import {idNameType} from '../types/userInfoType';
+import { orderItemType } from "~/types/cartItemType";
 
 type idSatusType = {
     id: string;
@@ -16,7 +17,7 @@ export default class AdminStore extends VuexModule {
         public id: string ='';
         public status: number = 0;
         public users: idNameType[] = [];
-        public storeLogItems: any[] = [];
+        public storeLogItems: orderItemType[] = [];
         public usersList: idNameType[] = [];
 
     //getters-----------------------------------
@@ -24,7 +25,7 @@ export default class AdminStore extends VuexModule {
             return this.users;
         }
 
-        public get getstoreLogItems(): any[] {
+        public get getstoreLogItems(): orderItemType[] {
             return this.storeLogItems
         }
         

@@ -46,18 +46,21 @@ import Vue from 'vue';
 import { UserStore } from '../store';
 import { userInfoType } from '../types/userInfoType';
 import roundBottun from '../components/atoms/button/roundBottun.vue'
+
+type headType = {
+  title: string;
+};
+
 export default Vue.extend({
   components:{
     roundBottun
   },
   computed: {
-    // userInfoFromStore() {
     userInfoFromStore(): userInfoType | null {
       return UserStore.getUserInfo;
-      // this.userInfoStore()
     },
   },
-  head() {
+  head(): headType {
     return {
       title: '注文完了',
     };

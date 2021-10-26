@@ -5,6 +5,7 @@
       <!-- 戻るボタン追加 -->
         <div 
         @click="back_onStep"
+        data-testid="back_onStep"
         class="
         flex
         items-center
@@ -23,7 +24,6 @@
             一覧に戻る
           </div>
         </div>
-      <!-- <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div> -->
       <Detail
         :itemDetail="itemDetail"
         :options="itemNum"
@@ -35,7 +35,6 @@
         <p class="mb-3 pl-2 text-xl">
           {{ itemDetail.moreDescription }}
         </p>
-        <!-- <div class="flex flex-wrap"></div> -->
       </div>
       <div class="flex justify-end mt-5">
         <div class="px-4 sm:py-3 py-1 sm:px-4">
@@ -72,6 +71,7 @@
       <!-- 戻るボタン追加 -->
       <div 
       @click="back_onStep"
+      data-testid="back_onStep"
       class="
       flex
       items-center
@@ -108,11 +108,19 @@ type DataType = {
   selectedItemNum: number;
   params: string;
 };
+type headType = {
+  title: string;
+};
 
 export default Vue.extend({
   components: {
     Detail,
     squareBottun,
+  },
+  head(): headType {
+    return {
+      title: '商品詳細',
+    };
   },
   data(): DataType {
     return {
@@ -122,16 +130,12 @@ export default Vue.extend({
       params: '',
     };
   },
-  async asyncData({ params }) {
+  async asyncData({ params }){
     const paramsId = params.itemId;
     return { params: paramsId };
   },
   created(): void {
-    // const params = this.$route.params.itemId;
     this.getItemDetail();
-    // const getItemDetail: itemType | undefined =
-    //   ApiItemsStore.getItemDetail(this.params);
-    // this.itemDetail = getItemDetail;
   },
   methods: {
     cartAllPrice(): number {
@@ -143,7 +147,7 @@ export default Vue.extend({
       }
       return this.selectedItemNum * this.itemDetail.price;
     },
-    getItemDetail() {
+    getItemDetail(): void {
       const getItemDetail: itemType | undefined = ApiItemsStore.getItemDetail(
         this.params
       );
@@ -175,15 +179,8 @@ export default Vue.extend({
     },
   },
   computed: {
-    calcTotalPrice(): any {
+    calcTotalPrice(): number {
       return this.cartAllPrice();
-      //   if (
-      //     this.itemDetail === undefined ||
-      //     this.itemDetail.price === undefined
-      //   ) {
-      //     return 0;
-      //   }
-      //   return this.selectedItemNum * this.itemDetail.price;
     },
   },
 });

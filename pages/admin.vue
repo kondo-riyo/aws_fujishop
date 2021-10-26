@@ -109,19 +109,21 @@
 <script lang="ts">
 import Vue from 'vue'
 import { UserStore, AdminStore } from '../store'
-// import { db } from '../plugins/firebase'
 import inputA from '../components/atoms/input/inputA.vue';
 import RoundBottun from '../components/atoms/button/roundBottun.vue';
+import { idNameType, userInfoType } from '../types/userInfoType';
 
 type DataType = {
     adminPassword: boolean,
     adminPassword_num: string
 };
-
+type headType = {
+  title: string;
+};
 
 export default Vue.extend({
   components: { inputA, RoundBottun },
-    head() {
+    head(): headType {
         return {
         title: '注文管理(管理者)',
         };
@@ -133,27 +135,13 @@ export default Vue.extend({
         }
     },
     async fetch(): Promise<void> {
-        // if (!UserStore.userInfo) {
-        // console.log('ログインしていません');
-        // } else {
-        // if (!UserStore.userInfo.uid) return;
-        // await db
-        //     .collection(`users`)
-        //     .get()
-        //     .then((users) => {
-        //     users.forEach((user) => {
-        //         //@ts-ignore
-        //         this.usersList.push(user.data());
-        //     });
-        //     });
-        // }
         await AdminStore.fetchUsersAct();
     },
     computed:{
-        userFromStore(){
+        userFromStore(): userInfoType|null {
             return UserStore.getUserInfo
         },
-        adminFromStore() {
+        adminFromStore(): idNameType[] {
             return AdminStore.getUsersList
         }
     },

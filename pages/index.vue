@@ -62,8 +62,79 @@ import { ApiItemsStore, ItemsStore } from '../store';
 import { itemType } from '../types/itemType';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 import swipeCard from '../components/organisms/swipeCard.vue';
+
+type headType = {
+  title: string;
+};
+
+type DataType = {
+        swiperOption: {
+        autoplay: {
+          delay: number;
+          disableOnInteraction: boolean;
+        };
+        pagination: {
+          el: string;
+          clickable: boolean;
+        };
+        slidesPerView: number;
+        centeredSlides: boolean;
+        loop: boolean;
+        navigation: {
+          nextEl: string;
+          prevEl: string;
+        };
+        breakpoints: {
+          1500: {
+            slidesPerView: number;
+          };
+          1200: {
+            slidesPerView: number;
+          };
+          1000: {
+            slidesPerView: number;
+          };
+          800: {
+            slidesPerView: number;
+          };
+          600: {
+            slidesPerView: number;
+          };
+          300: {
+            slidesPerView: number;
+            spaceBetween: number;
+          };
+        };
+      };
+      headSwiperOption: {
+        autoplay: {
+          delay: number;
+          disableOnInteraction: boolean;
+        };
+        slidesPerView: number;
+        centeredSlides: boolean;
+        loop: boolean;
+        breakpoints: {
+          1200: {
+            slidesPerView: number;
+          };
+          600: {
+            slidesPerView: number;
+          };
+          300: {
+            slidesPerView: number;
+            spaceBetween: number;
+          };
+        };
+      };
+      routerName: {
+        rakuten: string;
+        fujiShop: string;
+      };
+};
+
 export default Vue.extend({
-  head() {
+  head(): headType {
     return {
       title: 'ホーム',
     };
@@ -73,7 +144,7 @@ export default Vue.extend({
     SwiperSlide,
     swipeCard,
   },
-  data() {
+  data(): DataType {
     return {
       swiperOption: {
         autoplay: {
