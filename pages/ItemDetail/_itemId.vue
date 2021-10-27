@@ -143,14 +143,13 @@
         <div class="px-4 sm:py-3 py-1 sm:px-4">
           <p class="text-gray-700 sm:text-4xl text-xl">
             合計
-            <span class="font-bold text-4xl"
-              >￥{{ calcTotalPrice }}</span
-            >
+            <span class="font-bold text-4xl">￥{{ calcTotalPrice }}</span>
           </p>
         </div>
         <div class="flex">
           <div class="py-1 pr-2 sm:py-2 sm:px-1">
             <squareBottun
+              data-testid="addCart"
               class="
                 text-white
                 font-semibold
@@ -194,7 +193,7 @@
           </div>
         </div>
       </div>
-      
+
       <div @click="back_onStep" class="flex items-center group m-1">
         <div
           class="

@@ -551,11 +551,13 @@ export default Vue.extend({
     },
   },
   mounted(): void {
+    if(UserStore.getUserInfo){
       this.name = UserStore.getUserInfo!.name,
       this.email = UserStore.getUserInfo!.email,
       this.postalcode = UserStore.getUserInfo!.postalcode,
       this.address = UserStore.getUserInfo!.address,
       this.tel = UserStore.getUserInfo!.tel
+    }
   },
   head(): headType {
     return {
