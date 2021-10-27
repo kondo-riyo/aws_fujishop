@@ -38,7 +38,6 @@ export default Vue.extend({
     if (UserStore.userInfo) {
       const fetchSignupInfo = UserStore.fetchSignupInfoAct();
       const fetchitemInfo = CartStore.fetchitemInfoAct();
-      //const cartitemInfo = CartStore.fetchCartAct()
       await Promise.all([fetchSignupInfo, fetchitemInfo]);
     }
   },

@@ -36,39 +36,63 @@
           {{ itemDetail.moreDescription }}
         </p>
       </div>
-      <div class="flex justify-end mt-5">
+
+      <div class="flex flex-col items-end mt-5">
         <div class="px-4 sm:py-3 py-1 sm:px-4">
           <p class="text-gray-700 sm:text-4xl text-xl">
             合計
-            <span class="font-bold sm:text-4xl text-2xl"
+            <span class="font-bold text-4xl"
               >￥{{ calcTotalPrice }}</span
             >
           </p>
         </div>
-        <div class="py-1 px-6 sm:py-2 sm:px-8">
-          <squareBottun
-          data-testid="addCart"
-            class="
-              text-white
-              font-semibold
-              bg-base_red
-              sm:py-3 sm:px-4
-              py-1
-              px-4
-              rounded
-              transition
-              duration-200
-              transform-gpu
-              hover:scale-105
-              text-xm
-            "
-            @click="addCart"
-          >
-            追加
-          </squareBottun>
+        <div class="flex">
+          <div class="py-1 pr-2 sm:py-2 sm:px-1">
+            <squareBottun
+              class="
+                text-white
+                font-semibold
+                bg-base_red
+                sm:py-3 sm:px-4
+                py-1
+                px-4
+                rounded
+                transition
+                duration-200
+                transform-gpu
+                hover:scale-105
+                text-xm
+              "
+              @click="addCart"
+            >
+              カートへ追加
+            </squareBottun>
+          </div>
+          <div class="py-1 pr-2 sm:py-2 sm:px-1">
+            <router-link to="/Cart">
+              <squareBottun
+                class="
+                  text-white
+                  font-semibold
+                  bg-base_red
+                  sm:py-3 sm:px-4
+                  py-1
+                  px-4
+                  rounded
+                  transition
+                  duration-200
+                  transform-gpu
+                  hover:scale-105
+                  text-xm
+                "
+              >
+                カートを確認
+              </squareBottun>
+            </router-link>
+          </div>
         </div>
       </div>
-      <!-- 戻るボタン追加 -->
+
       <div 
       @click="back_onStep"
       data-testid="back_onStep"
@@ -98,6 +122,7 @@
 import Vue from 'vue';
 import { ApiItemsStore, UserStore, CartStore } from '../../store';
 import { itemType } from '../../types/itemType';
+import { userInfoType } from '../../types/userInfoType';
 import { cartItemType } from '../../types/cartItemType';
 import Detail from '../../components/organisms/detail.vue';
 import squareBottun from '../../components/atoms/button/squareBottun.vue';
@@ -107,6 +132,7 @@ type DataType = {
   itemNum: number[];
   selectedItemNum: number;
   params: string;
+  userInfo:userInfoType|null;
 };
 type headType = {
   title: string;
@@ -128,6 +154,7 @@ export default Vue.extend({
       itemNum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       selectedItemNum: 1,
       params: '',
+      userInfo: UserStore.userInfo
     };
   },
   async asyncData({ params }){
@@ -154,8 +181,7 @@ export default Vue.extend({
       this.itemDetail = getItemDetail;
     },
     async addCart(): Promise<void> {
-      console.log('add');
-      if (!UserStore.userInfo) {
+      if (!this.userInfo) {
         this.$router.push('/signin');
       } else {
         const addItemToCart: cartItemType = {
@@ -170,7 +196,7 @@ export default Vue.extend({
         };
         if (confirm('カートに商品を追加しますか？')) {
           CartStore.addItemToCartAct(addItemToCart);
-          await this.$router.push('/Cart');
+          // await this.$router.push('/Cart');
         }
       }
     },
