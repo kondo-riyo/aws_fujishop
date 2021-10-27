@@ -2,26 +2,37 @@
   <div class="sm:pl-10 p-1 flex">
     <div class="sm:w-3/4 my-0 mx-auto">
       <!-- 戻るボタン追加 -->
-    <div 
-    @click="back_onStep"
-    class="
-    flex
-    items-center
-    group
-    m-1
-    ">
-      <div class="
-      bg-base_aka bg-opacity-30 sm:bg-transparent
-      sm:group-hover:bg-base_aka sm:group-hover:bg-opacity-30
-      p-3 sm:p-4
-      rounded-full
-      ">
-        <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-3 sm:w-5">
+      <div @click="back_onStep" class="flex items-center group m-1">
+        <div
+          class="
+            bg-base_aka
+            bg-opacity-30
+            sm:bg-transparent
+            sm:group-hover:bg-base_aka
+            sm:group-hover:bg-opacity-30
+            p-3
+            sm:p-4
+            rounded-full
+          "
+        >
+          <img
+            src="~assets/img/yajirusi_icon.webp"
+            class="transform rotate-90 w-3 sm:w-5"
+          />
+        </div>
+        <div
+          class="
+            text-base_aka
+            text-opacity-80 text-sm
+            sm:text-base
+            font-bold
+            m-3
+            mx-1
+          "
+        >
+          一覧に戻る
+        </div>
       </div>
-      <div class="text-base_aka text-opacity-80 text-sm sm:text-base font-bold m-3 mx-1">
-        一覧に戻る
-      </div>
-    </div>
       <!-- <div class="mb-5"><h1 class="block ml-2 text-4xl">商品詳細</h1></div> -->
 
       <Detail
@@ -128,57 +139,92 @@
         </div>
       </div>
 
-      <div class="flex justify-end mt-5">
+      <div class="flex flex-col items-end mt-5">
         <div class="px-4 sm:py-3 py-1 sm:px-4">
           <p class="text-gray-700 sm:text-4xl text-xl">
             合計
-            <span class="font-bold sm:text-4xl text-2xl"
-              >￥{{ calcTotalPrice }}</span
-            >
+            <span class="font-bold text-4xl">￥{{ calcTotalPrice }}</span>
           </p>
         </div>
-        <div class="py-1 px-6 sm:py-2 sm:px-8">
-          <squareBottun
-            class="
-              text-white
-              font-semibold
-              bg-base_red
-              sm:py-3 sm:px-4
-              py-1
-              px-4
-              rounded
-              transition
-              duration-200
-              transform-gpu
-              hover:scale-105
-              text-xm
-            "
-            @click="addCart"
-          >
-            追加
-          </squareBottun>
+        <div class="flex">
+          <div class="py-1 pr-2 sm:py-2 sm:px-1">
+            <squareBottun
+              data-testid="addCart"
+              class="
+                text-white
+                font-semibold
+                bg-base_red
+                sm:py-3 sm:px-4
+                py-1
+                px-4
+                rounded
+                transition
+                duration-200
+                transform-gpu
+                hover:scale-105
+                text-xm
+              "
+              @click="addCart"
+            >
+              カートへ追加
+            </squareBottun>
+          </div>
+          <div class="py-1 pr-2 sm:py-2 sm:px-1">
+            <router-link to="/Cart">
+              <squareBottun
+                class="
+                  text-white
+                  font-semibold
+                  bg-base_red
+                  sm:py-3 sm:px-4
+                  py-1
+                  px-4
+                  rounded
+                  transition
+                  duration-200
+                  transform-gpu
+                  hover:scale-105
+                  text-xm
+                "
+              >
+                カートを確認
+              </squareBottun>
+            </router-link>
+          </div>
         </div>
       </div>
-    <div 
-    @click="back_onStep"
-    class="
-    flex
-    items-center
-    group
-    m-1
-    ">
-      <div class="
-      bg-base_aka bg-opacity-30 sm:bg-transparent
-      sm:group-hover:bg-base_aka sm:group-hover:bg-opacity-30
-      p-3 sm:p-4
-      rounded-full
-      ">
-        <img src="~assets/img/yajirusi_icon.webp" class="transform rotate-90 w-3 sm:w-5">
+
+      <div @click="back_onStep" class="flex items-center group m-1">
+        <div
+          class="
+            bg-base_aka
+            bg-opacity-30
+            sm:bg-transparent
+            sm:group-hover:bg-base_aka
+            sm:group-hover:bg-opacity-30
+            p-3
+            sm:p-4
+            rounded-full
+          "
+        >
+          <img
+            src="~assets/img/yajirusi_icon.webp"
+            class="transform rotate-90 w-3 sm:w-5"
+          />
+        </div>
+        <div
+          class="
+            text-base_aka
+            text-opacity-80 text-sm
+            sm:text-base
+            font-bold
+            m-3
+            mx-1
+          "
+        >
+          一覧に戻る
+        </div>
       </div>
-      <div class="text-base_aka text-opacity-80 text-sm sm:text-base font-bold m-3 mx-1">
-        一覧に戻る
-      </div>
-    </div>
     </div>
   </div>
 </template>
@@ -188,6 +234,7 @@ import Vue from 'vue';
 import { ItemsStore, ToppingsStore, CartStore, UserStore } from '../../store';
 import { itemType } from '../../types/itemType';
 import { toppingType } from '../../types/toppingType';
+import { userInfoType } from '../../types/userInfoType';
 import { cartItemType } from '../../types/cartItemType';
 import squareBottun from '../../components/atoms/button/squareBottun.vue';
 import Detail from '../../components/organisms/detail.vue';
@@ -198,6 +245,7 @@ type DataType = {
   selectedItemNum: number;
   allToppingPrice: number;
   selectedTopping: toppingType[];
+  userInfo: userInfoType | null;
 };
 type headType = {
   title: string;
@@ -220,6 +268,7 @@ export default Vue.extend({
       selectedItemNum: 1,
       allToppingPrice: 0,
       selectedTopping: [],
+      userInfo: UserStore.userInfo,
     };
   },
   created(): void {
@@ -244,23 +293,23 @@ export default Vue.extend({
         (topping) => topping.id === selecteId
       );
       // toppingの重複が無いとき
-       if (duplicatedTopping < 0) {
-      const pushTopping: toppingType = {
-        name: selectedName,
-        id: selecteId,
-        price: toppingPrice,
-        size: toppingSize,
-      };
-      this.selectedTopping.push(pushTopping);
-       }
+      if (duplicatedTopping < 0) {
+        const pushTopping: toppingType = {
+          name: selectedName,
+          id: selecteId,
+          price: toppingPrice,
+          size: toppingSize,
+        };
+        this.selectedTopping.push(pushTopping);
+      }
       //同じtoppingを選んだとき
       else if (duplicatedTopping >= 0) {
         // サイズを変更したとき
         if (this.selectedTopping[duplicatedTopping].size !== toppingSize) {
           this.selectedTopping[duplicatedTopping].size = toppingSize;
           this.selectedTopping[duplicatedTopping].price = toppingPrice;
-        } 
-       }
+        }
+      }
       // topping価格の更新
       this.allToppingPrice = this.selectedTopping.reduce(
         (sum: number, addTopping: any) => sum + addTopping.price,
@@ -277,7 +326,7 @@ export default Vue.extend({
         (topping) => topping.id === selecteId
       );
       this.selectedTopping.splice(deleteToppigIndex, 1);
-            this.allToppingPrice = this.selectedTopping.reduce(
+      this.allToppingPrice = this.selectedTopping.reduce(
         (sum: number, addTopping: any) => sum + addTopping.price,
         0
       );
@@ -285,7 +334,7 @@ export default Vue.extend({
 
     // カートに追加-------------------------------------------------------------------
     async addCart(): Promise<void> {
-      if (!UserStore.userInfo) {
+      if (!this.userInfo) {
         this.$router.push('/signin');
       } else {
         const addItemToCart: cartItemType = {
@@ -300,7 +349,7 @@ export default Vue.extend({
         };
         if (confirm('カートに商品を追加しますか？')) {
           CartStore.addItemToCartAct(addItemToCart);
-          await this.$router.push('/Cart');
+          // await this.$router.push('/Cart');
         }
       }
     },

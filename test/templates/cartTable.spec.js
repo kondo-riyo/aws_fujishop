@@ -71,15 +71,10 @@ describe('Testing cartTable component', () => {
     const divWrapper = wrapper.find('[data-testid="toppingSize"]')
     expect(divWrapper.text()).toEqual('+ はちみつ (少)')
    })
-   it('fetchのfetchitemInfoActアクションがレンダリング前に動作する',()=>{
-    const context = {store}
-    wrapper.vm.$options.fetch(context);
-    expect(context.store.fetchitemInfoAct).toHaveBeenCalled
-})
 it('compirmがfalseの場合なにも呼ばない',()=>{
   confirmSpy.mockImplementation(jest.fn(() => false));
   wrapper.get('[data-testid="show_cartItems"]').trigger('click');
  expect(store.deleteCartItemAct).toHaveBeenCalled
 })
 });
-// npm run test test/template/cartTable.spec.js
+// npm run test test/templates/cartTable.spec.js
