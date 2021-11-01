@@ -189,59 +189,14 @@ describe('Testing pages/itemDetail/_itemid.vue component', () => {
     squareBottunWrapper.trigger('click');
     expect(store.addItemToCartAct).toHaveBeenCalled;
   });
-  it('addCartが正しく分岐する', () => {
+  it('addCartが正しく分岐する(userInfoがnull)', () => {
     confirmSpy.mockImplementation(jest.fn(() => false));
     squareBottunWrapper.vm.$emit('click');
   });
-  //   it('selectToppingSizeが正しく分岐する(分岐:toppingの重複が無い場合)', async () => {
-  //     wrapper.setData({
-  //       selectedTopping: [],
-  //     });
-  //     let mypushTopping = [
-  //       {
-  //         id: 1,
-  //         name: 'アイス',
-  //         price: 500,
-  //         size: 1,
-  // },
-  //     ];
-  //     // const radioWrapper = wrapper.get('[data-testid="cal-modalM"]');
-  //     const radioWrapper = wrapper.get('input');
-  //     await radioWrapper.trigger('change');
-  //     console.log(wrapper.vm.selectedTopping)
-  //     await expect(wrapper.vm.selectedTopping).toEqual(mypushTopping);
-  //   });
-
-  //   it('selectToppingSizeが正しく分岐する(分岐:同じtoppingを選んだ場合)', async () => {
-  //     wrapper.setData({
-  //       selectedTopping: [],
-  //     });
-  //     let mypushTopping = [
-  //       {
-  //         id: 1,
-  //         name: 'アイス',
-  //         price: 500,
-  //         size: 1,
-  // },
-  //     ];
-  //     const radioWrapper = wrapper.get('[data-testid="cal-modalM"]');
-  //     await radioWrapper.trigger('change');
-  //     duplicatedTopping = 1
-  //     console.log(wrapper.vm.selectedTopping)
-
-  //     await expect(wrapper.vm.selectedTopping).toEqual(mypushTopping);
-  //   });
-  // it('calcTotalPriceが正しく表示される(分岐➁:itemdetailがundefinedの場合)', async () => {
-  //   wrapper.setData({
-  //     itemDetail: {},
-  //     selectedItemNum: 1,
-  //     allToppingPrice: 200,
-  //   });
-  //   await expect(wrapper.vm.calcTotalPrice).toEqual(0);
-  // });
-  // it('computed(getToppings)が正しく表示される', () => {
-  //   expect(store.getToppings).toHaveBeenCalled;
-  // });
+  it('addCartが正しく分岐する(userInfoが存在する)', () => {
+    wrapper.setData({userInfo:{name:"テストテスト"}})
+    squareBottunWrapper.vm.$emit('click');
+  });
 });
 
 // npm run test /test/pages/ItemDetail/itemId.spec.js

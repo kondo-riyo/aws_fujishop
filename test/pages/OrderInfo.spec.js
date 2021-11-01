@@ -31,6 +31,9 @@ describe('Testing OrderInfo component', () => {
       namespaced: true,
       getters: {
         getUserInfo: fn
+      },
+      actions:{
+        fetchSignupInfoAct: jest.fn(()=>{return {name:'テスト'}})
       }
     };
     CartStore = {

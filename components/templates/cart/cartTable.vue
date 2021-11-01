@@ -177,12 +177,6 @@ export default Vue.extend({
       }),
     },
   },
-  async fetch() :Promise<void> {
-    //if (!this.moniterCarts.orderId) {
-    const fetchitemInfo = CartStore.fetchitemInfoAct();
-    await Promise.all([fetchitemInfo]);
-    //}
-  },
   methods: {
     toppingSize(el: number): string {
       if (el === 1) {
@@ -208,7 +202,7 @@ export default Vue.extend({
       });
       return price;
     },
-    moniterCarts():void {
+    moniterCarts(): any {
       // @ts-ignore
       return this.cartItemFromStore;
     },

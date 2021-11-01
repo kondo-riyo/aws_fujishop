@@ -550,13 +550,15 @@ export default Vue.extend({
       return allPrice;
     },
   },
-  // mounted(): void {
-  //     this.name = UserStore.getUserInfo!.name,
-  //     this.email = UserStore.getUserInfo!.email,
-  //     this.postalcode = UserStore.getUserInfo!.postalcode,
-  //     this.address = UserStore.getUserInfo!.address,
-  //     this.tel = UserStore.getUserInfo!.tel
-  // },
+  mounted(): void {
+    if(UserStore.getUserInfo){
+      this.name = UserStore.getUserInfo!.name,
+      this.email = UserStore.getUserInfo!.email,
+      this.postalcode = UserStore.getUserInfo!.postalcode,
+      this.address = UserStore.getUserInfo!.address,
+      this.tel = UserStore.getUserInfo!.tel
+    }
+  },
   head(): headType {
     return {
       title: 'お届け先情報入力',

@@ -42,6 +42,7 @@ import { UserStore } from "../store";
         //******fromIteminfoStore
     @Mutation
     private fetchitemInfoMut(itemInfoFromDb:cartItemType):void{
+        this.itemInfo = []
         this.itemInfo.push(itemInfoFromDb)
     }
 
@@ -79,30 +80,33 @@ import { UserStore } from "../store";
 
         // ログインしていない場合storeにだけ追加
         if(!UserStore.userInfo){
-            this.addItemToCartMut(addItemToCart);
-        }// ログインしてたらdbとstoreに商品追加
+           // this.addItemToCartMut(addItemToCart);
+           this.itemInfo.push(addItemToCart)
+        }
+        // ログインしてたらdbとstoreに商品追加
         else {
             // 既にカートがあったらOrder/orderInfoコレクション内のitemInfo配列に追加
             if(this.getitemInfo.length>0){
+                this.itemInfo.push(addItemToCart)
                 let newCartitems =  {...this.getitemInfo};
                 if(newCartitems[0].itemInfo===undefined)return
                 newCartitems[0].itemInfo.push(itemInfo);
                 if(this.getitemInfo[0].orderId===null) return;
-
+                //this.addItemToCartMut(addItemToCart)
                  db.collection(`users/${UserStore.userInfo.uid}/order`).doc(this.getitemInfo[0].orderId).update({
                     itemInfo:[...newCartitems[0].itemInfo]
                 }).then(()=>{
                 if (this.getitemInfo[0].orderId===undefined) return;
-                this.addItemToCartMut(addItemToCart)})
+                //this.addItemToCartMut(addItemToCart)
+            })
             } else if(this.getitemInfo.length===0) {
+                
             // カートの中身が空だったらOrder/ordrtIdコレクションごと作成
             if(!UserStore.userInfo.uid) return
-           // console.log("カートが空なので新たなカートを作成")
             db.collection(`users/${UserStore.userInfo.uid}/order`).add(_order).then(cartItem=>{
-              //  this.addItemToCartMut(_order,cartItem.id)
-              //こっちは不要  this.addItemToNewCart(_order,cartItem.id)
              let addItemToCart = {..._order,orderId:cartItem.id}
-              this.addItemToCartMut(addItemToCart)
+             this.itemInfo.push(addItemToCart)
+            // this.addItemToCartMut(addItemToCart)
             })
         }        
     }}

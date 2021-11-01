@@ -30,7 +30,9 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
       },
     };
     UserStore = {
-      userInfo:{name:'ユーザー'}
+      actions:{
+        fetchSignupInfoAct:()=>{return {name:"テストユーザ"}}
+      },
     }
     store = new Vuex.Store({
       modules: {
@@ -150,21 +152,15 @@ describe('Testing pages/RakutenItemDetail/_itemid.vue component', () => {
     });
     await expect(wrapper.vm.calcTotalPrice).toEqual(1000);
   });
-  // it('addCartが正しく分岐する', () => {
-  //   confirmSpy.mockImplementation(jest.fn(() => false));
-  //   const mockRouterPush = jest.fn();
-  //   const app_mount = mount(RakuItemId, {
-  //     mocks: {
-  //       $router: {
-  //         push: mockRouterPush,
-  //       },
-  //     },
-  //   });
-  //   let buttonWrapper = app_mount.find('[data-testid="addCart"]');
-  //   console.log(buttonWrapper.html())
-  //   buttonWrapper.vm.$emit('click');
-  //   expect(mockRouterPush).toHaveBeenCalledWith;
-  // });
+  it('addCartが正しく分岐する', () => {
+    let buttonWrapper = wrapper.find('[data-testid="addCart"]');
+    buttonWrapper.vm.$emit('click');
+  });
+  it('addCartが正しく分岐する', () => {
+    wrapper.setData({userInfo:{name:"テストの人"}})
+    let buttonWrapper = wrapper.find('[data-testid="addCart"]');
+    buttonWrapper.vm.$emit('click');
+  });
 });
 
 // npm run test /test/pages/RakutenItemDetail/itemId.spec.js
