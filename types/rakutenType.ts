@@ -26,7 +26,8 @@ export namespace rakuten {
 
       type Options = {
         /** デフォルト: json */
-        format?: "json" | "xml";
+        // format?: "json" | "xml";
+        format?: "json";
         callback?: string;
         elements?: (keyof Item)[];
         /** デフォルト: 1 */

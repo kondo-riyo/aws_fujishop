@@ -4,7 +4,7 @@
     <div class="sm:w-2/5 w-screen flex items-center text-gray-700 mr-6">
       <div class="">
         <router-link to="/" class="flex items-center">
-          <img class="h-20 w-20 mx-4" src="~/assets/img/6.5.webp"/>
+          <img class="h-20 w-20 mx-4" src="~/assets/img/6.webp"/>
           <span class="font-semibold text-2xl sm:text-3xl text-base_brown">AWS FUJI SHOP</span>
         </router-link>
       </div>
