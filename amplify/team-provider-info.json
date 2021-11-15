@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-awsfujishop-dev-153844-authRole",
+      "UnauthRoleArn": "arn:aws:iam::661158516149:role/amplify-awsfujishop-dev-153844-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::661158516149:role/amplify-awsfujishop-dev-153844-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-awsfujishop-dev-153844-deployment",
+      "UnauthRoleName": "amplify-awsfujishop-dev-153844-unauthRole",
+      "StackName": "amplify-awsfujishop-dev-153844",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:661158516149:stack/amplify-awsfujishop-dev-153844/b1a96e10-45de-11ec-b412-0ac834aa7dc7",
+      "AmplifyAppId": "d2zpb7db6fud55"
+    }
+  }
+}
