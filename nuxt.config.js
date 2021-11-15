@@ -88,5 +88,8 @@ export default {
   },
   workbox: {
     dev: false, // Service Workerを開発環境で使用するかどうか
+  },
+  devServer: {
+    disableHostCheck: true
   }
 };
