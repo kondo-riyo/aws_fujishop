@@ -5,7 +5,7 @@
       <div class="">
         <router-link to="/" class="flex items-center">
           <img class="h-20 w-20 mx-4" src="~/assets/img/6.5.webp"/>
-          <span class="font-semibold text-2xl sm:text-3xl text-base_brown">FUJI SHOP</span>
+          <span class="font-semibold text-2xl sm:text-3xl text-base_brown">AWS FUJI SHOP</span>
         </router-link>
       </div>
     </div>
